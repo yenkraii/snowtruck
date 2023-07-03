@@ -6,7 +6,6 @@ import snowflake.connector
 st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
 
 #st.image(snowtruck_logo)
-title_container = st.beta_container()
 fp = open("images/Snowtruck_ProductBox.jpeg","rb")
 snowtruck_logo = PIL.Image.open(fp)
 
