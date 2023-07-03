@@ -1,6 +1,3 @@
 #requirements.txt
 snowflake-connector-python
-pandas
-streamlit
-numpy
-matplotlib.pyplot
+
