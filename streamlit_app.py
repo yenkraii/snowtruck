@@ -10,7 +10,7 @@ title_container = st.beta_container()
 fp = open("images/Snowtruck_Icon.jpeg","rb")
 snowtruck_logo = PIL.Image.open(fp)
 
-col1, col2 = st.beta_columns([1, 20])
+col1, col2 = st.columns([1, 20])
 with title_container:
     with col1:
         st.image(snowtruck_logo, width=64)
