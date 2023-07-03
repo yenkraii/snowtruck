@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import snowflake.connector
 
-st.set_page_config(page_title="SnowTruck", page_icon=":snowflake:")
+st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
 
 st.title("SnowTruck")
 
