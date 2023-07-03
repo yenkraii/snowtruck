@@ -1,10 +1,13 @@
 import streamlit as st
 import pandas as pd
+import PIL as Image
 import snowflake.connector
+
+snowtruck_logo = Image.open('images/Snowtruck_Icon.jpeg')
 
 st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
 
-st.title("SnowTruck:minibus:" )
+st.title("SnowTruck:minibus:", st.image(snowtruck_logo) )
 
 # connects to the snowflake account 
 # if need to use the data there
