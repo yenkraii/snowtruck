@@ -3,7 +3,7 @@ import pandas as pd
 import PIL.Image
 import snowflake.connector
 
-fp = open("/images/Snowtruck_Icon.jpeg","rb")
+fp = open("images/Snowtruck_Icon.jpeg","rb")
 snowtruck_logo = PIL.Image.open(fp)
 
 st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
