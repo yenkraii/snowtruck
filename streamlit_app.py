@@ -4,7 +4,7 @@ import snowflake.connector
 
 st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
 
-st.title("SnowTruck")
+st.title("SnowTruck:truck:" )
 
 # connects to the snowflake account 
 # if need to use the data there
