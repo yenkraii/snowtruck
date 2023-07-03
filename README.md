@@ -1,4 +1,4 @@
-# SnowTruck
+# SnowTruck ☃️
 
 [Deployed Web App](https://snowtruck-jkmc54s3e3.streamlit.app/)
 
