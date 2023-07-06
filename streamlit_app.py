@@ -136,8 +136,7 @@ with tab2:
     # rt_labels = [room_type_reverse_mapping[i] for i in sorted(room_type_reverse_mapping.keys())]
 
     
-    def get_dayOfWeek
-():
+    def get_dayOfWeek():
         dayOfWeek = st.selectbox('Select a day of week', dow_labels)
         return dayOfWeek
 
