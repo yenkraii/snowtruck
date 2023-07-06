@@ -104,7 +104,7 @@ with tab2:
      'Combination Curry': 56,
      'Breakfast Crepe': 57}
 
-      mt_mapping = {'Ice Cream': 0,
+    mt_mapping = {'Ice Cream': 0,
      'BBQ': 1,
      'Mac & Cheese': 2,
      'Ramen': 3,
