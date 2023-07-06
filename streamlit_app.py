@@ -4,10 +4,7 @@ import numpy as np
 import PIL.Image
 import snowflake.connector
 import pydeck as pdk
-import joblib
-from joblib import load
 import pickle
-from sklearn import preprocessing
 
 st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
 
