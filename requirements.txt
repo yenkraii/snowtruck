@@ -5,12 +5,9 @@ scikit-learn
 scipy
 seaborn
 matplotlib
-altair
-shap
 xgboost
 bayesian-optimization
 hyperopt
-streamlit
 Pillow
 glmnet
 slickml
