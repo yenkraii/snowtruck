@@ -106,11 +106,17 @@ with tab2:
       dayOfWeek = st.selectbox('Select a day of week', dow_labels)
       return dayOfWeek
 
-    def get_menuItemName(menuItemName):
-      # show only the menu items for the selected day of week
-      menuItemNames = df[df['DAY_OF_WEEK'] == min_mapping[DAY_OF_WEEK]]['MENU_ITEM_NAME'].unique()
-      menuItemName = st.selectbox('Select a menu item', menuItemNames)
-      return menuItemName
+    # def get_menuItemName(menuItemName):
+    #   # show only the menu items for the selected day of week
+    #   menuItemNames = df[df['DAY_OF_WEEK'] == min_mapping[DAY_OF_WEEK]]['MENU_ITEM_NAME'].unique()
+    #   menuItemName = st.selectbox('Select a menu item', menuItemNames)
+    #   return menuItemName
+
+  def get_menuItemName(menuItemName):
+    # show only the menu items for the selected day of week
+    menuItemNames = df[df['DAY_OF_WEEK'] == dow_mapping[menuItemName]]['MENU_ITEM_NAME'].unique()
+    menuItemName = st.selectbox('Select a menu item', menuItemNames)
+    return menuItemName
 
     # Define the user input fields
     dow_input = get_dayOfWeek()
