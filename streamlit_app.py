@@ -109,7 +109,7 @@ with tab2:
 
     def get_menuItemName(menuItemName):
       # show only the neighbourhoods in the selected neighbourhood group
-      neighbourhoods = df[df['MENU_ITEM_NAME'] == min_mapping[DAY_OF_WEEK]]['MENU_ITEM_NAME'].unique()
+      menuItemName = df[df['MENU_ITEM_NAME'] == min_mapping[DAY_OF_WEEK]]['MENU_ITEM_NAME'].unique()
 
       menuItemName = st.selectbox('Select a neighbourhood for the neighbourhood group', n_mapping)
       return menuItemName
