@@ -43,7 +43,8 @@ with tab2:
     dow_reverse_mapping = {v: k for k, v in dow_mapping.items()}
     dow_labels = [dow_reverse_mapping[i] for i in sorted(dow_reverse_mapping.keys())]
 
-    min_mapping = {'Ice Tea': 0,
+    min_mapping = {
+        'Ice Tea': 0,
         'Fish Burrito': 1,
         'Lean Beef Tibs': 2,
         'Bottled Soda': 3,
@@ -108,14 +109,19 @@ with tab2:
 
     # def get_menuItemName(menuItemName):
     #   # show only the menu items for the selected day of week
-    #   menuItemNames = df[df['DAY_OF_WEEK'] == min_mapping[DAY_OF_WEEK]]['MENU_ITEM_NAME'].unique()
+    #   menuItemNames = df[df['DAY_OF_WEEK'] == dow_mapping[menuItemName]]['MENU_ITEM_NAME'].unique()
     #   menuItemName = st.selectbox('Select a menu item', menuItemNames)
     #   return menuItemName
+
     def get_menuItemName(menuItemName):
-      # show only the menu items for the selected day of week
-      menuItemNames = df[df['DAY_OF_WEEK'] == dow_mapping[menuItemName]]['MENU_ITEM_NAME'].unique()
-      menuItemName = st.selectbox('Select a menu item', menuItemNames)
-      return menuItemName
+      if menuItemName not in min_mapping:
+        st.error("Invalid menu item selected. Please choose a valid menu item.")
+        return None
+
+    # show only the menu items for the selected day of week
+    menuItemNames = df[df['DAY_OF_WEEK'] == dow_mapping[menuItemName]]['MENU_ITEM_NAME'].unique()
+    menuItemName = st.selectbox('Select a menu item', menuItemNames)
+    return menuItemName
 
     # Define the user input fields
     dow_input = get_dayOfWeek()
