@@ -39,9 +39,21 @@ with tab2:
     df = pd.read_csv('df_xinle.csv')
     price = df[['TOTAL_QUANTITY']] # extract price column from listings_new2.csv
 
-    dowmappings={'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6}
-    dow_reverse_mapping = {v: k for k, v in dowmappings.items()}
-    dow_labels = list(dowmappings.keys())
+    dow_mapping={'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6}
+    dow_reverse_mapping = {v: k for k, v in dow_mapping.items()}
+    dow_labels = list(dow_mapping.keys())
+
+    dow_labels = [dow_reverse_mapping[i] for i in sorted(dow_reverse_mapping.keys())]
+
+    def get_dayOfWeek():
+      dayOfWeek = st.selectbox('Select a day of week', dow_labels)
+      return dayOfWeek
+
+    # Define the user input fields
+    dow_input = get_dayOfWeek()
+
+    # Map user inputs to integer encoding
+    dow_int = dow_mapping[dow_input]
 
     min_mapping = {'Ice Tea': 0,
          'Fish Burrito': 1,
@@ -123,9 +135,7 @@ with tab2:
     isc_mapping= {'Cold Option': 0, 'Warm Option': 1, 'Hot Option': 2}
 
 
-    def get_dayOfWeek():
-        dayOfWeek = st.selectbox('Select a day of week', dow_labels)
-        return dayOfWeek
+
 
     
 
