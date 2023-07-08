@@ -41,21 +41,10 @@ with tab2:
 
     dow_mapping={'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6}
     dow_reverse_mapping = {v: k for k, v in dow_mapping.items()}
-    dow_labels = list(dow_mapping.keys())
-
+    #dow_labels = list(dow_mapping.keys())
     dow_labels = [dow_reverse_mapping[i] for i in sorted(dow_reverse_mapping.keys())]
 
-    def get_dayOfWeek():
-      dayOfWeek = st.selectbox('Select a day of week', dow_labels)
-      return dayOfWeek
-
-    # Define the user input fields
-    dow_input = get_dayOfWeek()
-
-    # Map user inputs to integer encoding
-    dow_int = dow_mapping[dow_input]
-
-    min_mapping = {'Ice Tea': 0,
+      min_mapping = {'Ice Tea': 0,
          'Fish Burrito': 1,
          'Lean Beef Tibs': 2,
          'Bottled Soda': 3,
@@ -113,6 +102,27 @@ with tab2:
          'Chicken Pot Pie Crepe': 55,
          'Combination Curry': 56,
          'Breakfast Crepe': 57}
+
+    def get_dayOfWeek():
+      dayOfWeek = st.selectbox('Select a day of week', dow_labels)
+      return dayOfWeek
+
+    def get_menuItemName(menuItemName):
+      # show only the neighbourhoods in the selected neighbourhood group
+      neighbourhoods = df[df['MENU_ITEM_NAME'] == min_mapping[DAY_OF_WEEK]]['MENU_ITEM_NAME'].unique()
+
+      menuItemName = st.selectbox('Select a neighbourhood for the neighbourhood group', n_mapping)
+      return menuItemName
+
+    # Define the user input fields
+    dow_input = get_dayOfWeek()
+    min_input = get_menuItemName(dow_input)
+  
+
+    # Map user inputs to integer encoding
+    dow_int = dow_mapping[dow_input]
+    min_int = min_mapping[min_input]
+
 
     mt_mapping = {'BBQ': 0,
          'Tacos': 1,
