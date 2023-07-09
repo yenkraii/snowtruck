@@ -80,16 +80,25 @@ with tab2:
       ITEM_CATEGORY = st.selectbox('Select a item category', ic_mapping)
       return ITEM_CATEGORY  
 
+    def get_itemSubCat(ITEM_CATEGORY):
+      # show only the menu items for the selected day of week
+      #ITEM_SUBCATEGORYs = df[df['ITEM_CATEGORY'] == dow_mapping[ITEM_CATEGORY]]['ITEM_SUBCATEGORY'].unique()
+      ITEM_SUBCATEGORY = st.selectbox('Select a item sub-category', isc_mapping)
+      return ITEM_SUBCATEGORY   
+
     # Define the user input fields
     dow_input = get_dayOfWeek()
     mt_input = get_menuType(dow_input)
     ic_input = get_itemCat(mt_input)
+    isc_input = get_itemSubCat(ic_input)  
   
 
     # Map user inputs to integer encoding
     dow_int = dow_mapping[dow_input]
     mt_int = mt_mapping[mt_input]
     ic_int = ic_mapping[ic_input]
+    isc_int = isc_mapping[isc_input]  
+
 
 
 
