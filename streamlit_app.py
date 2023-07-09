@@ -43,6 +43,57 @@ with tab2:
     dow_reverse_mapping = {v: k for k, v in dow_mapping.items()}
     dow_labels = [dow_reverse_mapping[i] for i in sorted(dow_reverse_mapping.keys())]
 
+    mt_mapping = {'BBQ': 0,
+         'Tacos': 1,
+         'Ethiopian': 2,
+         'Poutine': 3,
+         'Gyros': 4,
+         'Chinese': 5,
+         'Ice Cream': 6,
+         'Grilled Cheese': 7,
+         'Mac & Cheese': 8,
+         'Ramen': 9,
+         'Indian': 10,
+         'Vegetarian': 11,
+         'Hot Dogs': 12,
+         'Crepes': 13,
+         'Sandwiches': 14}  
+  
+    ic_mapping = {'Beverage': 0, 'Dessert': 1, 'Main': 2, 'Snack': 3}
+
+    isc_mapping= {'Cold Option': 0, 'Warm Option': 1, 'Hot Option': 2}
+   
+
+
+    def get_dayOfWeek():
+      dayOfWeek = st.selectbox('Select a day of week', dow_labels)
+      return dayOfWeek
+
+    def get_menuType(DAY_OF_WEEK):
+      # show only the menu items for the selected day of week
+      MENU_TYPES = df[df['DAY_OF_WEEK'] == dow_mapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
+      MENU_TYPE = st.selectbox('Select a menu type', mt_mapping)
+      return MENU_TYPE
+
+    def get_itemCat(MENU_TYPE):
+      # show only the menu items for the selected day of week
+      ITEM_CATEGORYS = df[df['MENU_TYPE'] == dow_mapping[MENU_TYPE]]['ITEM_CATEGORY'].unique()
+      ITEM_CATEGORY = st.selectbox('Select a item category', ic_mapping)
+      return ITEM_CATEGORY  
+  
+
+    # Define the user input fields
+    dow_input = get_dayOfWeek()
+    mt_input = get_menuType(dow_input)
+    ic_input = get_itemCat(mt_input)
+  
+
+    # Map user inputs to integer encoding
+    dow_int = dow_mapping[dow_input]
+    mt_int = mt_mapping[mt_input]
+    ic_int = ic_mapping[ic_input]
+
+
     min_mapping = {
         'Ice Tea': 0,
         'Fish Burrito': 1,
@@ -103,46 +154,6 @@ with tab2:
         'Combination Curry': 56,
         'Breakfast Crepe': 57}
 
-    def get_dayOfWeek():
-      dayOfWeek = st.selectbox('Select a day of week', dow_labels)
-      return dayOfWeek
-
-    def get_menuItemName(DAY_OF_WEEK):
-      # show only the menu items for the selected day of week
-      MENU_ITEM_NAMES = df[df['DAY_OF_WEEK'] == dow_mapping[DAY_OF_WEEK]]['MENU_ITEM_NAME'].unique()
-      MENU_ITEM_NAME = st.selectbox('Select a menu item', min_mapping)
-      return MENU_ITEM_NAME
-
-
-    # Define the user input fields
-    dow_input = get_dayOfWeek()
-    min_input = get_menuItemName(dow_input)
-  
-
-    # Map user inputs to integer encoding
-    dow_int = dow_mapping[dow_input]
-    min_int = min_mapping[min_input]
-
-
-    mt_mapping = {'BBQ': 0,
-         'Tacos': 1,
-         'Ethiopian': 2,
-         'Poutine': 3,
-         'Gyros': 4,
-         'Chinese': 5,
-         'Ice Cream': 6,
-         'Grilled Cheese': 7,
-         'Mac & Cheese': 8,
-         'Ramen': 9,
-         'Indian': 10,
-         'Vegetarian': 11,
-         'Hot Dogs': 12,
-         'Crepes': 13,
-         'Sandwiches': 14}
-
-    ic_mapping = {'Beverage': 0, 'Dessert': 1, 'Main': 2, 'Snack': 3}
-
-    isc_mapping= {'Cold Option': 0, 'Warm Option': 1, 'Hot Option': 2}
 
 
 
