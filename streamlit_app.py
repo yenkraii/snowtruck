@@ -64,7 +64,6 @@ with tab2:
     isc_mapping= {'Cold Option': 0, 'Warm Option': 1, 'Hot Option': 2}
    
 
-
     def get_dayOfWeek():
       dayOfWeek = st.selectbox('Select a day of week', dow_labels)
       return dayOfWeek
@@ -77,10 +76,9 @@ with tab2:
 
     def get_itemCat(MENU_TYPE):
       # show only the menu items for the selected day of week
-      ITEM_CATEGORYS = df[df['MENU_TYPE'] == dow_mapping[MENU_TYPE]]['ITEM_CATEGORY'].unique()
+      #ITEM_CATEGORYS = df[df['MENU_TYPE'] == dow_mapping[MENU_TYPE]]['ITEM_CATEGORY'].unique()
       ITEM_CATEGORY = st.selectbox('Select a item category', ic_mapping)
       return ITEM_CATEGORY  
-  
 
     # Define the user input fields
     dow_input = get_dayOfWeek()
@@ -92,68 +90,6 @@ with tab2:
     dow_int = dow_mapping[dow_input]
     mt_int = mt_mapping[mt_input]
     ic_int = ic_mapping[ic_input]
-
-
-    min_mapping = {
-        'Ice Tea': 0,
-        'Fish Burrito': 1,
-        'Lean Beef Tibs': 2,
-        'Bottled Soda': 3,
-        'Bottled Water': 4,
-        'Mango Sticky Rice': 5,
-        'Rack of Pork Ribs': 6,
-        'Buffalo Mac & Cheese': 7,
-        'Tonkotsu Ramen': 8,
-        'Two Scoop Bowl': 9,
-        'Waffle Cone': 10,
-        'Mothers Favorite': 11,
-        'Lean Chicken Tikka Masala': 12,
-        'Seitan Buffalo Wings': 13,
-        'The Salad of All Salads': 14,
-        'Lean Chicken Tibs': 15,
-        'The King Combo': 16,
-        'Coney Dog': 17,
-        'Two Taco Combo Plate': 18,
-        'Wonton Soup': 19,
-        'Spicy Miso Vegetable Ramen': 20,
-        'Sugar Cone': 21,
-        'Pulled Pork Sandwich': 22,
-        'Standard Mac & Cheese': 23,
-        'Veggie Combo': 24,
-        'Tandoori Mixed Grill': 25,
-        'Italian': 26,
-        'Crepe Suzette': 27,
-        'Combo Fried Rice': 28,
-        'Lean Burrito Bowl': 29,
-        'Greek Salad': 30,
-        'Two Meat Plate': 31,
-        'The Classic': 32,
-        'Spring Mix Salad': 33,
-        'Lobster Mac & Cheese': 34,
-        'The Ranch': 35,
-        'Miss Piggie': 36,
-        'Ice Cream Sandwich': 37,
-        'Three Meat Plate': 38,
-        'Three Taco Combo Plate': 39,
-        'Fried Pickles': 40,
-        'Hot Ham & Cheese': 41,
-        'Veggie Burger': 42,
-        'Combo Lo Mein': 43,
-        'The Original': 44,
-        'Creamy Chicken Ramen': 45,
-        'Lemonade': 46,
-        'Popsicle': 47,
-        'Veggie Taco Bowl': 48,
-        'Pastrami': 49,
-        'Chicago Dog': 50,
-        'The Kitchen Sink': 51,
-        'Gyro Plate': 52,
-        'Chicken Burrito': 53,
-        'New York Dog': 54,
-        'Chicken Pot Pie Crepe': 55,
-        'Combination Curry': 56,
-        'Breakfast Crepe': 57}
-
 
 
 
