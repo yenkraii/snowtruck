@@ -24,10 +24,13 @@ tab1,tab2,tab3,tab4,tab5 = st.tabs(["tab1","tab2","tab3","tab4","tab5"])
 
 with tab1:
   # Define the app title and favicon
-    st.write('How much can you make from the TastyBytes locations?')
-    st.markdown("This tab allows you to make predictions on the price of a listing based on the neighbourhood and room type. The model used is a Random Forest Regressor trained on the Airbnb Singapore listings dataset.")
-    st.write('Choose a Truck Brand Name, City, Truck Location and Time Frame to get the predicted monetary sales.')
+  st.write('How much can you make from the TastyBytes locations?')
+  st.markdown("This tab allows you to make predictions on the price of a listing based on the neighbourhood and room type. The model used is a Random Forest Regressor trained on the Airbnb Singapore listings dataset.")
+  st.write('Choose a Truck Brand Name, City, Truck Location and Time Frame to get the predicted monetary sales.')
 
+  with open('xgb_alethea.pkl', 'rb') as file:
+    xgb_gs = pickle.load(file)
+    
     # Load the cleaned and transformed dataset
     df = pd.read_csv('df_alethea.csv')
     quantity = df[['TOTAL_QUANTITY']]
@@ -71,14 +74,14 @@ with tab1:
       return City
 
     # Define the user input fields
-    dow_input = get_dayOfWeek()
-    bn_input = get_truckBrandName(dow_input)
-    ct_input = get_truckCity(bn_mapping)
+    dow_input1 = get_dayOfWeek()
+    bn_input1 = get_truckBrandName(dow_input)
+    ct_input1 = get_truckCity(bn_mapping)
 
     # Map user inputs to integer encoding
-    dow_int = dow_mapping[dow_input]
-    bn_input = bn_mapping[bn_input]
-    ct_input = ct_mapping[ct_input]
+    dow_int1 = dow_mapping[dow_input1]
+    bn_input1 = bn_mapping[bn_input1]
+    ct_input1 = ct_mapping[ct_input1]
 
 
 
