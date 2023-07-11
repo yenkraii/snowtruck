@@ -24,7 +24,7 @@ tab1,tab2,tab3,tab4,tab5 = st.tabs(["tab1","tab2","tab3","tab4","tab5"])
 
 with tab1:
   # Define the app title and favicon
-  st.write('How much can you make from the TastyBytes locations?)
+  st.write('How much can you make from the TastyBytes locations?')
   st.markdown("This tab allows you to make predictions on the price of a listing based on the neighbourhood and room type. The model used is a Random Forest Regressor trained on the Airbnb Singapore listings dataset.")
   st.write('Choose a Truck Brand Name, City, Truck Location and Time Frame to get the predicted monetary sales.')
 
@@ -65,9 +65,9 @@ with tab1:
     return TRUCK_BRAND_NAME
         
   def get_truckCity(CITY):
-  CITY = df[df['TRUCK_BRAND_NAME'] == bn_mapping[TRUCK_BRAND_NAME]]['CITY'].unique()
-  CITY = st.selectbox('Select a city', ct_mapping)
-  return CITY
+    CITY = df[df['TRUCK_BRAND_NAME'] == bn_mapping[TRUCK_BRAND_NAME]]['CITY'].unique()
+    CITY = st.selectbox('Select a city', ct_mapping)
+    return CITY
 
   # Define the user input fields
   dow_input = get_dayOfWeek()
