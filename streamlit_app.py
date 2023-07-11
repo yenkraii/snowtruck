@@ -60,13 +60,15 @@ with tab1:
       return dayOfWeek
         
     def get_truckBrandName(TRUCK_BRAND_NAME):
-      TRUCK_BRAND_NAME = df[df['DAY_OF_WEEK'] == dow_mapping[DAY_OF_WEEK]]['TRUCK_BRAND_NAME'].unique()
       TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name', bn_mapping)
+      # TRUCK_BRAND_NAME = df[df['DAY_OF_WEEK'] == dow_mapping[DAY_OF_WEEK]]['TRUCK_BRAND_NAME'].unique()
+      # TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name', bn_mapping)
       return TRUCK_BRAND_NAME
         
     def get_truckCity(CITY):
-      CITY = df[df['TRUCK_BRAND_NAME'] == bn_mapping[TRUCK_BRAND_NAME]]['CITY'].unique()
       CITY = st.selectbox('Select a city', ct_mapping)
+      # CITY = df[df['TRUCK_BRAND_NAME'] == bn_mapping[TRUCK_BRAND_NAME]]['CITY'].unique()
+      # CITY = st.selectbox('Select a city', ct_mapping)
       return CITY
 
     # Define the user input fields
