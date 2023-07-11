@@ -61,7 +61,7 @@ with tab1:
         
   def get_truckBrandName(TRUCK_BRAND_NAME):
     TRUCK_BRAND_NAME = df[df['DAY_OF_WEEK'] == dow_mapping[DAY_OF_WEEK]]['TRUCK_BRAND_NAME'].unique()
-    TRUCK_BRAND_NAME = st.selectbox('Select the truck's brand name', bn_mapping)
+    TRUCK_BRAND_NAME = st.selectbox('Select the truck brand name', bn_mapping)
     return TRUCK_BRAND_NAME
         
   def get_truckCity(CITY):
