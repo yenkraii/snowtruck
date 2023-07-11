@@ -26,7 +26,7 @@ with tab1:
   # Define the app title and favicon
   st.title('How much can you make from the TastyBytes locations?')
   st.markdown("This tab allows you to make predictions on the price of a listing based on the neighbourhood and room type. The model used is a Random Forest Regressor trained on the Airbnb Singapore listings dataset.")
-  st.write('Choose a Truck Brand Name, City, Truck Location and Time Frame to get the predicted monetary sales.')
+  st.write('Choose a Truck Brand Name, City, Truck Location and Time Frame to get the predicted sales.')
 
   with open('xgb_alethea.pkl', 'rb') as file:
     xgb_gs = pickle.load(file)
@@ -60,6 +60,12 @@ with tab1:
     def get_dayOfWeek():
       DayOfWeek = st.selectbox('Select a day of week', dow_labels)
       return DayOfWeek
+
+    # Define the user input fields
+    dowInput = get_dayOfWeek()
+
+    # Map user inputs to integer encoding
+    dowInt = dow_mapping[dowInput]
 
 
 
