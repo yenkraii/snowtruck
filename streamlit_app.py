@@ -24,7 +24,7 @@ tab1,tab2,tab3,tab4,tab5 = st.tabs(["tab1","tab2","tab3","tab4","tab5"])
 
 with tab1:
   # Define the app title and favicon
-  st.write('How much can you make from the TastyBytes locations?')
+  st.title('How much can you make from the TastyBytes locations?')
   st.markdown("This tab allows you to make predictions on the price of a listing based on the neighbourhood and room type. The model used is a Random Forest Regressor trained on the Airbnb Singapore listings dataset.")
   st.write('Choose a Truck Brand Name, City, Truck Location and Time Frame to get the predicted monetary sales.')
 
@@ -60,28 +60,6 @@ with tab1:
     def get_dayOfWeek():
       DayOfWeek = st.selectbox('Select a day of week', dow_labels)
       return DayOfWeek
-        
-    def get_truckBrandName(DAY_OF_WEEK):
-      TruckBrandName = st.selectbox('Select a truck brand name', bn_mapping)
-      # TRUCK_BRAND_NAME = df[df['DAY_OF_WEEK'] == dow_mapping[DAY_OF_WEEK]]['TRUCK_BRAND_NAME'].unique()
-      # TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name', bn_mapping)
-      return TruckBrandName
-        
-    def get_truckCity(TRUCK_BRAND_NAME):
-      City = st.selectbox('Select a city', ct_mapping)
-      # CITY = df[df['TRUCK_BRAND_NAME'] == bn_mapping[TRUCK_BRAND_NAME]]['CITY'].unique()
-      # CITY = st.selectbox('Select a city', ct_mapping)
-      return City
-
-    # Define the user input fields
-    dow_input1 = get_dayOfWeek()
-    bn_input1 = get_truckBrandName(dow_input)
-    ct_input1 = get_truckCity(bn_mapping)
-
-    # Map user inputs to integer encoding
-    dow_int1 = dow_mapping[dow_input1]
-    bn_input1 = bn_mapping[bn_input1]
-    ct_input1 = ct_mapping[ct_input1]
 
 
 
