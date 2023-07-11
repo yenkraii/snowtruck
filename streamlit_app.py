@@ -28,7 +28,6 @@ with tab1:
     st.markdown("This tab allows you to make predictions on the price of a listing based on the neighbourhood and room type. The model used is a Random Forest Regressor trained on the Airbnb Singapore listings dataset.")
     st.write('Choose a Truck Brand Name, City, Truck Location and Time Frame to get the predicted monetary sales.')
 
-
     # Load the cleaned and transformed dataset
     df = pd.read_csv('df_alethea.csv')
     quantity = df[['TOTAL_QUANTITY']]
@@ -56,20 +55,20 @@ with tab1:
     ct_mapping = {'San Mateo': 0, 'Seattle': 1, 'New York City': 2, 'Boston': 3, 'Denver':4}
 
     def get_dayOfWeek():
-      dayOfWeek = st.selectbox('Select a day of week', dow_labels)
-      return dayOfWeek
+      DayOfWeek = st.selectbox('Select a day of week', dow_labels)
+      return DayOfWeek
         
-    def get_truckBrandName(TRUCK_BRAND_NAME):
-      TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name', bn_mapping)
+    def get_truckBrandName(DAY_OF_WEEK):
+      TruckBrandName = st.selectbox('Select a truck brand name', bn_mapping)
       # TRUCK_BRAND_NAME = df[df['DAY_OF_WEEK'] == dow_mapping[DAY_OF_WEEK]]['TRUCK_BRAND_NAME'].unique()
       # TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name', bn_mapping)
-      return TRUCK_BRAND_NAME
+      return TruckBrandName
         
-    def get_truckCity(CITY):
-      CITY = st.selectbox('Select a city', ct_mapping)
+    def get_truckCity(TRUCK_BRAND_NAME):
+      City = st.selectbox('Select a city', ct_mapping)
       # CITY = df[df['TRUCK_BRAND_NAME'] == bn_mapping[TRUCK_BRAND_NAME]]['CITY'].unique()
       # CITY = st.selectbox('Select a city', ct_mapping)
-      return CITY
+      return City
 
     # Define the user input fields
     dow_input = get_dayOfWeek()
