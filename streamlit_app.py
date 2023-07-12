@@ -9,10 +9,14 @@ import pickle
 st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
 
 #st.image(snowtruck_logo)
-fp = open("images/Snowtruck_ProductBox.jpeg","rb")
-snowtruck_logo = PIL.Image.open(fp)
+# fp = open("images/Snowtruck_ProductBox.jpeg","rb")
+# snowtruck_logo = PIL.Image.open(fp)
 
-st.image(snowtruck_logo,width=64)
+# st.image(snowtruck_logo,width=64)
+
+snowtruck_logo = Image.open("images/Snowtruck_ProductBox.jpeg")
+
+st.image(snowtruck_logo, caption='Snowtruck Logo', width=500)
 st.title("SnowTruck:minibus:")
 
 # connects to the snowflake account 
