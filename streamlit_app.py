@@ -109,7 +109,7 @@ with tab2:
     isc_mapping= {'Cold Option': 0, 'Warm Option': 1, 'Hot Option': 2}
    
 
-    def get_dayOfWeek():
+    def get_dayOfWeek2():
       dayOfWeek = st.selectbox('Select a day of week', dowLabels)
       return dayOfWeek
 
@@ -132,7 +132,7 @@ with tab2:
       return ITEM_SUBCATEGORY   
 
     # Define the user input fields
-    dowInput = get_dayOfWeek()
+    dowInput = get_dayOfWeek2()
     mt_input = get_menuType(dow_input)
     ic_input = get_itemCat(mt_input)
     isc_input = get_itemSubCat(ic_input)  
