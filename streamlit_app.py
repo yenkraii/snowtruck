@@ -5,6 +5,7 @@ import PIL.Image
 import snowflake.connector
 import pydeck as pdk
 import pickle
+from PIL import Image
 
 st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
 
