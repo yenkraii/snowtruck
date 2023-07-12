@@ -84,9 +84,9 @@ with tab2:
     df = pd.read_csv('df_xinle.csv')
     price = df[['TOTAL_QUANTITY']] # extract price column from df_xinle
 
-    dow_mapping={'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6}
-    dow_reverse_mapping = {v: k for k, v in dow_mapping.items()}
-    dow_labels = [dow_reverse_mapping[i] for i in sorted(dow_reverse_mapping.keys())]
+    dowMapping={'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6}
+    dowReverseMapping = {v: k for k, v in dowMapping.items()}
+    dowLabels = [dowReverseMapping[i] for i in sorted(dowReverseMapping.keys())]
 
     mt_mapping = {'BBQ': 0,
          'Tacos': 1,
@@ -110,12 +110,12 @@ with tab2:
    
 
     def get_dayOfWeek():
-      dayOfWeek = st.selectbox('Select a day of week', dow_labels)
+      dayOfWeek = st.selectbox('Select a day of week', dowLabels)
       return dayOfWeek
 
     def get_menuType(DAY_OF_WEEK):
       # show only the menu items for the selected day of week
-      MENU_TYPES = df[df['DAY_OF_WEEK'] == dow_mapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
+      MENU_TYPES = df[df['DAY_OF_WEEK'] == dowMapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
       MENU_TYPE = st.selectbox('Select a menu type', mt_mapping)
       return MENU_TYPE
 
@@ -139,7 +139,7 @@ with tab2:
   
 
     # Map user inputs to integer encoding
-    dow_int = dow_mapping[dow_input]
+    dow_int = dowMapping[dow_input]
     mt_int = mt_mapping[mt_input]
     ic_int = ic_mapping[ic_input]
     isc_int = isc_mapping[isc_input]  
