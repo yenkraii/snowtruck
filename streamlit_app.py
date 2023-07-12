@@ -81,7 +81,7 @@ with tab2:
 
     # Load the cleaned and transformed dataset
     df = pd.read_csv('df_xinle.csv')
-    price = df[['TOTAL_QUANTITY']] # extract price column from listings_new2.csv
+    price = df[['TOTAL_QUANTITY']] # extract price column from df_xinle
 
     dow_mapping={'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6}
     dow_reverse_mapping = {v: k for k, v in dow_mapping.items()}
@@ -142,6 +142,27 @@ with tab2:
     mt_int = mt_mapping[mt_input]
     ic_int = ic_mapping[ic_input]
     isc_int = isc_mapping[isc_input]  
+
+    # Display the prediction
+    if st.button('Predict Price'):
+        
+        # Make the prediction   
+        input_data = [[dow_int,mt_int,ic_int,isc_int]]
+        input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_ITEM_NAME', 'MENU_TYPE','ITEM_CATEGORY','ITEM_SUBCATEGORY', 'UNIT_PRICE'])
+        prediction = rf.predict(input_df)   
+        # convert output data and columns, including price, to a dataframe avoiding TypeError: type numpy.ndarray doesn't define round method
+        output_data = [DAY_OF_WEEK, MENU_ITEM_NAME, MENU_TYPE,ITEM_CATEGORY,ITEM_SUBCATEGORY, UNIT_PRICE, prediction[0]]
+
+    
+        output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_ITEM_NAME', 'MENU_TYPE','ITEM_CATEGORY','ITEM_SUBCATEGORY', 'UNIT_PRICE', 'predicted_quantity'])
+
+        # Make the prediction   
+        # show prediction on price in dollars and cents using the price column 
+        input_data = [[dow_int, MENU_ITEM_NAME, mt_int,ic_int,isc_int, UNIT_PRICE]]
+
+        predicted_price = rf.predict(input_df)[0]
+        st.write('The predicted average price is ${:.2f}.'.format(predicted_quantity))
+        st.dataframe(output_df)
 
 
 
