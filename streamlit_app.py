@@ -13,7 +13,7 @@ st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
 
 snowtruck_logo = Image.open("images/Snowtruck_ProductBox.jpeg")
 
-st.image(snowtruck_logo, width=500)
+st.image(snowtruck_logo, width=700)
 st.title("SnowTruck:minibus:")
 
 # connects to the snowflake account 
@@ -161,7 +161,7 @@ with tab2:
         # show prediction on price in dollars and cents using the price column 
         input_data = [[dow_int, MENU_ITEM_NAME, mt_int,ic_int,isc_int, UNIT_PRICE]]
 
-        predicted_price = rf.predict(input_df)[0]
+        predicted_price = xgb.predict(input_df)[0]
         st.write('The predicted average price is ${:.2f}.'.format(predicted_quantity))
         st.dataframe(output_df)
 
