@@ -88,25 +88,25 @@ with tab2:
     dowReverseMapping = {v: k for k, v in dowMapping.items()}
     dowLabels = [dowReverseMapping[i] for i in sorted(dowReverseMapping.keys())]
 
-    mt_mapping = {'BBQ': 0,
-         'Tacos': 1,
-         'Ethiopian': 2,
-         'Poutine': 3,
-         'Gyros': 4,
-         'Chinese': 5,
-         'Ice Cream': 6,
-         'Grilled Cheese': 7,
-         'Mac & Cheese': 8,
-         'Ramen': 9,
-         'Indian': 10,
-         'Vegetarian': 11,
-         'Hot Dogs': 12,
-         'Crepes': 13,
-         'Sandwiches': 14}  
+    mt_mapping = {'Vegetarian': 0,
+                  'Crepes': 1,
+                  'Chinese': 2,
+                  'Ice Cream': 3,
+                  'Mac & Cheese': 4,
+                  'Hot Dogs': 5,
+                  'Ethiopian': 6,
+                  'Grilled Cheese': 7,
+                  'BBQ': 8,
+                  'Gyros': 9,
+                  'Indian': 10,
+                  'Ramen': 11,
+                  'Poutine': 12,
+                  'Tacos': 13,
+                  'Sandwiches': 14}
   
-    ic_mapping = {'Beverage': 0, 'Dessert': 1, 'Main': 2, 'Snack': 3}
+    ic_mapping = {'Main': 0, 'Beverage': 1, 'Dessert': 2, 'Snack': 3}
 
-    isc_mapping= {'Cold Option': 0, 'Warm Option': 1, 'Hot Option': 2}
+    isc_mapping= {'Hot Option': 0, 'Cold Option': 1, 'Warm Option': 2}
    
 
     def get_dayOfWeek2():
