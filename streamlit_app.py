@@ -132,14 +132,14 @@ with tab2:
       return ITEM_SUBCATEGORY   
 
     # Define the user input fields
-    dowInput = get_dayOfWeek2()
+    dow_input = get_dayOfWeek2()
     mt_input = get_menuType(dow_input)
     ic_input = get_itemCat(mt_input)
     isc_input = get_itemSubCat(ic_input)  
   
 
     # Map user inputs to integer encoding
-    dowInt = dowMapping[dowInput]
+    dow_int = dowMapping[dow_input]
     mt_int = mt_mapping[mt_input]
     ic_int = ic_mapping[ic_input]
     isc_int = isc_mapping[isc_input]  
@@ -148,7 +148,7 @@ with tab2:
     if st.button('Predict Price'):
         
         # Make the prediction   
-        input_data = [[dowInt,mt_int,ic_int,isc_int]]
+        input_data = [[dow_int,mt_int,ic_int,isc_int]]
         input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_ITEM_NAME', 'MENU_TYPE','ITEM_CATEGORY','ITEM_SUBCATEGORY', 'UNIT_PRICE'])
         prediction = rf.predict(input_df)   
         # convert output data and columns, including price, to a dataframe avoiding TypeError: type numpy.ndarray doesn't define round method
@@ -159,7 +159,7 @@ with tab2:
 
         # Make the prediction   
         # show prediction on price in dollars and cents using the price column 
-        input_data = [[dowInt, MENU_ITEM_NAME, mt_int,ic_int,isc_int, UNIT_PRICE]]
+        input_data = [[dow_int, MENU_ITEM_NAME, mt_int,ic_int,isc_int, UNIT_PRICE]]
 
         predicted_price = xgb.predict(input_df)[0]
         st.write('The predicted average price is ${:.2f}.'.format(predicted_quantity))
