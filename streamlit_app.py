@@ -59,7 +59,7 @@ with tab1:
     ct_mapping = {'San Mateo': 0, 'Seattle': 1, 'New York City': 2, 'Boston': 3, 'Denver':4}
 
     def get_dayOfWeek():
-      DayOfWeek = st.selectbox('Select a day of week', dow_labels)
+      DayOfWeek = st.selectbox('Select a day of week', dow_labels,key='tab1_dayOfWeekSelect')
       return DayOfWeek
 
     # Define the user input fields
@@ -110,7 +110,7 @@ with tab2:
    
 
     def get_dayOfWeek2():
-      dayOfWeek = st.selectbox('Select a day of week', dowLabels)
+      dayOfWeek = st.selectbox('Select a day of week', dowLabels,key='tab2_dayOfWeekSelect')
       return dayOfWeek
 
     def get_menuType(DAY_OF_WEEK):
