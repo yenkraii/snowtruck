@@ -150,11 +150,11 @@ with tab2:
 
     # Define the user input fields
     dow_input = get_dayOfWeek2()
-    mt_input = get_menuType(dow_input)
-    ic_input = get_itemCat(mt_input)
+    mt_input = get_menuType()
+    ic_input = get_itemCat()
     isc_input = get_itemSubCat(ic_input)  
-    tbn_input = get_TruckBrandName(tbn_input)  
-    c_input = get_City(c_input)    
+    tbn_input = get_TruckBrandName()  
+    c_input = get_City()    
 
     # Map user inputs to integer encoding
     dow_int = dowMapping[dow_input]
