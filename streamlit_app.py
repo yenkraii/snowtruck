@@ -132,7 +132,7 @@ with tab2:
       return MENU_TYPE
       
     def get_MenuItemName():
-      ITEM_CATEGORY = st.selectbox('Select a item name', min_mapping)
+      MENU_ITEM_NAME = st.selectbox('Select a item name', min_mapping)
       return MENU_ITEM_NAME  
 
     def get_itemCat():
