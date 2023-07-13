@@ -6,7 +6,8 @@ import snowflake.connector
 import pydeck as pdk
 import pickle
 from PIL import Image
-from sklearn.ensemble import RandomForestRegressor
+from sklearn import preprocessing
+
 
 st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
 
