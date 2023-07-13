@@ -1,4 +1,5 @@
 snowflake-connector-python
 xgboost
+sklearn
 Pillow
-RandomForestRegressor
+
