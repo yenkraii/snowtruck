@@ -151,7 +151,7 @@ with tab2:
         
         # Make the prediction   
         input_data = [[dow_int,mt_int,ic_int,isc_int]]
-        input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_ITEM_NAME', 'MENU_TYPE','ITEM_CATEGORY','ITEM_SUBCATEGORY'])
+        input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_TYPE','ITEM_CATEGORY','ITEM_SUBCATEGORY'])
         prediction = xgb.predict(input_df)   
         # convert output data and columns, including price, to a dataframe avoiding TypeError: type numpy.ndarray doesn't define round method
         output_data = [DAY_OF_WEEK, MENU_ITEM_NAME, MENU_TYPE,ITEM_CATEGORY,ITEM_SUBCATEGORY, UNIT_PRICE, prediction[0]]
@@ -164,7 +164,7 @@ with tab2:
         input_data = [[dow_int, MENU_ITEM_NAME, mt_int,ic_int,isc_int]]
 
         predicted_price = xgb.predict(input_df)[0]
-        st.write('The predicted average price is ${:.2f}.'.format(predicted_quantity))
+        st.write('The predicted average price is {:.2f}.'.format(predicted_quantity))
         st.dataframe(output_df)
 
 
