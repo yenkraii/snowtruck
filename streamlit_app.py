@@ -173,21 +173,21 @@ with tab2:
     # Display the prediction
     if st.button('Predict Price'):
         
-    # Make the prediction   
-    input_data = [[dow_int, mt_int, min_int, ic_int, isc_int, tbn_int, c_int]]
-    input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_TYPE', 'MENU_ITEM_NAME', 
-                                                 'ITEM_CATEGORY', 'ITEM_SUBCATEGORY', 'TRUCK_BRAND_NAME', 'CITY'])
-    prediction = xgb_xinle.predict(input_df)   
-
-    # Convert output data and columns, including profit, to a dataframe
-    output_data = [DAY_OF_WEEK, MENU_ITEM_NAME, MENU_TYPE, ITEM_CATEGORY, ITEM_SUBCATEGORY, TRUCK_BRAND_NAME, CITY, prediction[0]]
-    output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_ITEM_NAME', 'MENU_TYPE', 'ITEM_CATEGORY', 
-                                                     'ITEM_SUBCATEGORY', 'TRUCK_BRAND_NAME', 'CITY', 'PREDICTED_PROFIT'])
-
-    # Show prediction on profit
-    predicted_profit = output_df['PREDICTED_PROFIT'].iloc[0]
-    st.write('The predicted profit is {:.2f}.'.format(predicted_profit))
-    st.dataframe(output_df)
+      # Make the prediction   
+      input_data = [[dow_int, mt_int, min_int, ic_int, isc_int, tbn_int, c_int]]
+      input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_TYPE', 'MENU_ITEM_NAME', 
+                                                   'ITEM_CATEGORY', 'ITEM_SUBCATEGORY', 'TRUCK_BRAND_NAME', 'CITY'])
+      prediction = xgb_xinle.predict(input_df)   
+  
+      # Convert output data and columns, including profit, to a dataframe
+      output_data = [DAY_OF_WEEK, MENU_ITEM_NAME, MENU_TYPE, ITEM_CATEGORY, ITEM_SUBCATEGORY, TRUCK_BRAND_NAME, CITY, prediction[0]]
+      output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_ITEM_NAME', 'MENU_TYPE', 'ITEM_CATEGORY', 
+                                                       'ITEM_SUBCATEGORY', 'TRUCK_BRAND_NAME', 'CITY', 'PREDICTED_PROFIT'])
+  
+      # Show prediction on profit
+      predicted_profit = output_df['PREDICTED_PROFIT'].iloc[0]
+      st.write('The predicted profit is {:.2f}.'.format(predicted_profit))
+      st.dataframe(output_df)
 
 
 
