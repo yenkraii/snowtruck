@@ -8,10 +8,6 @@ import pickle
 from PIL import Image
 from sklearn import preprocessing
 
-import xgboost as xgb
-
-print(xgb.__version__)
-
 
 
 st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
@@ -78,6 +74,9 @@ with tab1:
 
 
 with tab2:
+    import xgboost as xgb
+
+    print(xgb.__version__)
 
   # Define the app title and favicon
     st.title('') 
