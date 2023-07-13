@@ -130,6 +130,10 @@ with tab2:
       #MENU_TYPES = df[df['DAY_OF_WEEK'] == dowMapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
       MENU_TYPE = st.selectbox('Select a menu type', mt_mapping)
       return MENU_TYPE
+      
+    def get_MenuItemName():
+      ITEM_CATEGORY = st.selectbox('Select a item name', min_mapping)
+      return MENU_ITEM_NAME  
 
     def get_itemCat():
       ITEM_CATEGORY = st.selectbox('Select a item category', ic_mapping)
@@ -150,7 +154,8 @@ with tab2:
 
     # Define the user input fields
     dow_input = get_dayOfWeek2()
-    mt_input = get_menuType()
+    mt_input = get_menuType()    
+    min_input = get_MenuItemName()
     ic_input = get_itemCat()
     isc_input = get_itemSubCat(ic_input)  
     tbn_input = get_TruckBrandName()  
@@ -159,6 +164,7 @@ with tab2:
     # Map user inputs to integer encoding
     dow_int = dowMapping[dow_input]
     mt_int = mt_mapping[mt_input]
+    min_int = minMapping[min_input]
     ic_int = ic_mapping[ic_input]
     isc_int = isc_mapping[isc_input]  
     tbn_int = tbn_mapping[tbn_input]
@@ -168,21 +174,21 @@ with tab2:
     if st.button('Predict Price'):
         
         # Make the prediction   
-        input_data = [[dow_int,mt_int,ic_int,isc_int]]
-        input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_TYPE','ITEM_CATEGORY','ITEM_SUBCATEGORY'])
+        input_data = [[dow_int,mt_int,min_int, ic_int,isc_int,tbn_int,c_int]]
+        input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_TYPE','ITEM_CATEGORY','ITEM_SUBCATEGORY','TRUCK_BRAND_NAME','CITY'])
         prediction = xgb_xinle.predict(input_df)   
         # convert output data and columns, including price, to a dataframe avoiding TypeError: type numpy.ndarray doesn't define round method
-        output_data = [DAY_OF_WEEK, MENU_ITEM_NAME, MENU_TYPE,ITEM_CATEGORY,ITEM_SUBCATEGORY, UNIT_PRICE, prediction[0]]
+        output_data = [DAY_OF_WEEK, MENU_ITEM_NAME, MENU_TYPE,ITEM_CATEGORY,ITEM_SUBCATEGORY, TRUCK_BRAND_NAME, CITY, prediction[0]]
 
     
-        output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_ITEM_NAME', 'MENU_TYPE','ITEM_CATEGORY','ITEM_SUBCATEGORY', 'predicted_quantity'])
+        output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_ITEM_NAME', 'MENU_TYPE','ITEM_CATEGORY','ITEM_SUBCATEGORY', 
+                                                         'TRUCK_BRAND_NAME','CITY', 'PREDICTED_PROFIT'])
 
         # Make the prediction   
         # show prediction on price in dollars and cents using the price column 
-        input_data = [[dow_int, MENU_ITEM_NAME, mt_int,ic_int,isc_int]]
 
         predicted_price = xgb_xinle.predict(input_df)[0]
-        st.write('The predicted average price is {:.2f}.'.format(predicted_quantity))
+        st.write('The predicted average price is {:.2f}.'.format(PREDICTED_PROFIT))
         st.dataframe(output_df)
 
 
