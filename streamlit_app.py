@@ -79,7 +79,7 @@ with tab2:
     st.markdown("This tab allows you to make predictions on the price of a listing based on the neighbourhood and room type. The model used is a Random Forest Regressor trained on the Airbnb Singapore listings dataset.")
     st.write('Choose a neighborhood group, neighborhood, and room type to get the predicted average price.')
     
-    with open('rf_xinle.pkl', 'rb') as file:
+    with open('rf_xinle2.pkl', 'rb') as file:
         rf = pickle.load(file)
 
     # Load the cleaned and transformed dataset
