@@ -84,68 +84,86 @@ with tab2:
 
     # Load the cleaned and transformed dataset
     df = pd.read_csv('df_xinle.csv')
-    price = df[['TOTAL_QUANTITY']] # extract price column from df_xinle
+    profit = df[['PROFIT']] # extract price column from df_xinle
 
     dowMapping={'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6}
     dowReverseMapping = {v: k for k, v in dowMapping.items()}
     dowLabels = [dowReverseMapping[i] for i in sorted(dowReverseMapping.keys())]
 
-    mt_mapping = {'Vegetarian': 0,
-                  'Crepes': 1,
-                  'Chinese': 2,
-                  'Ice Cream': 3,
-                  'Mac & Cheese': 4,
-                  'Hot Dogs': 5,
-                  'Ethiopian': 6,
-                  'Grilled Cheese': 7,
-                  'BBQ': 8,
-                  'Gyros': 9,
-                  'Indian': 10,
-                  'Ramen': 11,
-                  'Poutine': 12,
-                  'Tacos': 13,
-                  'Sandwiches': 14}
+    mt_mapping = {'Vegetarian': 0,'Crepes': 1,'Ethiopian': 2,'Hot Dogs': 3,'Poutine': 4,
+                  'Gyros': 5,'Chinese': 6,'Indian': 7,'Sandwiches': 8,'Ice Cream': 9,
+                  'BBQ': 10,'Tacos': 11,'Mac & Cheese': 12,'Ramen': 13,'Grilled Cheese': 14}
   
-    ic_mapping = {'Main': 0, 'Beverage': 1, 'Dessert': 2, 'Snack': 3}
+    min_mapping = {'Veggie Burger': 0,'Seitan Buffalo Wings': 1,'Bottled Soda': 2,'Bottled Water': 3,
+                   'The Salad of All Salads': 4,'Ice Tea': 5,'Chicken Pot Pie Crepe': 6,'Breakfast Crepe': 7,
+                   'Crepe Suzette': 8,'Lean Chicken Tibs': 9,'Lean Beef Tibs': 10,'Veggie Combo': 11,
+                   'New York Dog': 12,'Chicago Dog': 13,'Coney Dog': 14,'The Classic': 15,'The Kitchen Sink': 16,
+                   'Mothers Favorite': 17,'Gyro Plate': 18,'The King Combo': 19,'Greek Salad': 20,'Combo Lo Mein': 21,
+                   'Combo Fried Rice': 22,'Wonton Soup': 23,'Lean Chicken Tikka Masala': 24,
+                   'Tandoori Mixed Grill': 25,'Combination Curry': 26,'Italian': 27,
+                   'Pastrami': 28,'Hot Ham & Cheese': 29,'Mango Sticky Rice': 30,'Sugar Cone': 31,
+                   'Waffle Cone': 32,'Popsicle': 33, 'Two Scoop Bowl': 34,'Ice Cream Sandwich': 35,
+                   'Lemonade': 36,'Fried Pickles': 37,'Pulled Pork Sandwich': 38,'Three Meat Plate': 39,
+                   'Spring Mix Salad': 40,'Rack of Pork Ribs': 41,'Two Meat Plate': 42,'Two Taco Combo Plate': 43,
+                   'Chicken Burrito': 44,'Three Taco Combo Plate': 45,'Lean Burrito Bowl': 46,'Veggie Taco Bowl': 47,
+                   'Fish Burrito': 48,'Standard Mac & Cheese': 49,'Buffalo Mac & Cheese': 50,'Lobster Mac & Cheese': 51,
+                   'Spicy Miso Vegetable Ramen': 52,'Tonkotsu Ramen': 53,'Creamy Chicken Ramen': 54,
+                   'The Ranch': 55,'Miss Piggie': 56,'The Original': 57}
+  
+    ic_mapping = {'Main': 0, 'Snack': 1, 'Beverage': 2, 'Dessert': 3}
 
     isc_mapping= {'Hot Option': 0, 'Cold Option': 1, 'Warm Option': 2}
+
+    tbn_mapping = {'Plant Palace': 0,'Le Coin des Crêpes': 1,'Tasty Tibs': 2,'Amped Up Franks': 3,
+                   'Revenge of the Curds': 4,'Cheeky Greek': 5,'Peking Truck': 6,"Nani's Kitchen": 7,
+                   'Better Off Bread': 8,'Freezing Point': 9,'Smoky BBQ': 10,"Guac n' Roll": 11,
+                   'The Mac Shack': 12,'Kitakata Ramen Bar': 13,'The Mega Melt': 14}
+  
+    c_mapping = {'New York City': 0, 'Seattle': 1, 'Denver': 2, 'Boston': 3, 'San Mateo': 4}
    
 
     def get_dayOfWeek2():
       dayOfWeek = st.selectbox('Select a day of week', dowLabels,key='tab2_dayOfWeekSelect')
       return dayOfWeek
 
-    def get_menuType(DAY_OF_WEEK):
-      # show only the menu items for the selected day of week
-      MENU_TYPES = df[df['DAY_OF_WEEK'] == dowMapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
+    def get_menuType():
+      #MENU_TYPES = df[df['DAY_OF_WEEK'] == dowMapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
       MENU_TYPE = st.selectbox('Select a menu type', mt_mapping)
       return MENU_TYPE
 
-    def get_itemCat(MENU_TYPE):
-      # show only the menu items for the selected day of week
-      #ITEM_CATEGORYS = df[df['MENU_TYPE'] == dow_mapping[MENU_TYPE]]['ITEM_CATEGORY'].unique()
+    def get_itemCat():
       ITEM_CATEGORY = st.selectbox('Select a item category', ic_mapping)
       return ITEM_CATEGORY  
 
     def get_itemSubCat(ITEM_CATEGORY):
-      # show only the menu items for the selected day of week
       #ITEM_SUBCATEGORYs = df[df['ITEM_CATEGORY'] == dow_mapping[ITEM_CATEGORY]]['ITEM_SUBCATEGORY'].unique()
       ITEM_SUBCATEGORY = st.selectbox('Select a item sub-category', isc_mapping)
-      return ITEM_SUBCATEGORY   
+      return ITEM_SUBCATEGORY  
+
+    def get_TruckBrandName():
+      TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name', tbn_mapping)
+      return TRUCK_BRAND_NAME  
+
+    def get_City():
+      CITY = st.selectbox('Select a city', c_mapping)
+      return CITY  
 
     # Define the user input fields
     dow_input = get_dayOfWeek2()
     mt_input = get_menuType(dow_input)
     ic_input = get_itemCat(mt_input)
     isc_input = get_itemSubCat(ic_input)  
-  
+    tbn_input = get_TruckBrandName(tbn_input)  
+    c_input = get_City(c_input)    
 
     # Map user inputs to integer encoding
     dow_int = dowMapping[dow_input]
     mt_int = mt_mapping[mt_input]
     ic_int = ic_mapping[ic_input]
     isc_int = isc_mapping[isc_input]  
-
+    tbn_int = tbn_mapping[tbn_input]
+    c_int = c_mapping[c_input]  
+  
     # Display the prediction
     if st.button('Predict Price'):
         
