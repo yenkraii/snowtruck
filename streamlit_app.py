@@ -75,9 +75,8 @@ with tab1:
 with tab2:
 
   # Define the app title and favicon
-    st.title('What are the top-selling food items by menu?') 
-    st.markdown("This tab allows you to make predictions on the price of a listing based on the neighbourhood and room type. The model used is a Random Forest Regressor trained on the Airbnb Singapore listings dataset.")
-    st.write('Choose a neighborhood group, neighborhood, and room type to get the predicted average price.')
+    st.title('') 
+    st.markdown("This tab allows you to make predictions")
     
     with open('xgb_xinle.pkl', 'rb') as file:
         xgb_xinle = pickle.load(file)
