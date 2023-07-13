@@ -76,10 +76,8 @@ with tab1:
 with tab2:
     import xgboost as xgb
 
-    print(xgb.__version__)
-
   # Define the app title and favicon
-    st.title('') 
+    st.title(xgb.__version__) 
     st.markdown("This tab allows you to make predictions")
     
     with open('xgb_xinle.pkl', 'rb') as file:
