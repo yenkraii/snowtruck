@@ -432,8 +432,9 @@ with tab2:
     import xgboost as xgb
 
   # Define the app title and favicon
-    st.title(xgb.__version__) 
-    st.markdown("This tab allows you to make predictions")
+    st.title(Profit Prediction for Menu Items) 
+    st.markdown("This tab allows you to make predictions on the profit of menu items based on different variables.
+    The model used is an XGBoost Regressor trained on the TastyBytes dataset.")
     
     with open('xgb_xinle.pkl', 'rb') as file:
         xgb_xinle = pickle.load(file)
@@ -543,8 +544,7 @@ with tab2:
       # Show prediction on profit
       predicted_profit = output_df['PREDICTED_PROFIT'].iloc[0]
       st.write('The predicted profit is {:.2f}.'.format(predicted_profit))
-      st.dataframe(output_df)
-
+      #st.dataframe(output_df)
 
 
 
