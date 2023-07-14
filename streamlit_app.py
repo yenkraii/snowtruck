@@ -432,7 +432,7 @@ with tab2:
     import xgboost as xgb
 
   # Define the app title and favicon
-    st.title(Profit Prediction for Menu Items) 
+    st.title('Profit Prediction for Menu Items') 
     st.markdown("This tab allows you to make predictions on the profit of menu items based on different variables.
     The model used is an XGBoost Regressor trained on the TastyBytes dataset.")
     
