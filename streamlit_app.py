@@ -531,8 +531,8 @@ with tab2:
         
       # Make the prediction   
       input_data = [[mt_int, min_int, ic_int, isc_int, tbn_int, c_int,dow_int]]
-      input_df = pd.DataFrame(input_data, columns=['MENU_TYPE', 'MENU_ITEM_NAME', 'ITEM_CATEGORY', 'ITEM_SUBCATEGORY',
-                                                   'TRUCK_BRAND_NAME', 'CITY', 'DAY_OF_WEEK'])
+      input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK','MENU_TYPE', 'MENU_ITEM_NAME', 'ITEM_CATEGORY', 'ITEM_SUBCATEGORY',
+                                                   'TRUCK_BRAND_NAME', 'CITY'])
       prediction = xgb_xinle.predict(input_df)   
   
       # Convert output data and columns, including profit, to a dataframe
