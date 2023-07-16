@@ -27,17 +27,19 @@ conn = snowflake.connector.connect(**st.secrets["snowflake"])
 tab1,tab2,tab3,tab4,tab5 = st.tabs(["tab1","tab2","tab3","tab4","tab5"])
 
 with tab1:
+  import xgboost as xgb
+  
   # Define the app title and favicon
   st.title('How much can you make from the TastyBytes locations?')
-  st.markdown("This tab allows you to make predictions on the price of a listing based on the neighbourhood and room type. The model used is a Random Forest Regressor trained on the Airbnb Singapore listings dataset.")
-  st.write('Choose a Truck Brand Name, City, Truck Location and Time Frame to get the predicted sales.')
+  st.markdown("This tab allows you to make predictions on the daily sales of TastyBytes' trucks based on its brand, city where it is located, and its specific truck location. The model used is an XGBoost Regressor trained on the TastyBytes dataset.")
+  st.write('Choose a Day of the Week, Truck Brand Name, City, and Truck Location to get the predicted sales.')
 
   with open('xgb_alethea.pkl', 'rb') as file:
     xgb_gs = pickle.load(file)
     
   # Load the cleaned and transformed dataset
   df = pd.read_csv('df_alethea.csv')
-  quantity = df[['TOTAL_QUANTITY']]
+  sales = df[['DAILY_SALES']] # Extracts the target variable, daily sales from the dataset
 
   wd_mapping  = { 'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6 }
   wd_reverse_mapping = {v: k for k, v in wd_mapping.items()}
@@ -431,7 +433,19 @@ with tab1:
   ct_int = ct_mapping[ct_input]
   tl_int = tl_mapping[tl_input]
   
+  if st.button('Predict Profits'):
+    # Make the prediction  
+    input_data = [[wd_int, bn_int, ct_int, tl_int]]
+    input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION'])
+    prediction = xgb_alethea.predict(input_df)   
+    
+    # Convert output data and columns, including profit, to a dataframe
+    output_data = [wd_int, bn_int, ct_int, tl_int, prediction[0]]
+    output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION', 'DAILY_SALES'])
 
+    # predicted_price = xgb_alethea.predict(input_df)[0]
+    predicted_sales = output_df['DAILY_SALES'].iloc[0]
+    st.write('The predicted daily sales is {:.2f}.'.format(predicted_sales))
 
 
 
