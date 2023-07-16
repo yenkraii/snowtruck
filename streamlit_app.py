@@ -38,7 +38,11 @@ with tab1:
   # Load the cleaned and transformed dataset
   df = pd.read_csv('df_alethea.csv')
   quantity = df[['TOTAL_QUANTITY']]
-  
+
+  wd_mapping  = { 'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6 }
+  wd_reverse_mapping = {v: k for k, v in wd_mapping.items()}
+  wd_labels = [wd_reverse_mapping[i] for i in sorted(wd_reverse_mapping.keys())]
+
   bn_mapping = { "Cheeky Greek": 0, "Guac n' Roll": 1, "Smoky BBQ": 2, "Peking Truck": 3, "Tasty Tibs": 4, "Better Off Bread": 5,
                   "The Mega Melt": 6, "Le Coin des Crêpes": 7, "The Mac Shack": 8, "Nani's Kitchen": 9, "Plant Palace": 10,
                   "Kitakata Ramen Bar": 11, "Amped Up Franks": 12, "Freezing Point": 13, "Revenge of the Curds": 14 }
@@ -399,31 +403,34 @@ with tab1:
   tl_reverse_mapping = {v: k for k, v in tl_mapping.items()}
   tl_labels = list(tl_mapping.keys())
 
-  def get_TRUCK_BRAND_NAME():
-      TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name', bn_mapping)
-      return TRUCK_BRAND_NAME
+  def get_dayOfWeek1():
+      dayOfWeek1 = st.selectbox('Select a day of week', wd_mapping)
+      return dayOfWeek1
+  
+  def get_truckBrandName():
+      truckBrandName = st.selectbox('Select a truck brand name', bn_mapping)
+      return truckBrandName
     
-  def get_CITY(TRUCK_BRAND_NAME):
-    # Only show cities where the selected truck brand workscities = df[df['TRUCK_BRAND_NAME'] == bn_mapping[TRUCK_BRAND_NAME]]['CITY'].unique()
-      cities = df[df['TRUCK_BRAND_NAME'] == bn_mapping[TRUCK_BRAND_NAME]]['CITY'].unique()
-      CITY = st.selectbox('Select a city', ct_mapping)
-      return CITY
+  def get_city():
+      city = st.selectbox('Select a city', ct_mapping)
+      return city
 
-  def get_LOCATION(CITY):
-      # Only show truck locations of the selected city
-      locations = df[df['CITY'] == ct_mapping[CITY]]['LOCATION'].unique()
-      LOCATION = st.selectbox('Select a truck location', tl_mapping)
-      return LOCATION  
+  def get_truckLocation():
+      truckLocation = st.selectbox('Select a truck location', tl_mapping)
+      return truckLocation  
 
   # Define the user input fields
-  bn_input = get_TRUCK_BRAND_NAME()
-  ct_input = get_CITY(bn_input)
-  tl_input = get_LOCATION(ct_input)
+  wd_input = get_dayOfWeek1()
+  bn_input = get_truckBrandName()
+  ct_input = get_city()
+  tl_input = get_truckLocation()
   
   # Map user inputs to integer encoding
+  wd_int = wd_mapping[wd_input]
   bn_int = bn_mapping[bn_input]
   ct_int = ct_mapping[ct_input]
   tl_int = tl_mapping[tl_input]
+  
 
 
 
