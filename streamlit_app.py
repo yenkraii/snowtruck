@@ -35,7 +35,7 @@ with tab1:
   st.write('Choose a Day of the Week, Truck Brand Name, City, and Truck Location to get the predicted sales.')
 
   with open('xgb_alethea.pkl', 'rb') as file:
-    xgb_gs = pickle.load(file)
+    xgb_alethea = pickle.load(file)
     
   # Load the cleaned and transformed dataset
   df = pd.read_csv('df_alethea.csv')
@@ -443,7 +443,6 @@ with tab1:
     output_data = [wd_int, bn_int, ct_int, tl_int, prediction[0]]
     output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION', 'DAILY_SALES'])
 
-    # predicted_price = xgb_alethea.predict(input_df)[0]
     predicted_sales = output_df['DAILY_SALES'].iloc[0]
     st.write('The predicted daily sales is {:.2f}.'.format(predicted_sales))
 
