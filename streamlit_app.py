@@ -456,8 +456,11 @@ with tab2:
     st.markdown("This tab allows you to make predictions on the profit of menu items based on different variables. \
                  The model used is an XGBoost Regressor trained on the TastyBytes dataset.")
     
-    with open('xgb_xinle.pkl', 'rb') as file:
-        xgb_xinle = pickle.load(file)
+    with open('xgb1_xinle.pkl', 'rb') as file:
+        xgb1_xinle = pickle.load(file)
+
+    with open('xgb1_xinle.pkl', 'rb') as file:
+        xgb2_xinle = pickle.load(file)
 
     # Load the cleaned and transformed dataset
     df = pd.read_csv('df_xinle.csv')
@@ -497,6 +500,10 @@ with tab2:
                    'The Mac Shack': 12,'Kitakata Ramen Bar': 13,'The Mega Melt': 14}
   
     c_mapping = {'New York City': 0, 'Seattle': 1, 'Denver': 2, 'Boston': 3, 'San Mateo': 4}
+
+    s_mappings={'AM':0,'PM':1}
+    sReverseMapping = {v: k for k, v in sMapping.items()}
+    sLabels = [sReverseMapping[i] for i in sorted(sReverseMapping.keys())]
    
 
     def get_dayOfWeek2():
@@ -529,6 +536,10 @@ with tab2:
       CITY = st.selectbox('Select a city', c_mapping)
       return CITY  
 
+    def get_Shift():
+    SHIFT = st.selectbox('Select a shift', sLabels)
+    return SHIFT
+      
     # Define the user input fields
     dow_input = get_dayOfWeek2()
     mt_input = get_menuType()    
@@ -537,6 +548,7 @@ with tab2:
     # isc_input = get_itemSubCat(ic_input)  
     tbn_input = get_TruckBrandName()  
     c_input = get_City()    
+    s_input = get_Shift()
 
     # Map user inputs to integer encoding
     dow_int = dowMapping[dow_input]
@@ -546,6 +558,7 @@ with tab2:
     # isc_int = isc_mapping[isc_input]  
     tbn_int = tbn_mapping[tbn_input]
     c_int = c_mapping[c_input]  
+    s_int = s_mapping[s_input]
   
     # Display the prediction
     if st.button('Predict Profits'):
@@ -554,16 +567,16 @@ with tab2:
       # input_data = [[dow_int, mt_int, min_int, ic_int, isc_int, tbn_int, c_int]]
       # input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK','MENU_TYPE', 'MENU_ITEM_NAME', 'ITEM_CATEGORY', 'ITEM_SUBCATEGORY',
       #                                              'TRUCK_BRAND_NAME', 'CITY'])
-      input_data = [[mt_int,tbn_int, dow_int, c_int]]
-      input_df = pd.DataFrame(input_data, columns=['MENU_TYPE','TRUCK_BRAND_NAME','DAY_OF_WEEK','CITY'])
-      prediction = xgb_xinle.predict(input_df)   
+      input_data = [[dow_int,mt_int,tbn_int, c_int,s_int]]
+      input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT'])
+      prediction = xgb1_xinle.predict(input_df)   
   
       # Convert output data and columns, including profit, to a dataframe
       # output_data = [dow_int, mt_int, min_int, ic_int, isc_int, tbn_int, c_int, prediction[0]]
       # output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_TYPE', 'MENU_ITEM_NAME', 'ITEM_CATEGORY', 
       #                                                  'ITEM_SUBCATEGORY', 'TRUCK_BRAND_NAME', 'CITY', 'PREDICTED_PROFIT'])
-      output_data = [mt_int,tbn_int,dow_int, c_int, prediction[0]]
-      output_df = pd.DataFrame([output_data], columns=[ 'MENU_TYPE','TRUCK_BRAND_NAME','DAY_OF_WEEK', 'CITY', 'PREDICTED_PROFIT'])
+      output_data = [mt_int,tbn_int,dow_int, c_int,s_int, prediction[0]]
+      output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT','PREDICTED_PROFIT'])
   
       # Show prediction on profit
       predicted_profit = output_df['PREDICTED_PROFIT'].iloc[0]
