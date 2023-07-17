@@ -568,8 +568,9 @@ with tab2:
       output_data = [mt_int,tbn_int,dow_int, c_int,s_int, prediction2[0]]
       output_df2 = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT','PREDICTED_QUANTITY'])
   
-      # Show prediction on quantity
-      predicted_quantity = output_df2['PREDICTED_QUANTITY'].iloc[0]
+      # Map numerical predictions to quantity categories
+      prediction_mapping = {0: 'low', 1: 'average', 2: 'high'}
+      predicted_quantity = output_df2['PREDICTED_QUANTITY'].map(prediction_mapping).iloc[0]
       st.write('The likelihood of customers purchasing is {}.'.format(predicted_quantity))
 
 
