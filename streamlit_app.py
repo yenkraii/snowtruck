@@ -470,9 +470,9 @@ with tab2:
     dowReverseMapping = {v: k for k, v in dowMapping.items()}
     dowLabels = [dowReverseMapping[i] for i in sorted(dowReverseMapping.keys())]
 
-    mt_mapping = {'Vegetarian': 0,'Crepes': 1,'Ethiopian': 2,'Hot Dogs': 3,'Poutine': 4,
-                  'Gyros': 5,'Chinese': 6,'Indian': 7,'Sandwiches': 8,'Ice Cream': 9,
-                  'BBQ': 10,'Tacos': 11,'Mac & Cheese': 12,'Ramen': 13,'Grilled Cheese': 14}
+    mt_mapping = {'Ice Cream': 0, 'Grilled Cheese': 1, 'Poutine': 2,'Ethiopian': 3,'BBQ': 4,
+                  'Indian': 5,'Mac & Cheese': 6,'Vegetarian': 7,'Sandwiches': 8,'Gyros': 9,
+                  'Chinese': 10,'Tacos': 11,'Hot Dogs': 12,'Ramen': 13,'Crepes': 14}
   
     min_mapping = {'Veggie Burger': 0,'Seitan Buffalo Wings': 1,'Bottled Soda': 2,'Bottled Water': 3,
                    'The Salad of All Salads': 4,'Ice Tea': 5,'Chicken Pot Pie Crepe': 6,'Breakfast Crepe': 7,
@@ -494,12 +494,11 @@ with tab2:
 
     isc_mapping= {'Hot Option': 0, 'Cold Option': 1, 'Warm Option': 2}
 
-    tbn_mapping = {'Plant Palace': 0,'Le Coin des Crêpes': 1,'Tasty Tibs': 2,'Amped Up Franks': 3,
-                   'Revenge of the Curds': 4,'Cheeky Greek': 5,'Peking Truck': 6,"Nani's Kitchen": 7,
-                   'Better Off Bread': 8,'Freezing Point': 9,'Smoky BBQ': 10,"Guac n' Roll": 11,
-                   'The Mac Shack': 12,'Kitakata Ramen Bar': 13,'The Mega Melt': 14}
+    tbn_mapping = {'Freezing Point': 0,'The Mega Melt': 1,'Revenge of the Curds': 2,'Tasty Tibs': 3,'Smoky BBQ': 4,
+                   "Nani's Kitchen": 5,'The Mac Shack': 6,'Plant Palace': 7,'Better Off Bread': 8,'Cheeky Greek': 9,
+                   'Peking Truck': 10,"Guac n' Roll": 11,'Amped Up Franks': 12,'Kitakata Ramen Bar': 13,'Le Coin des Crêpes': 14}
   
-    c_mapping = {'New York City': 0, 'Seattle': 1, 'Denver': 2, 'Boston': 3, 'San Mateo': 4}
+    c_mapping = {'San Mateo': 0, 'New York City': 1, 'Denver': 2, 'Seattle': 3, 'Boston': 4}
 
     s_mapping={'AM':0,'PM':1}
     sReverseMapping = {v: k for k, v in s_mapping.items()}
@@ -514,19 +513,7 @@ with tab2:
       #MENU_TYPES = df[df['DAY_OF_WEEK'] == dowMapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
       MENU_TYPE = st.selectbox('Select a menu type', mt_mapping)
       return MENU_TYPE
-      
-    # def get_MenuItemName():
-    #   MENU_ITEM_NAME = st.selectbox('Select a item name', min_mapping)
-    #   return MENU_ITEM_NAME  
-
-    # def get_itemCat():
-    #   ITEM_CATEGORY = st.selectbox('Select a item category', ic_mapping)
-    #   return ITEM_CATEGORY  
-
-    # def get_itemSubCat(ITEM_CATEGORY):
-    #   #ITEM_SUBCATEGORYs = df[df['ITEM_CATEGORY'] == dow_mapping[ITEM_CATEGORY]]['ITEM_SUBCATEGORY'].unique()
-    #   ITEM_SUBCATEGORY = st.selectbox('Select a item sub-category', isc_mapping)
-    #   return ITEM_SUBCATEGORY  
+    
 
     def get_TruckBrandName():
       TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name', tbn_mapping)
@@ -582,6 +569,20 @@ with tab2:
       predicted_profit = output_df['PREDICTED_PROFIT'].iloc[0]
       st.write('The predicted profit is {:.2f}.'.format(predicted_profit))
       #st.dataframe(output_df)
+
+      prediction2 = xgb2_xinle.predict(input_df)   
+      output_data = [mt_int,tbn_int,dow_int, c_int,s_int, prediction2[0]]
+      output_df2 = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT','PREDICTED_QUANTITY'])
+  
+      # Show prediction on profit
+      predicted_quantity = output_df2['PREDICTED_QUANTITY'].iloc[0]
+      st.write('The likelihood of customers purchasing is {}.'.format(predicted_quantity))
+      #st.dataframe(output_df)
+
+
+
+
+
 
 
 
