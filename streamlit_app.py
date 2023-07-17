@@ -551,15 +551,19 @@ with tab2:
     if st.button('Predict Profits'):
         
       # Make the prediction   
-      input_data = [[dow_int, mt_int, min_int, ic_int, isc_int, tbn_int, c_int]]
-      input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK','MENU_TYPE', 'MENU_ITEM_NAME', 'ITEM_CATEGORY', 'ITEM_SUBCATEGORY',
-                                                   'TRUCK_BRAND_NAME', 'CITY'])
+      # input_data = [[dow_int, mt_int, min_int, ic_int, isc_int, tbn_int, c_int]]
+      # input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK','MENU_TYPE', 'MENU_ITEM_NAME', 'ITEM_CATEGORY', 'ITEM_SUBCATEGORY',
+      #                                              'TRUCK_BRAND_NAME', 'CITY'])
+      input_data = [[mt_int,tbn_int, dow_int, c_int]]
+      input_df = pd.DataFrame(input_data, columns=['MENU_TYPE','TRUCK_BRAND_NAME','DAY_OF_WEEK','CITY'])
       prediction = xgb_xinle.predict(input_df)   
   
       # Convert output data and columns, including profit, to a dataframe
-      output_data = [dow_int, mt_int, min_int, ic_int, isc_int, tbn_int, c_int, prediction[0]]
-      output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_TYPE', 'MENU_ITEM_NAME', 'ITEM_CATEGORY', 
-                                                       'ITEM_SUBCATEGORY', 'TRUCK_BRAND_NAME', 'CITY', 'PREDICTED_PROFIT'])
+      # output_data = [dow_int, mt_int, min_int, ic_int, isc_int, tbn_int, c_int, prediction[0]]
+      # output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_TYPE', 'MENU_ITEM_NAME', 'ITEM_CATEGORY', 
+      #                                                  'ITEM_SUBCATEGORY', 'TRUCK_BRAND_NAME', 'CITY', 'PREDICTED_PROFIT'])
+      output_data = [mt_int,tbn_int,dow_int, c_int, prediction[0]]
+      output_df = pd.DataFrame([output_data], columns=[ 'MENU_TYPE','TRUCK_BRAND_NAME','DAY_OF_WEEK', 'CITY', 'PREDICTED_PROFIT'])
   
       # Show prediction on profit
       predicted_profit = output_df['PREDICTED_PROFIT'].iloc[0]
