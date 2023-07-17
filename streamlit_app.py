@@ -503,23 +503,23 @@ with tab2:
       dayOfWeek = st.selectbox('Select a day of week', dowLabels,key='tab2_dayOfWeekSelect')
       return dayOfWeek
 
-    def get_menuType():
-      #MENU_TYPES = df[df['DAY_OF_WEEK'] == dowMapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
-      MENU_TYPE = st.selectbox('Select a menu type', mt_mapping)
-      return MENU_TYPE
+    # def get_menuType():
+    #   #MENU_TYPES = df[df['DAY_OF_WEEK'] == dowMapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
+    #   MENU_TYPE = st.selectbox('Select a menu type', mt_mapping)
+    #   return MENU_TYPE
       
-    def get_MenuItemName():
-      MENU_ITEM_NAME = st.selectbox('Select a item name', min_mapping)
-      return MENU_ITEM_NAME  
+    # def get_MenuItemName():
+    #   MENU_ITEM_NAME = st.selectbox('Select a item name', min_mapping)
+    #   return MENU_ITEM_NAME  
 
-    def get_itemCat():
-      ITEM_CATEGORY = st.selectbox('Select a item category', ic_mapping)
-      return ITEM_CATEGORY  
+    # def get_itemCat():
+    #   ITEM_CATEGORY = st.selectbox('Select a item category', ic_mapping)
+    #   return ITEM_CATEGORY  
 
-    def get_itemSubCat(ITEM_CATEGORY):
-      #ITEM_SUBCATEGORYs = df[df['ITEM_CATEGORY'] == dow_mapping[ITEM_CATEGORY]]['ITEM_SUBCATEGORY'].unique()
-      ITEM_SUBCATEGORY = st.selectbox('Select a item sub-category', isc_mapping)
-      return ITEM_SUBCATEGORY  
+    # def get_itemSubCat(ITEM_CATEGORY):
+    #   #ITEM_SUBCATEGORYs = df[df['ITEM_CATEGORY'] == dow_mapping[ITEM_CATEGORY]]['ITEM_SUBCATEGORY'].unique()
+    #   ITEM_SUBCATEGORY = st.selectbox('Select a item sub-category', isc_mapping)
+    #   return ITEM_SUBCATEGORY  
 
     def get_TruckBrandName():
       TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name', tbn_mapping)
