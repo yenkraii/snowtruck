@@ -537,8 +537,8 @@ with tab2:
       return CITY  
 
     def get_Shift():
-    SHIFT = st.selectbox('Select a shift', sLabels)
-    return SHIFT
+      SHIFT = st.selectbox('Select a shift', sLabels)
+      return SHIFT
       
     # Define the user input fields
     dow_input = get_dayOfWeek2()
