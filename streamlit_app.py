@@ -503,10 +503,10 @@ with tab2:
       dayOfWeek = st.selectbox('Select a day of week', dowLabels,key='tab2_dayOfWeekSelect')
       return dayOfWeek
 
-    # def get_menuType():
-    #   #MENU_TYPES = df[df['DAY_OF_WEEK'] == dowMapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
-    #   MENU_TYPE = st.selectbox('Select a menu type', mt_mapping)
-    #   return MENU_TYPE
+    def get_menuType():
+      #MENU_TYPES = df[df['DAY_OF_WEEK'] == dowMapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
+      MENU_TYPE = st.selectbox('Select a menu type', mt_mapping)
+      return MENU_TYPE
       
     # def get_MenuItemName():
     #   MENU_ITEM_NAME = st.selectbox('Select a item name', min_mapping)
