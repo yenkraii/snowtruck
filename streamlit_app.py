@@ -459,7 +459,7 @@ with tab2:
     with open('xgb1_xinle.pkl', 'rb') as file:
         xgb1_xinle = pickle.load(file)
 
-    with open('xgb1_xinle.pkl', 'rb') as file:
+    with open('xgb2_xinle.pkl', 'rb') as file:
         xgb2_xinle = pickle.load(file)
 
     # Load the cleaned and transformed dataset
@@ -571,7 +571,6 @@ with tab2:
       # Show prediction on quantity
       predicted_quantity = output_df2['PREDICTED_QUANTITY'].iloc[0]
       st.write('The likelihood of customers purchasing is {}.'.format(predicted_quantity))
-      #st.dataframe(output_df)
 
 
 
