@@ -5,6 +5,7 @@ import PIL.Image
 import snowflake.connector
 import pydeck as pdk
 import pickle
+import xgboost as xgb
 from PIL import Image
 from sklearn import preprocessing
 
@@ -449,10 +450,132 @@ with tab1:
 
 
 with tab2:
-    import xgboost as xgb
+
 
   # Define the app title and favicon
-    st.title('Profit Prediction for Menu Items') 
+    # st.title('Profit Prediction for Menu Items') 
+    # st.markdown("This tab allows you to make predictions on the profit of menu items based on different variables. \
+    #              The model used is an XGBoost Regressor trained on the TastyBytes dataset.")
+    
+    # with open('xgb1_xinle.pkl', 'rb') as file:
+    #     xgb1_xinle = pickle.load(file)
+
+    # with open('xgb2_xinle.pkl', 'rb') as file:
+    #     xgb2_xinle = pickle.load(file)
+
+    # # Load the cleaned and transformed dataset
+    # df = pd.read_csv('df_xinle.csv')
+    # profit = df[['PROFIT']] # extract price column from df_xinle
+
+    # dowMapping={'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6}
+    # dowReverseMapping = {v: k for k, v in dowMapping.items()}
+    # dowLabels = [dowReverseMapping[i] for i in sorted(dowReverseMapping.keys())]
+
+    # mt_mapping = {'Ice Cream': 0, 'Grilled Cheese': 1, 'Poutine': 2,'Ethiopian': 3,'BBQ': 4,
+    #               'Indian': 5,'Mac & Cheese': 6,'Vegetarian': 7,'Sandwiches': 8,'Gyros': 9,
+    #               'Chinese': 10,'Tacos': 11,'Hot Dogs': 12,'Ramen': 13,'Crepes': 14}
+  
+    # min_mapping = {'Veggie Burger': 0,'Seitan Buffalo Wings': 1,'Bottled Soda': 2,'Bottled Water': 3,
+    #                'The Salad of All Salads': 4,'Ice Tea': 5,'Chicken Pot Pie Crepe': 6,'Breakfast Crepe': 7,
+    #                'Crepe Suzette': 8,'Lean Chicken Tibs': 9,'Lean Beef Tibs': 10,'Veggie Combo': 11,
+    #                'New York Dog': 12,'Chicago Dog': 13,'Coney Dog': 14,'The Classic': 15,'The Kitchen Sink': 16,
+    #                'Mothers Favorite': 17,'Gyro Plate': 18,'The King Combo': 19,'Greek Salad': 20,'Combo Lo Mein': 21,
+    #                'Combo Fried Rice': 22,'Wonton Soup': 23,'Lean Chicken Tikka Masala': 24,
+    #                'Tandoori Mixed Grill': 25,'Combination Curry': 26,'Italian': 27,
+    #                'Pastrami': 28,'Hot Ham & Cheese': 29,'Mango Sticky Rice': 30,'Sugar Cone': 31,
+    #                'Waffle Cone': 32,'Popsicle': 33, 'Two Scoop Bowl': 34,'Ice Cream Sandwich': 35,
+    #                'Lemonade': 36,'Fried Pickles': 37,'Pulled Pork Sandwich': 38,'Three Meat Plate': 39,
+    #                'Spring Mix Salad': 40,'Rack of Pork Ribs': 41,'Two Meat Plate': 42,'Two Taco Combo Plate': 43,
+    #                'Chicken Burrito': 44,'Three Taco Combo Plate': 45,'Lean Burrito Bowl': 46,'Veggie Taco Bowl': 47,
+    #                'Fish Burrito': 48,'Standard Mac & Cheese': 49,'Buffalo Mac & Cheese': 50,'Lobster Mac & Cheese': 51,
+    #                'Spicy Miso Vegetable Ramen': 52,'Tonkotsu Ramen': 53,'Creamy Chicken Ramen': 54,
+    #                'The Ranch': 55,'Miss Piggie': 56,'The Original': 57}
+  
+    # ic_mapping = {'Main': 0, 'Snack': 1, 'Beverage': 2, 'Dessert': 3}
+
+    # isc_mapping= {'Hot Option': 0, 'Cold Option': 1, 'Warm Option': 2}
+
+    # tbn_mapping = {'Freezing Point': 0,'The Mega Melt': 1,'Revenge of the Curds': 2,'Tasty Tibs': 3,'Smoky BBQ': 4,
+    #                "Nani's Kitchen": 5,'The Mac Shack': 6,'Plant Palace': 7,'Better Off Bread': 8,'Cheeky Greek': 9,
+    #                'Peking Truck': 10,"Guac n' Roll": 11,'Amped Up Franks': 12,'Kitakata Ramen Bar': 13,'Le Coin des Crêpes': 14}
+  
+    # c_mapping = {'San Mateo': 0, 'New York City': 1, 'Denver': 2, 'Seattle': 3, 'Boston': 4}
+
+    # s_mapping={'AM':0,'PM':1}
+    # sReverseMapping = {v: k for k, v in s_mapping.items()}
+    # sLabels = [sReverseMapping[i] for i in sorted(sReverseMapping.keys())]
+   
+
+    # def get_dayOfWeek2():
+    #   dayOfWeek = st.selectbox('Select a day of week', dowLabels,key='tab2_dayOfWeekSelect')
+    #   return dayOfWeek
+
+    # def get_menuType():
+    #   #MENU_TYPES = df[df['DAY_OF_WEEK'] == dowMapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
+    #   MENU_TYPE = st.selectbox('Select a menu type', mt_mapping)
+    #   return MENU_TYPE
+    
+
+    # def get_TruckBrandName():
+    #   TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name', tbn_mapping)
+    #   return TRUCK_BRAND_NAME  
+
+    # def get_City():
+    #   CITY = st.selectbox('Select a city', c_mapping)
+    #   return CITY  
+
+    # def get_Shift():
+    #   SHIFT = st.selectbox('Select a shift', sLabels)
+    #   return SHIFT
+      
+    # # Define the user input fields
+    # dow_input = get_dayOfWeek2()
+    # mt_input = get_menuType()    
+    # # min_input = get_MenuItemName()
+    # # ic_input = get_itemCat()
+    # # isc_input = get_itemSubCat(ic_input)  
+    # tbn_input = get_TruckBrandName()  
+    # c_input = get_City()    
+    # s_input = get_Shift()
+
+    # # Map user inputs to integer encoding
+    # dow_int = dowMapping[dow_input]
+    # mt_int = mt_mapping[mt_input]
+    # # min_int = min_mapping[min_input]
+    # # ic_int = ic_mapping[ic_input]
+    # # isc_int = isc_mapping[isc_input]  
+    # tbn_int = tbn_mapping[tbn_input]
+    # c_int = c_mapping[c_input]  
+    # s_int = s_mapping[s_input]
+  
+    # # Display the prediction
+    # if st.button('Predict Profits'):
+        
+    #   # Make the prediction   
+    #   input_data = [[dow_int,mt_int,tbn_int, c_int,s_int]]
+    #   input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT'])
+    #   prediction = xgb1_xinle.predict(input_df)   
+  
+    #   # Convert output data and columns, including profit, to a dataframe
+    #   output_data = [mt_int,tbn_int,dow_int, c_int,s_int, prediction[0]]
+    #   output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT','PREDICTED_PROFIT'])
+  
+    #   # Show prediction on profit
+    #   predicted_profit = output_df['PREDICTED_PROFIT'].iloc[0]
+    #   st.write('The predicted profit is {:.2f}.'.format(predicted_profit))
+    #   #st.dataframe(output_df)
+
+    #   prediction2 = xgb2_xinle.predict(input_df)   
+    #   output_data = [mt_int,tbn_int,dow_int, c_int,s_int, prediction2[0]]
+    #   output_df2 = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT','PREDICTED_QUANTITY'])
+  
+    #   # Map numerical predictions to quantity categories
+    #   prediction_mapping = {0: 'low', 1: 'average', 2: 'high'}
+    #   predicted_quantity = output_df2['PREDICTED_QUANTITY'].map(prediction_mapping).iloc[0]
+    #   st.write('The likelihood of customers purchasing is {}.'.format(predicted_quantity))
+
+
+      st.title('Profit Prediction for Menu Items') 
     st.markdown("This tab allows you to make predictions on the profit of menu items based on different variables. \
                  The model used is an XGBoost Regressor trained on the TastyBytes dataset.")
     
@@ -506,33 +629,30 @@ with tab2:
    
 
     def get_dayOfWeek2():
-      dayOfWeek = st.selectbox('Select a day of week', dowLabels,key='tab2_dayOfWeekSelect')
+      dayOfWeek = st.selectbox('Select a day of week 📆', dowLabels,key='tab2_dayOfWeekSelect')
       return dayOfWeek
 
     def get_menuType():
       #MENU_TYPES = df[df['DAY_OF_WEEK'] == dowMapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
-      MENU_TYPE = st.selectbox('Select a menu type', mt_mapping)
+      MENU_TYPE = st.selectbox('Select a menu type 📝', mt_mapping)
       return MENU_TYPE
     
 
     def get_TruckBrandName():
-      TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name', tbn_mapping)
+      TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name 🚚', tbn_mapping)
       return TRUCK_BRAND_NAME  
 
     def get_City():
-      CITY = st.selectbox('Select a city', c_mapping)
+      CITY = st.selectbox('Select a city 🏙', c_mapping)
       return CITY  
 
     def get_Shift():
-      SHIFT = st.selectbox('Select a shift', sLabels)
+      SHIFT = st.selectbox('Select a shift ⛅', sLabels)
       return SHIFT
       
     # Define the user input fields
     dow_input = get_dayOfWeek2()
     mt_input = get_menuType()    
-    # min_input = get_MenuItemName()
-    # ic_input = get_itemCat()
-    # isc_input = get_itemSubCat(ic_input)  
     tbn_input = get_TruckBrandName()  
     c_input = get_City()    
     s_input = get_Shift()
@@ -540,9 +660,6 @@ with tab2:
     # Map user inputs to integer encoding
     dow_int = dowMapping[dow_input]
     mt_int = mt_mapping[mt_input]
-    # min_int = min_mapping[min_input]
-    # ic_int = ic_mapping[ic_input]
-    # isc_int = isc_mapping[isc_input]  
     tbn_int = tbn_mapping[tbn_input]
     c_int = c_mapping[c_input]  
     s_int = s_mapping[s_input]
@@ -572,10 +689,6 @@ with tab2:
       prediction_mapping = {0: 'low', 1: 'average', 2: 'high'}
       predicted_quantity = output_df2['PREDICTED_QUANTITY'].map(prediction_mapping).iloc[0]
       st.write('The likelihood of customers purchasing is {}.'.format(predicted_quantity))
-
-
-
-
 
 
 
