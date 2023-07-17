@@ -532,18 +532,18 @@ with tab2:
     # Define the user input fields
     dow_input = get_dayOfWeek2()
     mt_input = get_menuType()    
-    min_input = get_MenuItemName()
-    ic_input = get_itemCat()
-    isc_input = get_itemSubCat(ic_input)  
+    # min_input = get_MenuItemName()
+    # ic_input = get_itemCat()
+    # isc_input = get_itemSubCat(ic_input)  
     tbn_input = get_TruckBrandName()  
     c_input = get_City()    
 
     # Map user inputs to integer encoding
     dow_int = dowMapping[dow_input]
     mt_int = mt_mapping[mt_input]
-    min_int = min_mapping[min_input]
-    ic_int = ic_mapping[ic_input]
-    isc_int = isc_mapping[isc_input]  
+    # min_int = min_mapping[min_input]
+    # ic_int = ic_mapping[ic_input]
+    # isc_int = isc_mapping[isc_input]  
     tbn_int = tbn_mapping[tbn_input]
     c_int = c_mapping[c_input]  
   
