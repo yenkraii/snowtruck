@@ -502,7 +502,7 @@ with tab2:
     c_mapping = {'New York City': 0, 'Seattle': 1, 'Denver': 2, 'Boston': 3, 'San Mateo': 4}
 
     s_mapping={'AM':0,'PM':1}
-    sReverseMapping = {v: k for k, v in s_mappings.items()}
+    sReverseMapping = {v: k for k, v in s_mapping.items()}
     sLabels = [sReverseMapping[i] for i in sorted(sReverseMapping.keys())]
    
 
