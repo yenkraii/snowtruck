@@ -540,8 +540,8 @@ with tab2:
     c_int = c_mapping[c_input]  
     s_int = s_mapping[s_input]
   
-  # Display the prediction
-  if st.button('Predict Profits'):
+    # Display the prediction
+    if st.button('Predict Profits'):
         
       # Make the prediction   
       input_data = [[dow_int,mt_int,tbn_int, c_int,s_int]]
