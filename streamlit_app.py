@@ -570,13 +570,13 @@ with tab2:
                       predicted_profits.append(prediction1[0])
                       predicted_quantities.append(prediction_mapping[prediction2[0]])
   
-      # Add the lists to the filtered DataFrame
-      df_filtered['PREDICTED_PROFIT'] = predicted_profits
-      df_filtered['PREDICTED_QUANTITY'] = predicted_quantities
-  
-      # Print the final combined DataFrame
-      st.write(f"Menu Type: {mt_input}")
-      st.dataframe(df_filtered)
+        # Add the lists to the filtered DataFrame
+        df_filtered['PREDICTED_PROFIT'] = predicted_profits
+        df_filtered['PREDICTED_QUANTITY'] = predicted_quantities
+    
+        # Print the final combined DataFrame
+        st.write(f"Menu Type: {mt_input}")
+        st.dataframe(df_filtered)
 
 
 
