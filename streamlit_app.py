@@ -546,7 +546,7 @@ with tab2:
       predicted_quantity = output_df2['PREDICTED_QUANTITY'].map(prediction_mapping).iloc[0]
       st.write('The likelihood of customers purchasing is {}.'.format(predicted_quantity))
       
-      # Filter the DataFrame for the user-selected menu type
+     # Filter the DataFrame for the user-selected menu type
       df_filtered = df[df['MENU_TYPE'] == mt_int].copy()
   
       # Initialize lists to store predictions for all combinations
@@ -570,13 +570,19 @@ with tab2:
                       predicted_profits.append(prediction1[0])
                       predicted_quantities.append(prediction_mapping[prediction2[0]])
   
-        # Add the lists to the filtered DataFrame
-        df_filtered['PREDICTED_PROFIT'] = predicted_profits
-        df_filtered['PREDICTED_QUANTITY'] = predicted_quantities
-    
-        # Print the final combined DataFrame
-        st.write(f"Menu Type: {mt_input}")
-        st.dataframe(df_filtered)
+      # Check if the number of combinations matches the number of rows in the filtered DataFrame
+      if len(df_filtered) == len(predicted_profits):
+          # Add the lists to the filtered DataFrame
+          df_filtered['PREDICTED_PROFIT'] = predicted_profits
+          df_filtered['PREDICTED_QUANTITY'] = predicted_quantities
+  
+          # Print the final combined DataFrame
+          st.write(f"Menu Type: {mt_input}")
+          st.dataframe(df_filtered)
+      else:
+          # If the number of combinations doesn't match, display an error message
+          st.error("Error: The number of combinations and rows in the DataFrame don't match. Please try again.")
+
 
 
 
