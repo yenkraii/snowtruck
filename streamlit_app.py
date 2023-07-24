@@ -546,33 +546,33 @@ with tab2:
       predicted_quantity = output_df2['PREDICTED_QUANTITY'].map(prediction_mapping).iloc[0]
       st.write('The likelihood of customers purchasing is {}.'.format(predicted_quantity))
       
-    # Filter the DataFrame for the user-selected menu type
-    df_filtered = df[df['MENU_TYPE'] == mt_int].copy()
-
-    # Loop through every combination of day of week, truck brand name, and shift
-    for day_of_week in dowMapping.values():
-        for truck_brand_name in tbn_mapping.values():
-            for city in c_mapping.values():
-                for shift in s_mapping.values():
-                    # Create the input DataFrame with the current combination
-                    input_data = [[day_of_week, mt_int, truck_brand_name, city, shift]]
-                    input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT'])
-
-                    # Make the predictions
-                    prediction1 = xgb1_xinle.predict(input_df)
-                    prediction2 = xgb2_xinle.predict(input_df)
-
-                    # Convert predictions to human-readable values
-                    predicted_profit = prediction1[0]
-                    predicted_quantity = prediction_mapping[prediction2[0]]
-
-                    # Add predictions to the filtered DataFrame
-                    df_filtered.loc[:, 'PREDICTED_PROFIT'] = predicted_profit
-                    df_filtered.loc[:, 'PREDICTED_QUANTITY'] = predicted_quantity
-
-                    # Print the DataFrame for the current combination
-                    st.write(f"Menu Type: {mt_input}, Day of Week: {day_of_week}, Truck Brand Name: {truck_brand_name}, City: {city}, Shift: {shift}")
-                    st.dataframe(df_filtered)
+      # Filter the DataFrame for the user-selected menu type
+      df_filtered = df[df['MENU_TYPE'] == mt_int].copy()
+  
+      # Loop through every combination of day of week, truck brand name, and shift
+      for day_of_week in dowMapping.values():
+          for truck_brand_name in tbn_mapping.values():
+              for city in c_mapping.values():
+                  for shift in s_mapping.values():
+                      # Create the input DataFrame with the current combination
+                      input_data = [[day_of_week, mt_int, truck_brand_name, city, shift]]
+                      input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT'])
+  
+                      # Make the predictions
+                      prediction1 = xgb1_xinle.predict(input_df)
+                      prediction2 = xgb2_xinle.predict(input_df)
+  
+                      # Convert predictions to human-readable values
+                      predicted_profit = prediction1[0]
+                      predicted_quantity = prediction_mapping[prediction2[0]]
+  
+                      # Add predictions to the filtered DataFrame
+                      df_filtered.loc[:, 'PREDICTED_PROFIT'] = predicted_profit
+                      df_filtered.loc[:, 'PREDICTED_QUANTITY'] = predicted_quantity
+  
+                      # Print the DataFrame for the current combination
+                      st.write(f"Menu Type: {mt_input}, Day of Week: {day_of_week}, Truck Brand Name: {truck_brand_name}, City: {city}, Shift: {shift}")
+                      st.dataframe(df_filtered)
 
 
 
