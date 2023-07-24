@@ -549,6 +549,10 @@ with tab2:
       # Filter the DataFrame for the user-selected menu type
       df_filtered = df[df['MENU_TYPE'] == mt_int].copy()
   
+      # Initialize lists to store predictions for all combinations
+      predicted_profits = []
+      predicted_quantities = []
+  
       # Loop through every combination of day of week, truck brand name, and shift
       for day_of_week in dowMapping.values():
           for truck_brand_name in tbn_mapping.values():
@@ -562,17 +566,18 @@ with tab2:
                       prediction1 = xgb1_xinle.predict(input_df)
                       prediction2 = xgb2_xinle.predict(input_df)
   
-                      # Convert predictions to human-readable values
-                      predicted_profit = prediction1[0]
-                      predicted_quantity = prediction_mapping[prediction2[0]]
+                      # Append predictions to the lists
+                      predicted_profits.append(prediction1[0])
+                      predicted_quantities.append(prediction_mapping[prediction2[0]])
   
-                      # Add predictions to the filtered DataFrame
-                      df_filtered.loc[:, 'PREDICTED_PROFIT'] = predicted_profit
-                      df_filtered.loc[:, 'PREDICTED_QUANTITY'] = predicted_quantity
+      # Add the lists to the filtered DataFrame
+      df_filtered['PREDICTED_PROFIT'] = predicted_profits
+      df_filtered['PREDICTED_QUANTITY'] = predicted_quantities
   
-                      # Print the DataFrame for the current combination
-                      st.write(f"Menu Type: {mt_input}, Day of Week: {day_of_week}, Truck Brand Name: {truck_brand_name}, City: {city}, Shift: {shift}")
-                      st.dataframe(df_filtered)
+      # Print the final combined DataFrame
+      st.write(f"Menu Type: {mt_input}")
+      st.dataframe(df_filtered)
+
 
 
 
