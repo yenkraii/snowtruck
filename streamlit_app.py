@@ -522,23 +522,23 @@ with tab2:
       CITY = st.selectbox('Select a city 🏙', c_mapping)
       return CITY
 
-  def get_Shift():
+    def get_Shift():
       SHIFT = st.selectbox('Select a shift ⛅️', sLabels)
       return SHIFT
       
-  # Define the user input fields
-  dow_input = get_dayOfWeek2()
-  mt_input = get_menuType()    
-  tbn_input = get_TruckBrandName()  
-  c_input = get_City()    
-  s_input = get_Shift()
-
-  # Map user inputs to integer encoding
-  dow_int = dowMapping[dow_input]
-  mt_int = mt_mapping[mt_input]
-  tbn_int = tbn_mapping[tbn_input]
-  c_int = c_mapping[c_input]  
-  s_int = s_mapping[s_input]
+    # Define the user input fields
+    dow_input = get_dayOfWeek2()
+    mt_input = get_menuType()    
+    tbn_input = get_TruckBrandName()  
+    c_input = get_City()    
+    s_input = get_Shift()
+  
+    # Map user inputs to integer encoding
+    dow_int = dowMapping[dow_input]
+    mt_int = mt_mapping[mt_input]
+    tbn_int = tbn_mapping[tbn_input]
+    c_int = c_mapping[c_input]  
+    s_int = s_mapping[s_input]
   
   # Display the prediction
   if st.button('Predict Profits'):
