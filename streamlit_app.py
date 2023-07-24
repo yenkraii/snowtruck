@@ -452,7 +452,7 @@ with tab1:
 with tab2:
 
     st.title('Profit Prediction for Menu Items') 
-    st.markdown("This tab allows you to make predictions on the profit of menu items based on different variables. \
+    st.markdown("Complete all the parameters and the machine learning model will predict the profit earned and the likelihood of customers purchasing. \
                  The model used is an XGBoost Regressor trained on the TastyBytes dataset.")
     
     with open('xgb1_xinle.pkl', 'rb') as file:
@@ -472,26 +472,6 @@ with tab2:
     mt_mapping = {'Ice Cream': 0, 'Grilled Cheese': 1, 'Poutine': 2,'Ethiopian': 3,'BBQ': 4,
                   'Indian': 5,'Mac & Cheese': 6,'Vegetarian': 7,'Sandwiches': 8,'Gyros': 9,
                   'Chinese': 10,'Tacos': 11,'Hot Dogs': 12,'Ramen': 13,'Crepes': 14}
-  
-    min_mapping = {'Veggie Burger': 0,'Seitan Buffalo Wings': 1,'Bottled Soda': 2,'Bottled Water': 3,
-                   'The Salad of All Salads': 4,'Ice Tea': 5,'Chicken Pot Pie Crepe': 6,'Breakfast Crepe': 7,
-                   'Crepe Suzette': 8,'Lean Chicken Tibs': 9,'Lean Beef Tibs': 10,'Veggie Combo': 11,
-                   'New York Dog': 12,'Chicago Dog': 13,'Coney Dog': 14,'The Classic': 15,'The Kitchen Sink': 16,
-                   'Mothers Favorite': 17,'Gyro Plate': 18,'The King Combo': 19,'Greek Salad': 20,'Combo Lo Mein': 21,
-                   'Combo Fried Rice': 22,'Wonton Soup': 23,'Lean Chicken Tikka Masala': 24,
-                   'Tandoori Mixed Grill': 25,'Combination Curry': 26,'Italian': 27,
-                   'Pastrami': 28,'Hot Ham & Cheese': 29,'Mango Sticky Rice': 30,'Sugar Cone': 31,
-                   'Waffle Cone': 32,'Popsicle': 33, 'Two Scoop Bowl': 34,'Ice Cream Sandwich': 35,
-                   'Lemonade': 36,'Fried Pickles': 37,'Pulled Pork Sandwich': 38,'Three Meat Plate': 39,
-                   'Spring Mix Salad': 40,'Rack of Pork Ribs': 41,'Two Meat Plate': 42,'Two Taco Combo Plate': 43,
-                   'Chicken Burrito': 44,'Three Taco Combo Plate': 45,'Lean Burrito Bowl': 46,'Veggie Taco Bowl': 47,
-                   'Fish Burrito': 48,'Standard Mac & Cheese': 49,'Buffalo Mac & Cheese': 50,'Lobster Mac & Cheese': 51,
-                   'Spicy Miso Vegetable Ramen': 52,'Tonkotsu Ramen': 53,'Creamy Chicken Ramen': 54,
-                   'The Ranch': 55,'Miss Piggie': 56,'The Original': 57}
-  
-    ic_mapping = {'Main': 0, 'Snack': 1, 'Beverage': 2, 'Dessert': 3}
-
-    isc_mapping= {'Hot Option': 0, 'Cold Option': 1, 'Warm Option': 2}
 
     tbn_mapping = {'Freezing Point': 0,'The Mega Melt': 1,'Revenge of the Curds': 2,'Tasty Tibs': 3,'Smoky BBQ': 4,
                    "Nani's Kitchen": 5,'The Mac Shack': 6,'Plant Palace': 7,'Better Off Bread': 8,'Cheeky Greek': 9,
@@ -505,25 +485,25 @@ with tab2:
    
 
     def get_dayOfWeek2():
-      dayOfWeek = st.selectbox('Select a day of week 📆', dowLabels,key='tab2_dayOfWeekSelect')
+      dayOfWeek = st.selectbox('Day of week 📆', dowLabels,key='tab2_dayOfWeekSelect')
       return dayOfWeek
 
     def get_menuType():
       #MENU_TYPES = df[df['DAY_OF_WEEK'] == dowMapping[DAY_OF_WEEK]]['MENU_TYPE'].unique()
-      MENU_TYPE = st.selectbox('Select a menu type 📝', mt_mapping)
+      MENU_TYPE = st.selectbox('Menu type 📝', mt_mapping)
       return MENU_TYPE
     
 
     def get_TruckBrandName():
-      TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name 🚚', tbn_mapping)
+      TRUCK_BRAND_NAME = st.selectbox('Truck brand name 🚚', tbn_mapping)
       return TRUCK_BRAND_NAME  
 
     def get_City():
-      CITY = st.selectbox('Select a city 🏙', c_mapping)
+      CITY = st.selectbox('City 🏙', c_mapping)
       return CITY
 
     def get_Shift():
-      SHIFT = st.selectbox('Select a shift ⛅️', sLabels)
+      SHIFT = st.selectbox('Shift ⛅️', sLabels)
       return SHIFT
       
     # Define the user input fields
@@ -565,13 +545,36 @@ with tab2:
       prediction_mapping = {0: 'low', 1: 'average', 2: 'high'}
       predicted_quantity = output_df2['PREDICTED_QUANTITY'].map(prediction_mapping).iloc[0]
       st.write('The likelihood of customers purchasing is {}.'.format(predicted_quantity))
-
-      # Filter the full dataframe based on the chosen menu type
-      filtered_df = output_df2[output_df2['MENU_TYPE'] == mt_int]
       
-      # Show the full dataframe for the chosen menu type
-      st.write("Full Dataframe for Chosen Menu Type:")
-      st.dataframe(filtered_df)
+    # Filter the DataFrame for the user-selected menu type
+    df_filtered = df[df['MENU_TYPE'] == mt_int].copy()
+
+    # Loop through every combination of day of week, truck brand name, and shift
+    for day_of_week in dowMapping.values():
+        for truck_brand_name in tbn_mapping.values():
+            for city in c_mapping.values():
+                for shift in s_mapping.values():
+                    # Create the input DataFrame with the current combination
+                    input_data = [[day_of_week, mt_int, truck_brand_name, city, shift]]
+                    input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT'])
+
+                    # Make the predictions
+                    prediction1 = xgb1_xinle.predict(input_df)
+                    prediction2 = xgb2_xinle.predict(input_df)
+
+                    # Convert predictions to human-readable values
+                    predicted_profit = prediction1[0]
+                    predicted_quantity = prediction_mapping[prediction2[0]]
+
+                    # Add predictions to the filtered DataFrame
+                    df_filtered.loc[:, 'PREDICTED_PROFIT'] = predicted_profit
+                    df_filtered.loc[:, 'PREDICTED_QUANTITY'] = predicted_quantity
+
+                    # Print the DataFrame for the current combination
+                    st.write(f"Menu Type: {mt_input}, Day of Week: {day_of_week}, Truck Brand Name: {truck_brand_name}, City: {city}, Shift: {shift}")
+                    st.dataframe(df_filtered)
+
+
 
 
 
