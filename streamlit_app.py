@@ -576,8 +576,6 @@ with tab2:
 
 
 
-
-
   # #Define the app title and favicon
   #   st.title('Profit Prediction for Menu Items') 
   #   st.markdown("This tab allows you to make predictions on the profit of menu items based on different variables. \
