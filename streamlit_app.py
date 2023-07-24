@@ -463,7 +463,7 @@ with tab2:
 
     # Load the cleaned and transformed dataset
     df = pd.read_csv('df_xinle.csv')
-    profit = df[['PROFIT']] # extract price column from df_xinle
+    #profit = df[['PROFIT']] # extract price column from df_xinle
 
     dowMapping={'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6}
     dowReverseMapping = {v: k for k, v in dowMapping.items()}
