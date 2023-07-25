@@ -546,44 +546,44 @@ with tab2:
       predicted_quantity = output_df2['PREDICTED_QUANTITY'].map(prediction_mapping).iloc[0]
       st.write('The likelihood of customers purchasing is {}.'.format(predicted_quantity))
       
-    # Initialize lists to store predictions for all combinations
-    predicted_profits = []
-    predicted_quantities = []
-    df_filtered_rows = []
-
-    # Loop through every combination of day of the week, truck brand name, city, and shift
-    for day_of_week in dowMapping.values():
-        for truck_brand_name in tbn_mapping.values():
-            for city in c_mapping.values():
-                for shift in s_mapping.values():
-                    # Create the input DataFrame with the current combination
-                    input_data = [[day_of_week, mt_int, truck_brand_name, city, shift]]
-                    input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT'])
-
-                    # Make the predictions
-                    prediction1 = xgb1_xinle.predict(input_df)
-                    prediction2 = xgb2_xinle.predict(input_df)
-
-                    # Append predictions to the lists
-                    predicted_profits.append(prediction1[0])
-                    predicted_quantities.append(prediction_mapping[prediction2[0]])
-
-                    # Map integer values back to their string representations
-                    dow_str = dowReverseMapping[day_of_week]
-                    mt_str = list(mt_mapping.keys())[list(mt_mapping.values()).index(mt_int)]
-                    tbn_str = list(tbn_mapping.keys())[list(tbn_mapping.values()).index(tbn_int)]
-                    c_str = list(c_mapping.keys())[list(c_mapping.values()).index(c_int)]
-                    s_str = sReverseMapping[shift]
-
-                    # Append to the DataFrame that stores all combinations
-                    df_filtered_rows.append([dow_str, mt_str, tbn_str, c_str, s_str, prediction1[0], predicted_quantity])
-
-    # Create a new DataFrame with all combinations
-    df_filtered = pd.DataFrame(df_filtered_rows, columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT', 'PREDICTED_PROFIT', 'PREDICTED_QUANTITY'])
-
-    # Print the final combined DataFrame
-    st.write(f"Menu Type: {mt_input}")
-    st.dataframe(df_filtered)
+      # Initialize lists to store predictions for all combinations
+      predicted_profits = []
+      predicted_quantities = []
+      df_filtered_rows = []
+      
+      # Loop through every combination of day of the week, truck brand name, city, and shift
+      for day_of_week in dowMapping.values():
+          for truck_brand_name in tbn_mapping.values():
+              for city in c_mapping.values():
+                  for shift in s_mapping.values():
+                      # Create the input DataFrame with the current combination
+                      input_data = [[day_of_week, mt_int, truck_brand_name, city, shift]]
+                      input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT'])
+      
+                      # Make the predictions
+                      prediction1 = xgb1_xinle.predict(input_df)
+                      prediction2 = xgb2_xinle.predict(input_df)
+      
+                      # Append predictions to the lists
+                      predicted_profits.append(prediction1[0])
+                      predicted_quantities.append(prediction_mapping[prediction2[0]])
+      
+                      # Map integer values back to their string representations
+                      dow_str = dowReverseMapping[day_of_week]
+                      mt_str = list(mt_mapping.keys())[list(mt_mapping.values()).index(mt_int)]
+                      tbn_str = list(tbn_mapping.keys())[list(tbn_mapping.values()).index(truck_brand_name)]
+                      c_str = list(c_mapping.keys())[list(c_mapping.values()).index(city)]
+                      s_str = sReverseMapping[shift]
+      
+                      # Append to the DataFrame that stores all combinations
+                      df_filtered_rows.append([dow_str, mt_str, tbn_str, c_str, s_str, prediction1[0], predicted_quantity])
+      
+      # Create a new DataFrame with all combinations
+      df_filtered = pd.DataFrame(df_filtered_rows, columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT', 'PREDICTED_PROFIT', 'PREDICTED_QUANTITY'])
+      
+      # Print the final combined DataFrame
+      st.write(f"Menu Type: {mt_input}")
+      st.dataframe(df_filtered)
 
 
 
