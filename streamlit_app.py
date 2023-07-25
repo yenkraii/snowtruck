@@ -576,7 +576,7 @@ with tab2:
                       s_str = sReverseMapping[shift]
       
                       # Append to the DataFrame that stores all combinations
-                      df_filtered_rows.append([dow_str, mt_str, tbn_str, c_str, s_str, prediction1[0], predicted_quantity])
+                      df_filtered_rows.append([dow_str, mt_str, tbn_str, c_str, s_str, prediction1[0], prediction_mapping[prediction2[0]]])
       
       # Create a new DataFrame with all combinations
       df_filtered = pd.DataFrame(df_filtered_rows, columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'SHIFT', 'PREDICTED_PROFIT', 'PREDICTED_QUANTITY'])
