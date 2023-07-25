@@ -552,7 +552,7 @@ with tab2:
       # Initialize lists to store predictions for all combinations
       predicted_profits = []
       predicted_quantities = []
-  
+        
       # Loop through every combination of day of week, truck brand name, and shift
       for day_of_week in dowMapping.values():
           for truck_brand_name in tbn_mapping.values():
@@ -569,13 +569,14 @@ with tab2:
                       # Append predictions to the lists
                       predicted_profits.append(prediction1[0])
                       predicted_quantities.append(prediction_mapping[prediction2[0]])
+      
   
-        df_filtered['PREDICTED_PROFIT'] = predicted_profits
-        df_filtered['PREDICTED_QUANTITY'] = predicted_quantities
+      df_filtered['PREDICTED_PROFIT'] = predicted_profits
+      df_filtered['PREDICTED_QUANTITY'] = predicted_quantities
   
-        # Print the final combined DataFrame
-        st.write(f"Menu Type: {mt_input}")
-        st.dataframe(df_filtered)
+      # Print the final combined DataFrame
+      st.write(f"Menu Type: {mt_input}")
+      st.dataframe(df_filtered)
 
 
 
