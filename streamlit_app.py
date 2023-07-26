@@ -582,15 +582,15 @@ with tab3:
   # retrieving model from pickle file
 
   # defining user inputs
-  def get_gender:
+  def get_gender():
     return st.selectbox("Select Gender:")
-  def get_maritalStatus:
+  def get_maritalStatus():
     return st.selectbox("Select their marital status:")
-  def get_childCount:
+  def get_childCount():
     return st.selectbox("How many children do they have?")
-  def get_Age:
+  def get_Age():
     return st.number_input(label = "How old are they?", min_value=0)
-  def get_Membership:
+  def get_Membership():
     return st.number_input(label= "How long have they been members?",help="in months")
 
 
