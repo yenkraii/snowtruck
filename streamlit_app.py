@@ -25,7 +25,7 @@ st.title("SnowTruck:minibus:")
 conn = snowflake.connector.connect(**st.secrets["snowflake"])
 
 # tabs
-tab1,tab2,tab3,tab4,tab5 = st.tabs(["tab1","tab2","tab3","tab4","tab5"])
+tab1,tab2,tab3,tab4,tab5 = st.tabs(["tab1","tab2","MBA + Uplift Modelling","tab4","tab5"])
 
 with tab1:
   import xgboost as xgb
@@ -451,7 +451,6 @@ with tab1:
 
 with tab2:
 
-
   #Define the app title and favicon
     st.title('Profit Prediction for Menu Items') 
     st.markdown("This tab allows you to make predictions on the profit of menu items based on different variables. \
@@ -566,7 +565,40 @@ with tab2:
 
 
 with tab3:
-  st.write()
+  #kiara thinks this is painful
+  # title
+  st.title("Who to upsell and cross-sell to?")
+  # description
+  st.markdown("""This tab uses insights from conducting ***market baskset analysis*** and feeds them into a uplift machine learning model.
+  The model then predicts a customer's propensity score in reaction to upselling and cross-selling promtion.
+  For salespeople and marketers, this tab would then categorise these customers into 4 categories:
+  1. Persuadables (Customers who buy when promoted to)
+  2. Sure things (Customers who buy regardless of promotion)
+  3. Lost Causes (Customers who don't buy regardless of promotion)
+  4. Sleeping dogs (Customers who don't buy when promoted to)
+  """)
+  # getting the mapping dictionaries from pickle file
+
+  # retrieving model from pickle file
+
+  # defining user inputs
+  def get_gender:
+    return st.selectbox("Select Gender:")
+  def get_maritalStatus:
+    return st.selectbox("Select their marital status:")
+  def get_childCount:
+    return st.selectbox("How many children do they have?")
+  def get_Age:
+    return st.number_input(label = "How old are they?", min_value=0)
+  def get_Membership:
+    return st.number_input(label= "How long have they been members?",help="in months")
+
+
+  # predicting
+  if st.button("Predict"):
+    st.write("TODO: prediction")
+
+  
 
 with tab4:
   st.write()
