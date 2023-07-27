@@ -594,15 +594,19 @@ with tab3:
   def get_gender():
     gender = st.selectbox("Select Gender:", gender_dict)
     return gender
+    
   def get_maritalStatus():
     marital = st.selectbox("Select their marital status:", marital_dict)
     return marital
+    
   def get_childCount():
     child = st.selectbox("How many children do they have?", child_dict)
     return child
+    
   def get_Age():
     age = st.number_input(label = "How old are they?", min_value=0)
     return age
+    
   def get_Membership():
     member = st.number_input(label= "How long have they been members?",help="in months")
     return member
