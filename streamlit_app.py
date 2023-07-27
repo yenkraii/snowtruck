@@ -620,6 +620,7 @@ with tab3:
   # get menu item
   first_item = st.selectbox("1st Item in basket?", menu_dict,key = 0)
   second_item = st.selectbox("2nd Item in basket?", menu_dict, key = 9)
+  
   if st.button("Suggest!", key= 999):
     # suggest based on market basket analysis
     first2 = int(first_item) + "," + int(second_item)
@@ -628,7 +629,7 @@ with tab3:
     st.df(filtered_df)
     # top suggestion 
     top_c = filtered_df.iloc[0,:]
-    st.df(top_c)
+    st.write(top_c)
     
   
   consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
