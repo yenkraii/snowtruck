@@ -618,8 +618,19 @@ with tab3:
   c_member = get_Membership()
 
   # get menu item
-  first_item = st.selectbox("Item in basket?", menu_dict,key = 0)
-  second_item = st.selectbox("Item in basket?", menu_dict, key = 9)
+  first_item = st.selectbox("1st Item in basket?", menu_dict,key = 0)
+  second_item = st.selectbox("2nd Item in basket?", menu_dict, key = 9)
+  if st.button("Suggest!", key= 999):
+    # suggest based on market basket analysis
+    first2 = int(first_item) + "," + int(second_item)
+    st.write(first2)
+    filtered_df = arm[arm["first2"] == first2].sort_values(by="confidence", ascending = False)
+    st.df(filtered_df)
+    # top suggestion 
+    top_c = filtered_df.iloc[0,:]
+    st.df(top_c)
+    
+  
   consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
   confidence = 0
 
@@ -628,7 +639,7 @@ with tab3:
     st.write("TODO: prediction")
     
     data_input = [[consequent, confidence, first_item, second_item, c_gender, c_marital, c_child, c_age, c_member]]
-    input_df = pd.DataFrame(data_input, columns = [])
+    input_df = pd.DataFrame(data_input, columns = ["consequents","confidence",0,1,"GENDER","MARITAL_STATUS","CHILDREN_COUNT","AGE","MEMBERSHIP"])
     #uplift_score = slearner.predict(data_input)
     #st.write(uplift_score)
 
