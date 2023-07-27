@@ -8,6 +8,8 @@ import pickle
 import xgboost as xgb
 from PIL import Image
 from sklearn import preprocessing
+from sklift.models import ClassTransformation
+from lightgbm import LGBMClassifier
 
 
 
@@ -578,25 +580,53 @@ with tab3:
   4. Sleeping dogs (Customers who don't buy when promoted to)
   """)
   # getting the mapping dictionaries from pickle file
+  with open("model/enc_dict.pickle","rb") as f:
+    unpack = pickle.load(f)
+    gender_dict = unpack["gender"]
+    marital_dict = unpack["marital"]
+    child_dict = unpack["child"]
+    menu_dict = unpack["menu"]
 
-  # retrieving model from pickle file
+  # retrieving model from pickle files
+  with open("model/mba_kiara.pickle","rb") as f:
+    arm = pickle.load(f)
+  
+  with open("model/uplift_kiara.pickle","rb") as f:
+    slearner = pickle.load(f)
+  uplift = slearner.predict(X_test)
 
   # defining user inputs
   def get_gender():
-    return st.selectbox("Select Gender:")
+    return st.selectbox("Select Gender:", gender_dict)
   def get_maritalStatus():
-    return st.selectbox("Select their marital status:")
+    return st.selectbox("Select their marital status:", marital_dict)
   def get_childCount():
-    return st.selectbox("How many children do they have?")
+    return st.selectbox("How many children do they have?", child_dict)
   def get_Age():
     return st.number_input(label = "How old are they?", min_value=0)
   def get_Membership():
     return st.number_input(label= "How long have they been members?",help="in months")
 
+  c_gender = gender_dict[get_gender()]
+  c_marital = marital_dict[get_maritalStatus()]
+  c_child = child_dict[get_childCount()]
+  c_age = get_Age()
+  c_member = get_Membership()
+
+  # get menu item
+  first_item = st.selectbox("Item in basket?", menu_dict)
+  second_item = st.selectbox("Item in basket?", menu_dict)
+  consequent = st.selectbox("Item in basket?", menu_dict)
+  confidence = 0
 
   # predicting
   if st.button("Predict"):
     st.write("TODO: prediction")
+    
+    data_input = [[consequent, confidence, first_item, second_item, c_gender, c_marital, c_child, c_age, c_member]]
+    #input_df = pd.DataFrame(data_input, columns = [])
+    uplift_score = slearner.predict(data_input)
+    st.write(uplift_score)
 
   
 
