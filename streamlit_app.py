@@ -623,7 +623,7 @@ with tab3:
   
   if st.button("Suggest!", key= 999):
     # suggest based on market basket analysis
-    first2 = int(first_item) + "," + int(second_item)
+    first2 = menu_dict[first_item] + "," + menu_dict[second_item]
     st.write(first2)
     filtered_df = arm[arm["first2"] == first2].sort_values(by="confidence", ascending = False)
     st.df(filtered_df)
