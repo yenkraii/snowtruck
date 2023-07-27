@@ -8,10 +8,6 @@ import pickle
 import xgboost as xgb
 from PIL import Image
 from sklearn import preprocessing
-#from scikit-uplift.models import ClassTransformation
-#from lightgbm import LGBMClassifier
-
-
 
 st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
 
