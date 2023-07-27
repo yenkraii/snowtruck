@@ -592,23 +592,23 @@ with tab3:
 
   # defining user inputs
   def get_gender():
-    gender = st.selectbox("Select Gender:", gender_dict)
+    gender = st.selectbox("Select Gender:", gender_dict, key =1)
     return gender
     
   def get_maritalStatus():
-    marital = st.selectbox("Select their marital status:", marital_dict)
+    marital = st.selectbox("Select their marital status:", marital_dict, key =2 )
     return marital
     
   def get_childCount():
-    child = st.selectbox("How many children do they have?", child_dict)
+    child = st.selectbox("How many children do they have?", child_dict, key = 3)
     return child
     
   def get_Age():
-    age = st.number_input(label = "How old are they?", min_value=0)
+    age = st.number_input(label = "How old are they?", min_value=0, key =4)
     return age
     
   def get_Membership():
-    member = st.number_input(label= "How long have they been members?",help="in months")
+    member = st.number_input(label= "How long have they been members?",help="in months", key =5)
     return member
 
   c_gender = gender_dict[get_gender()]
