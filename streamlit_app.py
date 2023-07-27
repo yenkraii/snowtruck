@@ -608,7 +608,7 @@ with tab3:
     return age
     
   def get_Membership():
-    member = st.number_input(label= "How long have they been members?",help="in months", key =5)
+    member = st.number_input(label= "How long have they been members?",min_value = 0 ,help="in months", key = 5)
     return member
 
   c_gender = gender_dict[get_gender()]
@@ -618,9 +618,9 @@ with tab3:
   c_member = get_Membership()
 
   # get menu item
-  first_item = st.selectbox("Item in basket?", menu_dict)
-  second_item = st.selectbox("Item in basket?", menu_dict)
-  consequent = st.selectbox("Item in basket?", menu_dict)
+  first_item = st.selectbox("Item in basket?", menu_dict,key = 0)
+  second_item = st.selectbox("Item in basket?", menu_dict, key = 9)
+  consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
   confidence = 0
 
   # predicting
