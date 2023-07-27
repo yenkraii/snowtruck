@@ -593,7 +593,6 @@ with tab3:
   
   with open("model/uplift_kiara.pickle","rb") as f:
     slearner = pickle.load(f)
-  uplift = slearner.predict(X_test)
 
   # defining user inputs
   def get_gender():
