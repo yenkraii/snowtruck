@@ -3,5 +3,5 @@ xgboost
 scikit-learn
 Pillow
 pandas<2
-scikit-sklift
+scikit-uplift
 lightgbm 
