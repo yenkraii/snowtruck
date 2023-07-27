@@ -9,7 +9,7 @@ import xgboost as xgb
 from PIL import Image
 from sklearn import preprocessing
 #from scikit-uplift.models import ClassTransformation
-from lightgbm import LGBMClassifier
+#from lightgbm import LGBMClassifier
 
 
 
@@ -591,8 +591,8 @@ with tab3:
   # retrieving model from pickle files
   arm = pd.read_csv("mba_kiara.csv")
   
-  with open("model/uplift_kiara.pickle","rb") as f:
-    slearner = pickle.load(f)
+  #with open("model/uplift_kiara.pickle","rb") as f:
+    #slearner = pickle.load(f)
 
   # defining user inputs
   def get_gender():
@@ -631,8 +631,8 @@ with tab3:
     
     data_input = [[consequent, confidence, first_item, second_item, c_gender, c_marital, c_child, c_age, c_member]]
     input_df = pd.DataFrame(data_input, columns = [])
-    uplift_score = slearner.predict(data_input)
-    st.write(uplift_score)
+    #uplift_score = slearner.predict(data_input)
+    #st.write(uplift_score)
 
   
 
