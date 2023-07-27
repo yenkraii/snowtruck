@@ -1,0 +1,231 @@
+(dp0
+Vgender
+p1
+(dp2
+VMale
+p3
+I0
+sVFemale
+p4
+I1
+sVUndisclosed
+p5
+I-1
+ssVmarital
+p6
+(dp7
+VDivorced/Seperated
+p8
+I-1
+sg5
+I0
+sVSingle
+p9
+I1
+sVMarried
+p10
+I2
+ssVchild
+p11
+(dp12
+g5
+I-1
+sV0
+p13
+I0
+sV1
+p14
+I1
+sV2
+p15
+I2
+sV3
+p16
+I3
+sV4
+p17
+I4
+sV5+
+p18
+I5
+ssVmenu
+p19
+(dp20
+VLemonade
+p21
+I10
+sVSugar Cone
+p22
+I11
+sVWaffle Cone
+p23
+I12
+sVTwo Scoop Bowl
+p24
+I13
+sVBottled Water
+p25
+I154
+sVBottled Soda
+p26
+I155
+sVIce Tea
+p27
+I156
+sVIce Cream Sandwich
+p28
+I17
+sVMango Sticky Rice
+p29
+I18
+sVPopsicle
+p30
+I19
+sVTwo Meat Plate
+p31
+I21
+sVThree Meat Plate
+p32
+I22
+sVPulled Pork Sandwich
+p33
+I23
+sVSpring Mix Salad
+p34
+I27
+sVRack of Pork Ribs
+p35
+I28
+sVFried Pickles
+p36
+I29
+sVTwo Taco Combo Plate
+p37
+I31
+sVThree Taco Combo Plate
+p38
+I32
+sVVeggie Taco Bowl
+p39
+I33
+sVChicken Burrito
+p40
+I37
+sVLean Burrito Bowl
+p41
+I38
+sVFish Burrito
+p42
+I39
+sVStandard Mac & Cheese
+p43
+I41
+sVBuffalo Mac & Cheese
+p44
+I42
+sVLobster Mac & Cheese
+p45
+I43
+sVCreamy Chicken Ramen
+p46
+I51
+sVSpicy Miso Vegetable Ramen
+p47
+I52
+sVTonkotsu Ramen
+p48
+I53
+sVThe Original
+p49
+I61
+sVThe Ranch
+p50
+I62
+sVMiss Piggie
+p51
+I63
+sVVeggie Burger
+p52
+I71
+sVSeitan Buffalo Wings
+p53
+I72
+sVThe Salad of All Salads
+p54
+I73
+sVBreakfast Crepe
+p55
+I81
+sVChicken Pot Pie Crepe
+p56
+I82
+sVCrepe Suzette
+p57
+I83
+sVLean Chicken Tibs
+p58
+I91
+sVLean Beef Tibs
+p59
+I92
+sVVeggie Combo
+p60
+I93
+sVNew York Dog
+p61
+I101
+sVChicago Dog
+p62
+I102
+sVConey Dog
+p63
+I103
+sVThe Classic
+p64
+I111
+sVMothers Favorite
+p65
+I112
+sVThe Kitchen Sink
+p66
+I113
+sVThe King Combo
+p67
+I121
+sVGyro Plate
+p68
+I122
+sVGreek Salad
+p69
+I123
+sVCombo Lo Mein
+p70
+I131
+sVCombo Fried Rice
+p71
+I132
+sVWonton Soup
+p72
+I133
+sVLean Chicken Tikka Masala
+p73
+I141
+sVTandoori Mixed Grill
+p74
+I142
+sVCombination Curry
+p75
+I143
+sVItalian
+p76
+I151
+sVPastrami
+p77
+I152
+sVHot Ham & Cheese
+p78
+I153
+sV-
+p79
+I999
+ss.
