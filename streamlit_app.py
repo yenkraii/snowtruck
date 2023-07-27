@@ -629,7 +629,8 @@ with tab3:
     filtered_df = arm[arm["first2"] == first2].sort_values(by="confidence", ascending = False)
     
     # top suggestion 
-    top_c = filtered_df.iloc[:1,:]
+    top_c = filtered_df.head(1)
+    st.write(top_c)
     
     consequent = top_c["consequents"]
     st.write("Based on market basket analysis, {0} is recommended.".format(consequent))
