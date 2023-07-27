@@ -628,7 +628,7 @@ with tab3:
     filtered_df = arm[arm["first2"] == first2].sort_values(by="confidence", ascending = False)
     st.df(filtered_df)
     # top suggestion 
-    top_c = filtered_df.iloc[0,:]
+    top_c = filtered_df.iloc[:,0]
     st.write(top_c)
     
   
