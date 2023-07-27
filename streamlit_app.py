@@ -623,18 +623,22 @@ with tab3:
   
   if st.button("Suggest!", key= 999):
     # suggest based on market basket analysis
-    st.write(arm)
+    #st.write(arm)
     first2 = str(menu_dict[first_item]) + "," + str(menu_dict[second_item])
-    st.write(first2)
+    #st.write(first2)
     filtered_df = arm[arm["first2"] == first2].sort_values(by="confidence", ascending = False)
-    st.write(filtered_df)
+    #st.write(filtered_df)
     # top suggestion 
     top_c = filtered_df.iloc[:1,:]
-    st.write(top_c)
+    #st.write(top_c)
+    consequent = top_c["consequents"]
+    st.write("Based on market basket analysis, {0} is recommended.".format(consequent))
+    confidence = top_c["confidence"]
+    consequent = menu_dict[consequent]
     
   
-  consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
-  confidence = 0
+  #consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
+  
 
   # predicting
   if st.button("Predict"):
