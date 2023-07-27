@@ -589,8 +589,7 @@ with tab3:
     menu_dict = unpack["menu"]
 
   # retrieving model from pickle files
-  with open("model/mba_kiara.pickle","rb") as f:
-    arm = pickle.load(f)
+  arm = pd.read_pickle("model/mba_kiara.pickle")
   
   #with open("model/uplift_kiara.pickle","rb") as f:
     #slearner = pickle.load(f)
