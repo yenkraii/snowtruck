@@ -611,6 +611,8 @@ with tab3:
     member = st.number_input(label= "How long have they been members?",help="in months")
     return member
 
+  cg = get_gender()
+
   c_gender = gender_dict[get_gender()]
   c_marital = marital_dict[get_maritalStatus()]
   c_child = child_dict[get_childCount()]
