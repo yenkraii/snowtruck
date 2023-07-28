@@ -563,6 +563,8 @@ with tab2:
 
 
 with tab3:
+  import sklift
+  
   #kiara thinks this is painful
   # title
   st.title("Who to upsell and cross-sell to?")
