@@ -631,13 +631,15 @@ with tab3:
     # top suggestion 
     top_c = filtered_df.head(1)
     st.write(top_c)
-    
-    consequent = top_c.loc[:,"consequents"]
-    
-    st.write("Based on market basket analysis, {0} is recommended.".format(consequent))
-    
-    confidence = top_c.loc[:,"confidence"]
-    
+    if len(top_c) > 0:
+      consequent = top_c.head(1)["consequents"].item()
+      st.write("Based on market basket analysis, {0} is recommended.".format(consequent))
+      confidence = top_c.head(1)["confidence"].item()
+    else:
+      consequent = 999
+      confidence = 0
+      st.write("Based on market basket analysis, nothing is suitable as recommendation.")
+      
     #consequent = menu_dict[consequent]
     
   
