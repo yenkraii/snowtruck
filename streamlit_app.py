@@ -641,11 +641,14 @@ with tab3:
       st.write("Based on market basket analysis, {0} is recommended.".format(name))
       confidence = top_c.head(1)["confidence"].item()
       st.session_state.conf = confidence
+      st.session_state.cons =  consequent
     else:
-      consequent = 999
+      #consequent = 999
+      st.session_state.cons = 999
       st.write("Based on market basket analysis, nothing is suitable as recommendation.")
     
-  consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
+  #consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
+  st.write("Should we promote to this customer?")
   #st.write(confidence)
   
   # predicting
@@ -655,7 +658,7 @@ with tab3:
     if 'conf' not in st.session_state:
       st.session_state.conf = 0
       
-    data_input = [[consequent, st.session_state.conf, first_item, second_item, c_gender, c_marital, c_child, c_age, c_member]]
+    data_input = [[st.session_state.cons, st.session_state.conf, first_item, second_item, c_gender, c_marital, c_child, c_age, c_member]]
     input_df = pd.DataFrame(data_input, columns = ["consequents","confidence",0,1,"GENDER","MARITAL_STATUS","CHILDREN_COUNT","AGE","MEMBERSHIP"])
     st.write(input_df)
     #uplift_score = slearner.predict(data_input)
