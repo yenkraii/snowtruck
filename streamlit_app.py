@@ -632,9 +632,11 @@ with tab3:
     top_c = filtered_df.head(1)
     st.write(top_c)
     
-    consequent = top_c.loc[:,"consequents"].item()
+    consequent = top_c.loc[:,"consequents"]
+    
     st.write("Based on market basket analysis, {0} is recommended.".format(consequent))
-    confidence = top_c.loc[:,"confidence"].item()
+    
+    confidence = top_c.loc[:,"confidence"]
     
     #consequent = menu_dict[consequent]
     
