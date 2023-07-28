@@ -632,10 +632,11 @@ with tab3:
     top_c = filtered_df.head(1)
     st.write(top_c)
     
-    consequent = top_c.loc[:,"consequents"]
+    consequent = top_c.loc[:,"consequents"].item()
     st.write("Based on market basket analysis, {0} is recommended.".format(consequent))
-    confidence = top_c.loc[:,"confidence"]
-    consequent = menu_dict[consequent]
+    confidence = top_c.loc[:,"confidence"].item()
+    
+    #consequent = menu_dict[consequent]
     
   
   #consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
