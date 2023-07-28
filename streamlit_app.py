@@ -584,6 +584,8 @@ with tab3:
     child_dict = unpack["child"]
     menu_dict = unpack["menu"]
 
+  menu_names = {v: k for k, v in menu_dict.items()}
+
   # retrieving model from pickle files
   arm = pd.read_csv("mba_kiara.csv")
   
@@ -633,29 +635,25 @@ with tab3:
     st.write(top_c)
     if len(top_c) > 0:
       consequent = top_c.head(1)["consequents"].item()
-      st.write("Based on market basket analysis, {0} is recommended.".format(consequent))
+      name = menu_names[consequent]
+      st.write("Based on market basket analysis, {0} is recommended.".format(name))
       confidence = top_c.head(1)["confidence"].item()
     else:
       consequent = 999
       confidence = 0
       st.write("Based on market basket analysis, nothing is suitable as recommendation.")
-      
-    #consequent = menu_dict[consequent]
     
+  consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
   
-  #consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
-  
-
   # predicting
   if st.button("Predict"):
     st.write("TODO: prediction")
     
     data_input = [[consequent, confidence, first_item, second_item, c_gender, c_marital, c_child, c_age, c_member]]
     input_df = pd.DataFrame(data_input, columns = ["consequents","confidence",0,1,"GENDER","MARITAL_STATUS","CHILDREN_COUNT","AGE","MEMBERSHIP"])
+    st.write(input_df)
     #uplift_score = slearner.predict(data_input)
     #st.write(uplift_score)
-
-  
 
 with tab4:
   st.write()
