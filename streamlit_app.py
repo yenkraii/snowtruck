@@ -563,7 +563,7 @@ with tab2:
 
 
 with tab3:
-  import scikit_uplift
+  import scikit-uplift
   
   #kiara thinks this is painful
   # title
