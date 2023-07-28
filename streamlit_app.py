@@ -640,17 +640,21 @@ with tab3:
       name = menu_names[consequent]
       st.write("Based on market basket analysis, {0} is recommended.".format(name))
       confidence = top_c.head(1)["confidence"].item()
+      st.session_state.conf = confidence
     else:
       consequent = 999
       st.write("Based on market basket analysis, nothing is suitable as recommendation.")
     
   consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
-  st.write(confidence)
+  #st.write(confidence)
   
   # predicting
   if st.button("Predict"):
     st.write("TODO: prediction")
-    
+
+    if 'conf' not in st.session_state:
+      st.session_state.result = 0
+      
     data_input = [[consequent, confidence, first_item, second_item, c_gender, c_marital, c_child, c_age, c_member]]
     input_df = pd.DataFrame(data_input, columns = ["consequents","confidence",0,1,"GENDER","MARITAL_STATUS","CHILDREN_COUNT","AGE","MEMBERSHIP"])
     st.write(input_df)
