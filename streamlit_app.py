@@ -629,6 +629,8 @@ with tab3:
     first2 = str(menu_dict[first_item]) + "," + str(menu_dict[second_item])
     
     filtered_df = arm[arm["first2"] == first2].sort_values(by="confidence", ascending = False)
+
+    confidence = 0
     
     # top suggestion 
     top_c = filtered_df.head(1)
@@ -640,10 +642,10 @@ with tab3:
       confidence = top_c.head(1)["confidence"].item()
     else:
       consequent = 999
-      confidence = 0
       st.write("Based on market basket analysis, nothing is suitable as recommendation.")
     
   consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
+  st.write(confidence)
   
   # predicting
   if st.button("Predict"):
