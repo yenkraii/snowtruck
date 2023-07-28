@@ -653,9 +653,9 @@ with tab3:
     st.write("TODO: prediction")
 
     if 'conf' not in st.session_state:
-      st.session_state.result = 0
+      st.session_state.conf = 0
       
-    data_input = [[consequent, confidence, first_item, second_item, c_gender, c_marital, c_child, c_age, c_member]]
+    data_input = [[consequent, st.session_state.conf, first_item, second_item, c_gender, c_marital, c_child, c_age, c_member]]
     input_df = pd.DataFrame(data_input, columns = ["consequents","confidence",0,1,"GENDER","MARITAL_STATUS","CHILDREN_COUNT","AGE","MEMBERSHIP"])
     st.write(input_df)
     #uplift_score = slearner.predict(data_input)
