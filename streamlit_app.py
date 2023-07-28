@@ -563,7 +563,7 @@ with tab2:
 
 
 with tab3:
-  import scikit-uplift
+  import sklearn
   
   #kiara thinks this is painful
   # title
@@ -652,6 +652,8 @@ with tab3:
   #consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
   st.write("Should we promote to this customer?")
   #st.write(confidence)
+
+  import lightgbm
   
   # predicting
   if st.button("Predict"):
