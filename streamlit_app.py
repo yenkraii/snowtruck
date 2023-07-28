@@ -589,8 +589,8 @@ with tab3:
   # retrieving model from pickle files
   arm = pd.read_csv("mba_kiara.csv")
   
-  #with open("model/uplift_kiara.pickle","rb") as f:
-    #slearner = pickle.load(f)
+  with open("model/uplift_kiara.pickle","rb") as f:
+    slearner = pickle.load(f)
 
   # defining user inputs
   def get_gender():
@@ -661,8 +661,9 @@ with tab3:
     data_input = [[st.session_state.cons, st.session_state.conf, menu_dict[first_item], second_item, c_gender, c_marital, c_child, c_age, c_member]]
     input_df = pd.DataFrame(data_input, columns = ["consequents","confidence",0,1,"GENDER","MARITAL_STATUS","CHILDREN_COUNT","AGE","MEMBERSHIP"])
     st.write(input_df)
-    #uplift_score = slearner.predict(data_input)
-    #st.write(uplift_score)
+    
+    uplift_score = slearner.predict(data_input)
+    st.write(uplift_score)
 
 with tab4:
   st.write()
