@@ -563,7 +563,7 @@ with tab2:
 
 
 with tab3:
-  import sklearn
+  import sklift
   
   #kiara thinks this is painful
   # title
