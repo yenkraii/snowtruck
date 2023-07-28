@@ -563,7 +563,7 @@ with tab2:
 
 
 with tab3:
-  import sklift
+  #from sklift.models import ClassTransformation
   
   #kiara thinks this is painful
   # title
