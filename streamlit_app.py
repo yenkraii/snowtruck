@@ -712,16 +712,16 @@ with tab4:
     prediction = predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,subcat);
     st.write(prediction);
 
-#model deployment
-model = pickle.load('cust_analysis_treeClass.pkl') 
-
-def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,freq_subcat):
-    input=np.array([[gender,martial,child_count,age
-                     ,city_dict['Seattle'],city_dict['Boston'],city_dict['New York City'],city_dict['Denver'],city_dict['San Mateo']
-                     ,avg_amt,avg_qty,freq_cat,freq_subcat,6]]).astype(np.float64)
-    prediction = model.predict(input)
-    
-    return int(prediction)
+  #model deployment
+  model = pickle.load('cust_analysis_treeClass.pkl') 
+  
+  def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count,freq_cat,freq_subcat):
+      input=np.array([[gender,martial,child_count,age
+                       ,city_dict['Seattle'],city_dict['Boston'],city_dict['New York City'],city_dict['Denver'],city_dict['San Mateo']
+                       ,avg_amt,avg_qty,freq_cat,freq_subcat,6]]).astype(np.float64)
+      prediction = model.predict(input)
+      
+      return int(prediction)
 
   main();
   st.write()
