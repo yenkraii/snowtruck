@@ -723,7 +723,7 @@ def predict_model(city_dict, avg_amt, avg_qty, age, gender, martial, child_count
     
     return int(prediction)
 
-main();
+  main();
   st.write()
 
 with tab5:
