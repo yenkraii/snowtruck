@@ -616,7 +616,7 @@ with tab3:
   arm = pd.read_csv("mba_kiara.csv")
   
   with open("model/uplift_kiara.pickle","rb") as f:
-    slearner = pickle.load(f)
+    #slearner = pickle.load(f)
 
   # defining user inputs
   def get_gender():
@@ -676,7 +676,7 @@ with tab3:
   #consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
   st.write("Should we promote to this customer?")
   #st.write(confidence)
-
+  '''
   import lightgbm
   
   # predicting
@@ -692,6 +692,7 @@ with tab3:
     
     uplift_score = slearner.predict(data_input)
     st.write(uplift_score)
+  '''
 
 with tab4:
   def main():
