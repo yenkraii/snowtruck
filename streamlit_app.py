@@ -23,22 +23,20 @@ st.title("SnowTruck:minibus:")
 conn = snowflake.connector.connect(**st.secrets["snowflake"])
 
 # tabs
-tab1,tab2,tab3,tab4,tab5 = st.tabs(["tab1","tab2","MBA + Uplift Modelling","tab4","tab5"])
+tab1,tab2,tab3,tab4,tab5 = st.tabs(["Daily Sales Prediction","tab2","MBA + Uplift Modelling","tab4","tab5"])
 
 with tab1:
   import xgboost as xgb
   
   # Define the app title and favicon
   st.title('How much can you make from the TastyBytes locations?')
-  st.markdown("This tab allows you to make predictions on the daily sales of TastyBytes' trucks based on its brand, city where it is located, and its specific truck location. The model used is an XGBoost Regressor trained on the TastyBytes dataset.")
-  st.write('Choose a Day of the Week, Truck Brand Name, City, and Truck Location to get the predicted sales.')
+  st.markdown("This tab predicts the sales made by a truck with the specific user inputs. Choose a Truck Brand Name, City, Truck Location and Time Frame to get the predicted sales.")
 
   with open('xgb_alethea.pkl', 'rb') as file:
     xgb_alethea = pickle.load(file)
     
   # Load the cleaned and transformed dataset
   df = pd.read_csv('df_alethea.csv')
-  sales = df[['DAILY_SALES']] # Extracts the target variable, daily sales from the dataset
 
   wd_mapping  = { 'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6 }
   wd_reverse_mapping = {v: k for k, v in wd_mapping.items()}
@@ -444,6 +442,32 @@ with tab1:
 
     predicted_sales = output_df['DAILY_SALES'].iloc[0]
     st.write('The predicted daily sales is {:.2f}.'.format(predicted_sales))
+
+  
+  st.title('Daily Sales in the Future')
+  st.write('Sales in a city are significantly influenced by the level of urban activity, with population size being a key factor directly correlated to daily sales. As city population increases, it tends to drive higher daily sales due to increased consumer demand. Leveraging the city\'s population data, we can predict future daily sales trends, considering the average yearly population growth for each city in the United States of America, as reported in online sources.')
+  st.write('San Mateo: 4,600')
+  st.write('Seattle: 30,000')
+  st.write('New York City: 70,000')
+  st.write('Boston: 17,000')
+  st.write('Denver: 34,000')
+  
+  # Viewing predicted daily sales in the future
+  def get_Extra():
+    YEARS = st.slider('Number of years later', 1, 5, 0)
+    st.write("Predicting daily sales in ", YEARS, 'year(s)')
+    return YEARS  
+  et_input = get_Extra()
+  
+  if st.button('Predict Daily Sales Then'):
+    st.write('Current predicted daily sales: {:.2f}.'.format(predicted_sales))
+    st.write('The predicted daily sales then would be im finding out!')
+    # Make the prediction  
+    input_data = [[wd_int, bn_int, ct_int, et_input]]
+    input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'YEARS'])
+    
+    # Convert output data and columns, including profit, to a dataframe
+
 
 
 
