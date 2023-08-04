@@ -617,6 +617,7 @@ with tab3:
   
   with open("model/uplift_kiara.pickle","rb") as f:
     #slearner = pickle.load(f)
+    pass
 
   # defining user inputs
   def get_gender():
