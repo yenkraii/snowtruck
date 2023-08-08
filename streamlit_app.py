@@ -678,7 +678,7 @@ with tab3:
   st.write("Should we promote to this customer?")
   #st.write(confidence)
   '''
-  import lightgbm
+  #import lightgbm
   
   # predicting
   if st.button("Predict"):
