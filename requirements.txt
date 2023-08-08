@@ -12,3 +12,6 @@ pandas
 matplotlib
 requests
 tqdm
+
+dice-ml==0.10
+IPython
