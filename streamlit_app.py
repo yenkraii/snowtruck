@@ -28,23 +28,34 @@ tab1,tab2,tab3,tab4,tab5 = st.tabs(["Daily Sales Prediction","tab2","MBA + Uplif
 with tab1:
   import xgboost as xgb
   
-  # Define the app title and favicon
-  st.title('How much can you make from the TastyBytes locations?')
-  st.markdown("This tab predicts the sales made by a truck with the specific user inputs. Choose a Truck Brand Name, City, Truck Location and Time Frame to get the predicted sales.")
-
+# Define the app title and favicon
+  st.title('How much can you make from the TastyBytes locations? 💡')
+  st.markdown("**Tell us more on what you want to predict!**")
+  
+  # Loading the pickle & dataset
   with open('xgb_alethea.pkl', 'rb') as file:
-    xgb_alethea = pickle.load(file)
-    
-  # Load the cleaned and transformed dataset
-  df = pd.read_csv('df_alethea.csv')
+        xgb_alethea = pickle.load(file)
+  df = pd.read_csv('df_aletheaDOW.csv')
 
   wd_mapping  = { 'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6 }
   wd_reverse_mapping = {v: k for k, v in wd_mapping.items()}
   wd_labels = [wd_reverse_mapping[i] for i in sorted(wd_reverse_mapping.keys())]
 
-  bn_mapping = { "Cheeky Greek": 0, "Guac n' Roll": 1, "Smoky BBQ": 2, "Peking Truck": 3, "Tasty Tibs": 4, "Better Off Bread": 5,
-                  "The Mega Melt": 6, "Le Coin des Crêpes": 7, "The Mac Shack": 8, "Nani's Kitchen": 9, "Plant Palace": 10,
-                  "Kitakata Ramen Bar": 11, "Amped Up Franks": 12, "Freezing Point": 13, "Revenge of the Curds": 14 }
+  bn_mapping = { "Cheeky Greek": 0,
+                  "Guac n' Roll": 1,
+                  "Smoky BBQ": 2,
+                  "Peking Truck": 3,
+                  "Tasty Tibs": 4,
+                  "Better Off Bread": 5,
+                  "The Mega Melt": 6,
+                  "Le Coin des Crêpes": 7,
+                  "The Mac Shack": 8,
+                  "Nani's Kitchen": 9,
+                  "Plant Palace": 10,
+                  "Kitakata Ramen Bar": 11,
+                  "Amped Up Franks": 12,
+                  "Freezing Point": 13,
+                  "Revenge of the Curds": 14 }
   bn_reverse_mapping = {v: k for k, v in bn_mapping.items()}
   bn_labels = list(bn_mapping.keys())
 
@@ -390,9 +401,9 @@ with tab1:
                   'Cherry Hill Fountain': 2053, 'Malatesta Woodworks': 2054,'Boston University School Of Medicine': 2055,'Lamps Plus': 2056,'Beacon Alterations': 2057, 'Rainbow Point': 2058,
                   'Greenwood Phinney Ruv': 2059, 'Wings Over Washington': 2060,'Alvin Larkins Park': 2061,'A & J Commissary': 2062,'Square Square': 2063, 'Belleview Suites at DTC': 2064,
                   'Huntington Learning Centers': 2065, 'Franklin Hill Bha Court': 2066,'City University Of Seattle': 2067, 'Feel Good Llc': 2068, 'Godiva Cafe': 2069, 'Boston University Hillel': 2070,
-                  'Edna V Bynoe Park': 2071,'Falcon Park': 2072, 'Paul Agustinovich PhD': 2073,'Left Coast Entertainment': 2074,'86 East Thirty Ninth': 2075,'Magnolia Care': 2076, 'Northgate Park': 2077,
-                  'Emeritus At Pinehurst Park': 2078,'Chocolat Moderne': 2079, 'Boston University Plastic & Reconstructive Surgery': 2080, 'Bearing Institute': 2081, 'Havey Beach': 2082,
-                  'Horatio Harris Park': 2083,'Colorado Access': 2084, 'Hiram M Chittenden Locks': 2085,'Confluence East Park': 2086, 'Abingdon Square': 2087, 'New Freedom Park': 2088,
+                  'Edna V Bynoe Park': 2071, 'Falcon Park': 2072, 'Paul Agustinovich PhD': 2073,'Left Coast Entertainment': 2074,'86 East Thirty Ninth': 2075,'Magnolia Care': 2076, 'Northgate Park': 2077,
+                  'Emeritus At Pinehurst Park': 2078, 'Chocolat Moderne': 2079, 'Boston University Plastic & Reconstructive Surgery': 2080, 'Bearing Institute': 2081, 'Havey Beach': 2082,
+                  'Horatio Harris Park': 2083, 'Colorado Access': 2084, 'Hiram M Chittenden Locks': 2085,'Confluence East Park': 2086, 'Abingdon Square': 2087, 'New Freedom Park': 2088,
                   'South Street Community Garden': 2089,'Pacific Maritime Institute': 2090, 'Hobby Lobby Stores': 2091,'John C Little Sr Park': 2092, 'Spuyten Duyvil Shorefront Park': 2093,
                   'Brophy Park': 2094, 'Meghna Grocery & Halal Meat': 2095, 'Green Lake Small Craft Center': 2096, 'Pleasant Adult Family Home': 2097,'Public Garden': 2098, 'Wheel Fun Rentals Berkeley Park': 2099,
                   'Larry Bird Plaque': 2100, 'Seattle Asian Art Museum': 2101, 'ChildrenS Park': 2102, 'T Mobile Park': 2103,'Force': 2104, 'Museum of African American History': 2105, 'NB Beauty': 2106,
@@ -402,74 +413,101 @@ with tab1:
   tl_reverse_mapping = {v: k for k, v in tl_mapping.items()}
   tl_labels = list(tl_mapping.keys())
 
-  def get_dayOfWeek1():
-      dayOfWeek1 = st.selectbox('Select a day of week', wd_mapping)
-      return dayOfWeek1
-  
-  def get_truckBrandName():
-      truckBrandName = st.selectbox('Select a truck brand name', bn_mapping)
-      return truckBrandName
-    
-  def get_city():
-      city = st.selectbox('Select a city', ct_mapping)
-      return city
+  # Collecting user inputs
+  def get_DAYOFWEEK():
+    DAY_OF_WEEK = st.selectbox('Select a day of week 📆', wd_mapping)
+    return DAY_OF_WEEK
 
-  def get_truckLocation():
-      truckLocation = st.selectbox('Select a truck location', tl_mapping)
-      return truckLocation  
+  def get_TRUCK_BRAND_NAME():
+      TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name 🚐', bn_mapping)
+      return TRUCK_BRAND_NAME
+    
+  def get_CITY():
+      CITY = st.selectbox('Select a city 🏕️', ct_mapping)
+      return CITY
+
+  def get_LOCATION():
+      LOCATION = st.selectbox('Select a truck location 📍', tl_mapping)
+      return LOCATION  
 
   # Define the user input fields
-  wd_input = get_dayOfWeek1()
-  bn_input = get_truckBrandName()
-  ct_input = get_city()
-  tl_input = get_truckLocation()
+  wd_input = get_DAYOFWEEK()
+  bn_input = get_TRUCK_BRAND_NAME()
+  ct_input = get_CITY()
+  tl_input = get_LOCATION()
   
   # Map user inputs to integer encoding
   wd_int = wd_mapping[wd_input]
   bn_int = bn_mapping[bn_input]
   ct_int = ct_mapping[ct_input]
   tl_int = tl_mapping[tl_input]
-  
-  if st.button('Predict Sales'):
+
+  if st.button('Predict Daily Sales'):
     # Make the prediction  
     input_data = [[wd_int, bn_int, ct_int, tl_int]]
     input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION'])
     prediction = xgb_alethea.predict(input_df)   
-    
-    # Convert output data and columns, including profit, to a dataframe
+
     output_data = [wd_int, bn_int, ct_int, tl_int, prediction[0]]
     output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION', 'DAILY_SALES'])
-
     predicted_sales = output_df['DAILY_SALES'].iloc[0]
     st.write('The predicted daily sales is {:.2f}.'.format(predicted_sales))
 
   
-  st.title('Daily Sales in the Future')
-  st.write('Sales in a city are significantly influenced by the level of urban activity, with population size being a key factor directly correlated to daily sales. As city population increases, it tends to drive higher daily sales due to increased consumer demand. Leveraging the city\'s population data, we can predict future daily sales trends, considering the average yearly population growth for each city in the United States of America, as reported in online sources.')
+  st.divider()
+  st.title('Projected Yearly Revenue 💰')
+  st.write('Sales in a city are significantly influenced by the level of urban activity, with population size being a key factor directly correlated to daily sales. :green[As city population increases, it tends to drive higher daily sales due to increased consumer demand.] Therefore, leveraging the city\'s population data, we can predict future sales trends, considering the average yearly population growth for each city in the United States of America, as reported in online sources. :blue[With this, we would be able to look at the projected sale increase for each truck brand in the cities over a span of 5 years]')
+  st.write('Average yearly population growth for each city 🌇')
   st.write('San Mateo: 4,600')
   st.write('Seattle: 30,000')
   st.write('New York City: 70,000')
   st.write('Boston: 17,000')
   st.write('Denver: 34,000')
+
+  # Load the cleaned and transformed dataset
+  df2 = pd.read_csv('fs_alethea.csv')
+  df3 = pd.read_csv('yr_alethea.csv')
   
-  # Viewing predicted daily sales in the future
+  # Viewing predicted yearly sales in the future
   def get_Extra():
-    YEARS = st.slider('Number of years later', 1, 5, 1)
-    st.write("Predicting daily sales in ", YEARS, 'year(s)')
+    YEARS = st.slider('Number of years later 📆', 1, 5, 1)
+    st.write("Predicting yearly revenue in ", YEARS, 'year(s)')
     return YEARS  
   et_input = get_Extra()
+
+  originalCity = ct_reverse_mapping[ct_int]
+  originalBrand = bn_reverse_mapping[bn_int]
   
-  if st.button('Predict Daily Sales Then'):
-    st.write('Current predicted daily sales: {:.2f}.'.format(predicted_sales))
-    st.write('The predicted daily sales then would be im finding out!')
-    # Make the prediction  
-    input_data = [[wd_int, bn_int, ct_int, et_input]]
-    input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'YEARS'])
-    
-    # Convert output data and columns, including profit, to a dataframe
+  # st.write('Current yearly revenue: {:.2f}.'.format(predicted_sales))
+  if st.button('Predict Yearly Revenue'):
+    futureRevenueRow = df2[(df2['CITY'] == originalCity) & (df2['TRUCK_BRAND_NAME'] == originalBrand)]
+    revenueRow = df3[(df3['CITY'] == originalCity) & (df3['TRUCK_BRAND_NAME'] == originalBrand)]
 
+    # Check that revenueRow & futureRevenueRow DataFrames are not empty
+    if not revenueRow.empty and not futureRevenueRow.empty:
+      # Extract information from the filtered row
+      city = revenueRow['CITY'].values[0]
+      truck_brand = revenueRow['TRUCK_BRAND_NAME'].values[0]
+      years_revenue = revenueRow['YEARS_REVENUE'].values[0]
+      city_pop = revenueRow['CITY_POPULATION'].values[0]
+      # Get the column index for the future prediction
+      future_column = str(et_input)
+      projected_revenue = futureRevenueRow[future_column].values[0]
+      rounded_years_revenue = round(years_revenue)
+      rounded_projected_revenue = round(projected_revenue)
 
-
+      # Calculate the increase in revenue percentage
+      revenue_increase_percentage = ((projected_revenue - years_revenue) / years_revenue) * 100
+      rounded_increase_percentage = round(revenue_increase_percentage, 2)
+      
+      st.write(f'In 2022, the yearly revenue of {truck_brand} in {city} to date is ${rounded_years_revenue}, with a population of {city_pop}.')
+      st.write(f"The projected yearly revenue of {truck_brand} in {city} in {et_input} year(s) would be: ${rounded_projected_revenue}, with an percentage change of {rounded_increase_percentage}% since 2022.")
+       # Check if the revenue increase percentage is negative
+      if rounded_increase_percentage < 0:
+        st.write("Seeing that the revenue growth was not positive, this suggests that we should look into other aspects, such as the menu items offered.")
+    else:
+      st.write('No data found for the provided city and truck brand name.')
+      
 
 with tab2:
 
