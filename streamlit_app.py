@@ -23,7 +23,7 @@ st.title("SnowTruck:minibus:")
 conn = snowflake.connector.connect(**st.secrets["snowflake"])
 
 # tabs
-tab1,tab2,tab3,tab4,tab5 = st.tabs(["Daily Sales Prediction","tab2","MBA + Uplift Modelling","tab4","tab5"])
+tab1,tab2,tab3,tab4,tab5 = st.tabs(["Predicting Daily Sales","tab2","MBA + Uplift Modelling","tab4","tab5"])
 
 with tab1:
   import xgboost as xgb
@@ -417,15 +417,12 @@ with tab1:
   def get_DAYOFWEEK():
     DAY_OF_WEEK = st.selectbox('Select a day of week 📆', wd_mapping)
     return DAY_OF_WEEK
-
   def get_TRUCK_BRAND_NAME():
       TRUCK_BRAND_NAME = st.selectbox('Select a truck brand name 🚐', bn_mapping)
       return TRUCK_BRAND_NAME
-    
   def get_CITY():
       CITY = st.selectbox('Select a city 🏕️', ct_mapping)
       return CITY
-
   def get_LOCATION():
       LOCATION = st.selectbox('Select a truck location 📍', tl_mapping)
       return LOCATION  
@@ -442,6 +439,35 @@ with tab1:
   ct_int = ct_mapping[ct_input]
   tl_int = tl_mapping[tl_input]
 
+  with st.sidebar:
+    st.sidebar.subheader('For ease of use, stated below are some locations for each city 🗺️📍')
+    st.sidebar.markdown("""
+    **San Mateo** 🏞️
+    - Applied Strategies (Tasty Tibs)
+    - American Prime Financial (Freezing Point)
+    - Remlo Apartments (Revenge of the Curds)
+    
+    **Seattle** ☕️
+    - Waterway (Tasty Tibs)
+    - Seattle Children's Playgarden (Guac n' Roll)
+    - Thorndyke Park (Better Off Bread)
+    
+    **New York City** 🗽
+    - Best Buy Shellfish (Freezing Point)
+    - Gateway Newstands (Kitakata Ramen Bar)
+    - Poseidon Bakery (Le Coin des Crêpes)
+    
+    **Boston** 🏙️
+    - Bellevue Hill Reservation (Amped Up Franks)
+    - Skywalk Observatory (Peking Truck)
+    - Stevens Triangle (Guac n' Roll)
+    
+    **Denver** 🏔️
+    - Pelham College (Le Coin des Crêpes)
+    - Inspiration Point Park (Smoky BBQ)
+    - Aviation & Space Center of the Rockies (Cheeky Greek)
+    """)
+
   if st.button('Predict Daily Sales'):
     # Make the prediction  
     input_data = [[wd_int, bn_int, ct_int, tl_int]]
@@ -452,7 +478,6 @@ with tab1:
     output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION', 'DAILY_SALES'])
     predicted_sales = output_df['DAILY_SALES'].iloc[0]
     st.write('The predicted daily sales is {:.2f}.'.format(predicted_sales))
-
   
   st.divider()
   st.title('Projected Yearly Revenue 💰')
@@ -493,6 +518,7 @@ with tab1:
       # Get the column index for the future prediction
       future_column = str(et_input)
       projected_revenue = futureRevenueRow[future_column].values[0]
+      # Round off the revenue values to the nearest whole number
       rounded_years_revenue = round(years_revenue)
       rounded_projected_revenue = round(projected_revenue)
 
