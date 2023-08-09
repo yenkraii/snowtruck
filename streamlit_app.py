@@ -33,9 +33,9 @@ with tab1:
   st.markdown("**Tell us more on what you want to predict!**")
   
   # Loading the pickle & dataset
-  # with open('xgb_alethea.pkl', 'rb') as file:
-  #       xgb_alethea = pickle.load(file)
-  # df = pd.read_csv('df_aletheaDOW.csv')
+  with open('xgb_alethea.pkl', 'rb') as file:
+        xgb_alethea = pickle.load(file)
+  df = pd.read_csv('df_alethea.csv')
 
   wd_mapping  = { 'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6 }
   wd_reverse_mapping = {v: k for k, v in wd_mapping.items()}
