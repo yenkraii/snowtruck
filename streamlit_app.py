@@ -9,6 +9,8 @@ import xgboost as xgb
 from PIL import Image
 from sklearn import preprocessing
 
+import lightgbm
+
 #st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
 
 #st.image(snowtruck_logo)
