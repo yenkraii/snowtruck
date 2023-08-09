@@ -1,9 +1,11 @@
 snowflake-connector-python
 xgboost
 Pillow
-#scikit-uplift=0.5.1
 streamlit
+
+
 git+https://github.com/maks-sh/scikit-uplift
+git+https://github.com/microsoft/LightGBM/tree/master/python-package
 
 scikit-learn>=0.21.0
 numpy>=1.16
