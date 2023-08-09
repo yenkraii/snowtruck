@@ -724,9 +724,8 @@ with tab3:
   arm = pd.read_csv("./datasets/mba_kiara.csv")
   
   with open("model/uplift_kiara.pickle","rb") as f:
-    #slearner = pickle.load(f)
-    pass
-
+    slearner = pickle.load(f)
+    
   # defining user inputs
   def get_gender():
     gender = st.selectbox("Select Gender:", gender_dict, key =1)
@@ -789,7 +788,7 @@ with tab3:
     if 'conf' not in st.session_state:
       st.session_state.conf = 0
       
-    data_input = [[st.session_state.cons, st.session_state.conf, menu_dict[first_item], second_item, c_gender, c_marital, c_child, c_age, c_member,0,0]]
+    data_input = [[st.session_state.cons, st.session_state.conf, menu_dict[first_item], menu_dict[second_item], c_gender, c_marital, c_child, c_age, c_member,0,0]]
     input_df = pd.DataFrame(data_input)
     st.write(input_df)
     uplift_score = slearner.predict(data_input)
