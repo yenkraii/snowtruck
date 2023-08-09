@@ -621,6 +621,7 @@ with tab2:
       predicted_profit = output_df['PREDICTED_PROFIT'].iloc[0]
       st.write('The predicted profit is {:.2f}.'.format(predicted_profit))
 
+  st.divider()
   st.header("Are customers likely to purchase? 🤷‍♀️") 
   st.write("Profitability alone, whether high or low, does not necessarily indicate high sales. The likelihood of customers \
   purchasing a product is crucial for driving actual sales.")
