@@ -536,8 +536,8 @@ with tab1:
       
 
 with tab2:
-  import sklearn
-  st.write(sklearn.__version__)
+  # import sklearn
+  # st.write(sklearn.__version__)
   st.title('Profit Prediction for Menu Items') 
   st.markdown("Complete all the parameters to predict the profit earned !")
     
@@ -961,7 +961,6 @@ with tab4:
   
   main();
 
-  st.write()
 
 with tab5:
   st.write()
