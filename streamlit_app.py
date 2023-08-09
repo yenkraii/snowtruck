@@ -790,7 +790,7 @@ with tab3:
       
     data_input = [[st.session_state.cons, st.session_state.conf, menu_dict[first_item], menu_dict[second_item], c_gender, c_marital, c_child, c_age, c_member]]
     input_df = pd.DataFrame(data = data_input, columns = ["consequents", "confidence", 0, 1, "GENDER", "MARITAL_STATUS", "CHILDREN_COUNT", "AGE", "MEMBERSHIP"])
-    uplift_score = slearner.predict_proba(input_df)
+    uplift_score = slearner.predict(input_df)
     if uplift_score < -0.75:
       st.write("Best not to disturb! Better not push them.")
     elif uplift_score > 0.25:
