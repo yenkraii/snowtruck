@@ -439,9 +439,10 @@ with tab1:
   ct_int = ct_mapping[ct_input]
   tl_int = tl_mapping[tl_input]
 
-  with st.sidebar:
-    st.sidebar.subheader('For ease of use, stated below are some locations for each city 🗺️📍')
-    st.sidebar.markdown("""
+  st.markdown('**For ease of use, stated below are some locations for each city 🗺️📍**')
+  my_expander = st.expander(label='Click Me!')
+  with my_expander:
+    """
     **San Mateo** 🏞️
     - Applied Strategies (Tasty Tibs)
     - American Prime Financial (Freezing Point)
@@ -466,7 +467,7 @@ with tab1:
     - Pelham College (Le Coin des Crêpes)
     - Inspiration Point Park (Smoky BBQ)
     - Aviation & Space Center of the Rockies (Cheeky Greek)
-    """)
+    """
 
   if st.button('Predict Daily Sales'):
     # Make the prediction  
