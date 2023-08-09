@@ -981,7 +981,7 @@ with tab5:
       st.title("Welcome to Jevan's streamlit app!")
       st.sidebar.success("Select a page above.")
       
-      st.markdown('<p class="big-font">Is your customer a high spender 💰 or a low spender 👎?</p>', unsafe_allow_html=True)
+      st.subheader('Is your customer a high spender 💰 or a low spender 👎?')
       st.markdown('<p class="normal-font">This customer segmentation model seeks to divide customers into distinct groups of individuals which in our case is whether a customer is a high or low spender. This will make it easier to target specific groups of customers with tailored products so as to hit our high level goals.</p>', unsafe_allow_html=True)
   
   if selected == "Customer Segmentation Model":
@@ -1016,16 +1016,16 @@ with tab5:
               AVG_AMT = 38
               AVG_QUANTITY = 4
               CITY = 10016 #Used the city of San Mateo as it has the highest sales, more room to work on
-              DAY_DIFF = st.number_input('What is the average number of days between your first three transactions?', 0, 1000)
+              DAY_DIFF = st.number_input('Input customer\'s average number of days between their first three transactions', 0, 1000)
               #FREQ_SUBCAT = st.number_input('Input Frequent Subcategory', value = 2)
-              FREQ_SUBCAT_options = st.selectbox("What is the frequent subcategory of items you order?", list(freq_subcat_mapping.keys()))
+              FREQ_SUBCAT_options = st.selectbox("Input customer's frequent subcategory of items that they order", list(freq_subcat_mapping.keys()))
               FREQ_SUBCAT = freq_subcat_mapping[FREQ_SUBCAT_options]            #FREQ_SUBCAT = 2
               MEAN_PROFIT = 7.36
               AGE = 50
               GENDER = 1
               CHILDREN_COUNT = 0
               MARITAL_STATUS = 1
-              TOTAL_TRANS = st.number_input('How many transactions have you made with tasty bytes?', 0, 100)
+              TOTAL_TRANS = st.number_input('Input total number transactions made by customer', 0, 100)
               
               low_spender_html="""
                   <div style="background-color:#80ff80; padding:10px >
@@ -1098,7 +1098,7 @@ with tab5:
                       city_label = city_mapping.get(city)
                       marital_status_label = marital_status_mapping.get(marital_status)
                       formatted_insight = "Based on the input, Customers are most likely to be {} that lives in {} and is {}.".format(gender_label, city_label, marital_status_label) 
-                      st.subheader("Customer Behavioural Insights")
+                      st.subheader("Customer Behavioural Insights🔍:")
                       st.write(formatted_insight)
                   elif output == 1:
                       st.markdown(high_spender_html, unsafe_allow_html=True)
@@ -1130,7 +1130,7 @@ with tab5:
                       city_label = city_mapping.get(city)
                       marital_status_label = marital_status_mapping.get(marital_status)
                       formatted_insight = "Based on the input, Customers are most likely to be {} that lives in {} and is {}.".format(gender_label, city_label, marital_status_label) 
-                      st.subheader("Customer Behavioural Insights")
+                      st.subheader("Customer Behavioural Insights🔍:")
                       st.write(formatted_insight)
       if __name__ == "__main__":
                   main()
