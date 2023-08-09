@@ -23,7 +23,7 @@ st.title("SnowTruck:minibus:")
 conn = snowflake.connector.connect(**st.secrets["snowflake"])
 
 # tabs
-tab1,tab2,tab3,tab4,tab5 = st.tabs(["Predicting Daily Sales","tab2","MBA + Uplift Modelling","tab4","tab5"])
+tab1,tab2,tab3,tab4,tab5 = st.tabs(["Predicting Daily Sales","Profit Prediction","MBA + Uplift Modelling","tab4","tab5"])
 
 with tab1:
   import xgboost as xgb
@@ -33,8 +33,8 @@ with tab1:
   st.markdown("**Tell us more on what you want to predict!**")
   
   # Loading the pickle & dataset
-  with open('xgb_alethea.pkl', 'rb') as file:
-        xgb_alethea = pickle.load(file)
+  # with open('xgb_alethea.pkl', 'rb') as file:
+  #       xgb_alethea = pickle.load(file)
   df = pd.read_csv('df_aletheaDOW.csv')
 
   wd_mapping  = { 'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6 }
