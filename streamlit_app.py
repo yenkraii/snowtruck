@@ -1065,8 +1065,8 @@ with tab5:
                   )
                   filtered_df = df[fallback_condition1 | fallback_condition2 | fallback_condition3]
                   
-              st.subheader("Filtered Data based on User Inputs:")
-              st.write(filtered_df)
+              #st.subheader("Filtered Data based on User Inputs:")
+              #st.write(filtered_df)
               if st.button("Predict the spend rank of the customer🏆"):
                   input_data = np.asarray([CITY, GENDER, MARITAL_STATUS, CHILDREN_COUNT, AVG_AMT, AVG_QUANTITY, FREQ_SUBCAT, MEAN_PROFIT, DAY_DIFF, TOTAL_TRANS, AGE], dtype = np.float64)
                   output = predict_spend_rank(input_data)
