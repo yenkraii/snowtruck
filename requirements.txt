@@ -3,7 +3,7 @@ xgboost
 Pillow
 #scikit-uplift=0.5.1
 #lightgbm 
-git+https://github.com/microsoft/LightGBM
+git+https://github.com/microsoft/LightGBM/tree/master/python-package
 git+https://github.com/maks-sh/scikit-uplift
 
 scikit-learn>=0.21.0
