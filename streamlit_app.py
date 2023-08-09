@@ -786,7 +786,7 @@ with tab3:
   st.write("Should we promote to this customer?")
   
   # predicting
-  if st.button("Predict"):
+  if st.button("Predict", key = 404):
 
     if 'conf' not in st.session_state:
       st.session_state.conf = 0
