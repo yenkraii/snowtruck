@@ -617,14 +617,12 @@ with tab2:
       output_data = [mt_int,tbn_int,dow_int, c_int,l_int, s_int, prediction[0]]
       output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION','SHIFT','PREDICTED_PROFIT'])
     
-      # Show prediction on profit
       predicted_profit = output_df['PREDICTED_PROFIT'].iloc[0]
       st.write('The predicted profit is {:.2f}.'.format(predicted_profit))
 
   st.divider()
   st.header("Are customers likely to purchase? 🤷‍♀️") 
-  st.write("Profitability alone, whether high or low, does not necessarily indicate high sales. The likelihood of customers \
-  purchasing a product is crucial for driving actual sales.")
+  st.write("Profitability alone, whether high or low, does not necessarily indicate high sales. The likelihood of customers purchasing a product is crucial for driving actual sales.")
   if st.button('Predict') :   
       prediction2 = category_xinle.predict(input_df)   
       output_data = [mt_int,tbn_int,dow_int, c_int,l_int,s_int, prediction2[0]]
@@ -641,15 +639,14 @@ with tab2:
       st.markdown(likelihood_text)
       st.write('Here are some recommendation !')
 
-  #new section to display recommendation
+
   if st.button('View Recommendations'):
   
       # Initialize lists to store predictions for all combinations
       predicted_profits = []
       predicted_quantities = []
       df_filtered_rows = []
-  
-        
+         
       # Loop through every combination of day of the week, truck brand name, city, and shift
       for day_of_week in dowMapping.values():
           for truck_brand_name in tbn_mapping.values():
@@ -661,8 +658,6 @@ with tab2:
                       # Make the predictions
                       prediction1 = profit_xinle.predict(input_df)
                       prediction2 = category_xinle.predict(input_df)
-        
-                      # Append predictions to the lists
                       predicted_profits.append(prediction1[0])
                       predicted_quantities.append(prediction_mapping[prediction2[0]])
         
@@ -674,7 +669,6 @@ with tab2:
                       l_str = list(l_mapping.keys())[list(l_mapping.values()).index(l_int)]                   
                       s_str = sReverseMapping[shift]
         
-                      # Append to the DataFrame that stores all combinations
                       df_filtered_rows.append([dow_str, mt_str, tbn_str, c_str,l_str, s_str, prediction1[0], prediction_mapping[prediction2[0]]])
   
           
