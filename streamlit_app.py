@@ -980,7 +980,7 @@ with st.sidebar:
         options=["Home", "Customer Segmentation Model", "Distinct Insights"],
         icons=["house", "person-circle", "pie-chart"]
     )
-df = pd.read_csv('rest_customer_us.csv')
+df = pd.read_csv('rest_customer_us_Jevan.csv')
 high_spender_df = df.loc[df['SPEND_RANK'] == 1]
 low_spender_df = df.loc[df['SPEND_RANK'] == 0]
 if selected == "Home":
