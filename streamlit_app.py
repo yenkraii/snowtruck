@@ -723,10 +723,10 @@ with tab3:
   menu_names = {v: k for k, v in menu_dict.items()}
 
   # retrieving model from pickle files
-  arm = pd.read_csv("mba_kiara.csv")
+  arm = pd.read_csv("./datasets/mba_kiara.csv")
   
   with open("model/uplift_kiara.pickle","rb") as f:
-    slearner = pickle.load(f)
+    #slearner = pickle.load(f)
     pass
 
   # defining user inputs
@@ -780,16 +780,13 @@ with tab3:
       st.session_state.conf = confidence
       st.session_state.cons =  consequent
     else:
-      #consequent = 999
       st.session_state.cons = 999
       st.write("Based on market basket analysis, nothing is suitable as recommendation.")
     
-  #consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
   st.write("Should we promote to this customer?")
-  #st.write(confidence)
+  
   # predicting
   if st.button("Predict"):
-    st.write("TODO: prediction")
 
     if 'conf' not in st.session_state:
       st.session_state.conf = 0
