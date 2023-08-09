@@ -469,12 +469,10 @@ with tab1:
     - Aviation & Space Center of the Rockies (Cheeky Greek)
     """
 
+  input_data = [[wd_int, bn_int, ct_int, tl_int]]
+  input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION'])
   if st.button('Predict Daily Sales'):
-    # Make the prediction  
-    input_data = [[wd_int, bn_int, ct_int, tl_int]]
-    input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION'])
-    prediction = xgb_alethea.predict(input_df)   
-
+    prediction = xgb_alethea.predict(input_df)
     output_data = [wd_int, bn_int, ct_int, tl_int, prediction[0]]
     output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION', 'DAILY_SALES'])
     predicted_sales = output_df['DAILY_SALES'].iloc[0]
