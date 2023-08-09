@@ -9,8 +9,6 @@ import xgboost as xgb
 from PIL import Image
 from sklearn import preprocessing
 
-import lightgbm
-
 #st.set_page_config(page_title="SnowTruck", page_icon=":truck:")
 
 #st.image(snowtruck_logo)
@@ -728,7 +726,7 @@ with tab3:
   arm = pd.read_csv("mba_kiara.csv")
   
   with open("model/uplift_kiara.pickle","rb") as f:
-    #slearner = pickle.load(f)
+    slearner = pickle.load(f)
     pass
 
   # defining user inputs
@@ -789,8 +787,6 @@ with tab3:
   #consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
   st.write("Should we promote to this customer?")
   #st.write(confidence)
-  import lightgbm
-  
   # predicting
   if st.button("Predict"):
     st.write("TODO: prediction")
@@ -801,7 +797,6 @@ with tab3:
     data_input = [[st.session_state.cons, st.session_state.conf, menu_dict[first_item], second_item, c_gender, c_marital, c_child, c_age, c_member,0,0]]
     input_df = pd.DataFrame(data_input)
     st.write(input_df)
-    
     uplift_score = slearner.predict(data_input)
     st.write(uplift_score)
 
