@@ -439,6 +439,15 @@ with tab1:
   ct_int = ct_mapping[ct_input]
   tl_int = tl_mapping[tl_input]
 
+  input_data = [[wd_int, bn_int, ct_int, tl_int]]
+  input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION'])
+  if st.button('Predict Daily Sales'):
+    prediction = xgb_alethea.predict(input_df)
+    output_data = [wd_int, bn_int, ct_int, tl_int, prediction[0]]
+    output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION', 'DAILY_SALES'])
+    predicted_sales = output_df['DAILY_SALES'].iloc[0]
+    st.write('The predicted daily sales is {:.2f}.'.format(predicted_sales))
+
   st.markdown('**For ease of use, stated below are some locations for each city 🗺️📍**')
   my_expander = st.expander(label='Click Me!')
   with my_expander:
@@ -468,15 +477,6 @@ with tab1:
     - Inspiration Point Park (Smoky BBQ)
     - Aviation & Space Center of the Rockies (Cheeky Greek)
     """
-
-  input_data = [[wd_int, bn_int, ct_int, tl_int]]
-  input_df = pd.DataFrame(input_data, columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION'])
-  if st.button('Predict Daily Sales'):
-    prediction = xgb_alethea.predict(input_df)
-    output_data = [wd_int, bn_int, ct_int, tl_int, prediction[0]]
-    output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION', 'DAILY_SALES'])
-    predicted_sales = output_df['DAILY_SALES'].iloc[0]
-    st.write('The predicted daily sales is {:.2f}.'.format(predicted_sales))
   
   st.divider()
   st.title('Projected Yearly Revenue 💰')
