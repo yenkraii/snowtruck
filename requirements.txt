@@ -11,6 +11,8 @@ pandas
 matplotlib
 requests
 tqdm
+altair
+streamlit-option-menu == 0.3.2
 
 dice-ml==0.10
 IPython
