@@ -793,7 +793,7 @@ with tab3:
     uplift_score = slearner.predict_proba(input_df)
     if uplift_score < -0.75:
       st.write("Best not to disturb! Better not push them.")
-    else if uplift_score > 0.25:
+    elif uplift_score > 0.25:
       st.write("They won't be affected by the promotions!")
     else:
       st.write("They are persuadables! You can persuade them.")
