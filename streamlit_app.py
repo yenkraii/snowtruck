@@ -536,7 +536,8 @@ with tab1:
       
 
 with tab2:
-
+  import sklearn
+  print(sklearn.__version__)
   st.title('Profit Prediction for Menu Items') 
   st.markdown("Complete all the parameters to predict the profit earned !")
     
