@@ -787,8 +787,7 @@ with tab3:
   #consequent = st.selectbox("Item in basket?", menu_dict, key = 8)
   st.write("Should we promote to this customer?")
   #st.write(confidence)
-  '''
-  #import lightgbm
+  import lightgbm
   
   # predicting
   if st.button("Predict"):
@@ -797,13 +796,12 @@ with tab3:
     if 'conf' not in st.session_state:
       st.session_state.conf = 0
       
-    data_input = [[st.session_state.cons, st.session_state.conf, menu_dict[first_item], second_item, c_gender, c_marital, c_child, c_age, c_member]]
-    input_df = pd.DataFrame(data_input, columns = ["consequents","confidence",0,1,"GENDER","MARITAL_STATUS","CHILDREN_COUNT","AGE","MEMBERSHIP"])
+    data_input = [[st.session_state.cons, st.session_state.conf, menu_dict[first_item], second_item, c_gender, c_marital, c_child, c_age, c_member,0,0]]
+    input_df = pd.DataFrame(data_input)
     st.write(input_df)
     
     uplift_score = slearner.predict(data_input)
     st.write(uplift_score)
-  '''
 
 with tab4:
   import streamlit as st
