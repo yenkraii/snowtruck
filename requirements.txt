@@ -5,7 +5,8 @@ streamlit
 
 
 git+https://github.com/maks-sh/scikit-uplift
-git+https://github.com/microsoft/LightGBM/tree/master/python-package
+#git+https://github.com/microsoft/LightGBM/tree/master/python-package
+lightgbm
 
 scikit-learn>=0.21.0
 numpy>=1.16
