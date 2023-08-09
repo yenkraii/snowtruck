@@ -538,7 +538,7 @@ with tab1:
 with tab2:
 
   st.title('Profit Prediction for Menu Items') 
-  st.markdown("Complete all the parameters and the machine learning model will predict the profit earned and the likelihood of customers purchasing. The model used is an XGBoost trained on the TastyBytes dataset.")
+  st.markdown("Complete all the parameters and to predict the profit earned !")
     
   with open('profit_xinle.pkl', 'rb') as file:
       profit_xinle = pickle.load(file)
@@ -577,7 +577,7 @@ with tab2:
       dayOfWeek = st.selectbox('Day of week 📆', dowLabels,key='tab2_dayOfWeekSelect')
       return dayOfWeek
   def get_TruckBrandName():
-      TRUCK_BRAND_NAME = st.selectbox('Truck brand name 🚚', tbn_mapping)
+      TRUCK_BRAND_NAME = st.selectbox('Truck brand name 🚐', tbn_mapping)
       return TRUCK_BRAND_NAME  
   def get_City():
       CITY = st.selectbox('City 🏙', c_mapping)
@@ -621,7 +621,7 @@ with tab2:
       predicted_profit = output_df['PREDICTED_PROFIT'].iloc[0]
       st.write('The predicted profit is {:.2f}.'.format(predicted_profit))
 
-  st.header("Are customers likely to purchase?") 
+  st.header("Are customers likely to purchase? 🤷‍♀️") 
   st.write("Profitability alone, whether high or low, does not necessarily indicate high sales. The likelihood of customers \
   purchasing a product is crucial for driving actual sales.")
   if st.button('Predict') :   
