@@ -545,7 +545,6 @@ with tab2:
   
   # Load the cleaned and transformed dataset
   df = pd.read_csv('profit_xinle.csv')
-  profit = profit_xinle['PROFIT']
   
   dowMapping={'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6}
   dowReverseMapping = {v: k for k, v in dowMapping.items()}
