@@ -789,10 +789,12 @@ with tab3:
     test.columns = test.columns.astype(str)
     explainer = shap.Explainer(model.estimator.predict, test)
     shap_values = explainer(test)
-    print(shap_values[0])
-    st_shap(shap.plots.bar(shap_values[0]),400)
-
-
+    st.write(shap_values[0])
+    try:
+      st_shap(shap.plots.bar(shap_values[0]),400)
+    except AttributeError:
+      # explainer returned nothing
+      pass
   
   # predicting
   if st.button("Predict", key = 404):
