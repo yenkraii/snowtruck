@@ -535,8 +535,6 @@ with tab1:
       
 
 with tab2:
-  # import sklearn
-  # st.write(sklearn.__version__)
   st.title('Profit Prediction for Menu Items') 
   st.markdown("Complete all the parameters to predict the profit earned !")
     
@@ -689,7 +687,7 @@ with tab2:
       menu_type_recommendation = row_with_highest_profit['MENU_TYPE'] 
           
       # Print the recommendation
-      recommendation_style = "background-color: #	#b8d8be; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0px;"
+      recommendation_style = "background-color: #9FD4A3; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0px;"
       title_style = "font-size: 24px; margin-bottom: 10px;"
       content_style = "font-size: 18px;"
       st.markdown(
