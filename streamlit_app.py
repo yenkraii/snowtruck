@@ -637,7 +637,7 @@ with tab2:
       else:
           likelihood_text = f"The likelihood of customers purchasing is **{predicted_quantity}**. That's good!"
       st.markdown(likelihood_text)
-      st.write('Here are some recommendation !')
+      st.write('Here are some recommendations 💡')
 
 
   if st.button('View Recommendations'):
@@ -693,17 +693,9 @@ with tab2:
       content_style = "font-size: 18px;"
       
       # Display the recommendation with the defined styles
-      st.markdown(
-          f"<h1 style='{title_style}'>✨ Optimal Selling Strategy ✨</h1>\n\n"
-          f"<p style='{content_style}'><strong>Maximize Profit, Amp Up Sales!</strong> Sell the <strong>{menu_type_recommendation}</strong> menu in <strong>{city_recommendation}</strong> on "
-          f"<strong>{day_of_week_recommendation}</strong> during the <strong>{shift_recommendation}</strong> shift with the <strong>{truck_brand_name_recommendation}</strong> truck.</p>"
-      )
-      # st.markdown(f"<h1>✨ <span style='font-size: 36px;'>Optimal Selling Strategy</span> ✨</h1>\n\n")
-      # st.markdown(f"**Maximize Profit, Amp Up Sales!** Sell the **{menu_type_recommendation}** menu in **{city_recommendation}** on \
-      # **{day_of_week_recommendation}** during the **{shift_recommendation}** shift with the **{truck_brand_name_recommendation}** truck.")
-      # # st.markdown(f"Based on the predictions, it is recommended to sell the **{menu_type_recommendation}** menu type in **{city_recommendation}** on\
-      # # **{day_of_week_recommendation}** during the **{shift_recommendation}** shift with the **{truck_brand_name_recommendation}** truck brand. \
-      # # This combination is expected to yield the highest profit and a higher chance of customers making purchases.")
+      st.markdown(f"Based on the predictions, it is recommended to sell the **{menu_type_recommendation}** menu type in **{city_recommendation}** on\
+      **{day_of_week_recommendation}** during the **{shift_recommendation}** shift with the **{truck_brand_name_recommendation}** truck brand. \
+      This combination is expected to yield the highest profit and a higher chance of customers making purchases.")
 
 
 with tab3:
