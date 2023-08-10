@@ -782,12 +782,15 @@ with tab3:
     # test is the testing dataset where each row will be explained
     # in relation to the prediction given by 'model'
     import shap
-    from streamlit_shap import st_shap
+    import streamlit.components.v1 as components
+    def st_shap(plot, height=None):
+      shap_html = f"<head>{shap.getjs()}</head><body>{plot.html()}</body>"
+      components.html(shap_html, height=height)
     test.columns = test.columns.astype(str)
     explainer = shap.Explainer(model.estimator.predict, test)
     shap_values = explainer(test)
     print(shap_values[0])
-    st_shap(shap.plots.bar(shap_values[0]))
+    st_shap(shap.plots.bar(shap_values[0]),400)
 
 
   
@@ -810,6 +813,7 @@ with tab3:
         st.write("They won't be affected by the promotions!")
       else:
         st.write("They are persuadables! You can persuade them.")
+        
       explainLOCAL(input_df,slearner) # shap explainer
 
 with tab4:
