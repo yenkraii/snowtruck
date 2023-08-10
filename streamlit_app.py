@@ -536,7 +536,6 @@ with tab1:
 
 with tab2:
   st.title('Profit Prediction for Menu Items') 
-  st.markdown("Complete all the parameters to predict the profit earned !")
     
   with open('profit_xinle.pkl', 'rb') as file:
       profit_xinle = pickle.load(file)
