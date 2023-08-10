@@ -789,7 +789,6 @@ with tab3:
     test.columns = test.columns.astype(str)
     explainer = shap.Explainer(model.estimator.predict, test)
     shap_values = explainer(test)
-    st.write(shap_values[0])
     try:
       st_shap(shap.plots.bar(shap_values[0]),400)
     except AttributeError:
@@ -809,13 +808,12 @@ with tab3:
       data_input = [[st.session_state.cons, st.session_state.conf, menu_dict[first_item], menu_dict[second_item], c_gender, c_marital, c_child, c_age, c_member]]
       input_df = pd.DataFrame(data = data_input, columns = ["consequents", "confidence", 0, 1, "GENDER", "MARITAL_STATUS", "CHILDREN_COUNT", "AGE", "MEMBERSHIP"])
       uplift_score = slearner.predict(input_df)
-      if uplift_score < -0.25:
-        st.write("Best not to disturb! Better not push them.")
-      elif uplift_score > 0.25:
-        st.write("They won't be affected by the promotions!")
+      if uplift_score < -0.50:
+        st.write("With a score of {0}, they would be considered Sleeping dogs! Better not disturb them...".format(uplift_score))
+      elif uplift_score < 0.50:
+        st.write("With a score of {0}, they won't be quite affected by promotional efforts! (Under the category of Sure things and Lost Causes)".format(uplift_score))
       else:
-        st.write("They are persuadables! You can persuade them.")
-        
+        st.write("With a score of {0}, they are considered Persuadables! So push and promote to them!".format(uplift_score))
       explainLOCAL(input_df,slearner) # shap explainer
 
 with tab4:
