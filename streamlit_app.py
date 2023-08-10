@@ -695,8 +695,6 @@ with tab2:
 
 
 with tab3:
-  #from sklift.models import ClassTransformation
-  
   #kiara thinks this is painful
   # title
   st.title("Who to upsell and cross-sell to?")
@@ -718,6 +716,7 @@ with tab3:
     child_dict = unpack["child"]
     menu_dict = unpack["menu"]
 
+  # reversing the dictionary
   menu_names = {v: k for k, v in menu_dict.items()}
 
   # retrieving model from pickle files
@@ -761,14 +760,11 @@ with tab3:
     # suggest based on market basket analysis
     
     first2 = str(menu_dict[first_item]) + "," + str(menu_dict[second_item])
-    
     filtered_df = arm[arm["first2"] == first2].sort_values(by="confidence", ascending = False)
-
     confidence = 0
-    
     # top suggestion 
     top_c = filtered_df.head(1)
-    st.write(top_c)
+    st.write(top_c.drop(columns = ["first2", "consequents",0])
     if len(top_c) > 0:
       consequent = top_c.head(1)["consequents"].item()
       name = menu_names[consequent]
@@ -786,11 +782,12 @@ with tab3:
     # test is the testing dataset where each row will be explained
     # in relation to the prediction given by 'model'
     import shap
+    from streamlit_shap import st_shap
     test.columns = test.columns.astype(str)
     explainer = shap.Explainer(model.estimator.predict, test)
     shap_values = explainer(test)
     print(shap_values[0])
-    shap.plots.bar(shap_values[0])
+    st_shap(shap.plots.bar(shap_values[0]))
 
 
   
