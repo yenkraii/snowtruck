@@ -433,7 +433,7 @@ with tab1:
   wd_input = get_DAYOFWEEK()
   bn_input = get_TRUCK_BRAND_NAME()
   ct_input = get_CITY()
-  tl_input = get_LOCATION()
+  tl_input = get_LOCATION(df, ct_input)
   
   # Map user inputs to integer encoding
   wd_int = wd_mapping[wd_input]
