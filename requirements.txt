@@ -1,4 +1,5 @@
 snowflake-connector-python
+pip>=23.2.1
 xgboost
 Pillow
 streamlit
@@ -9,7 +10,7 @@ git+https://github.com/maks-sh/scikit-uplift
 lightgbm
 git+https://github.com/shap/shap/tree/master
 git+https://github.com/snehankekre/streamlit-shap/tree/main
-shap
+shap>=0.42.1
 
 scikit-learn>=1.2.2
 numpy>=1.16
