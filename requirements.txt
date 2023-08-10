@@ -7,7 +7,8 @@ streamlit
 git+https://github.com/maks-sh/scikit-uplift
 #git+https://github.com/microsoft/LightGBM/tree/master/python-package
 lightgbm
-git+https://github.com/shap/shap
+git+https://github.com/shap/shap/tree/master
+git+https://github.com/snehankekre/streamlit-shap/tree/main
 shap
 
 scikit-learn>=1.2.2
