@@ -615,7 +615,7 @@ with tab2:
       output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION','SHIFT','PREDICTED_PROFIT'])
       predicted_profit = output_df['PREDICTED_PROFIT'].iloc[0]
       pcntChange = ( output_df['PREDICTED_PROFIT'].iloc[0] - df["PROFIT"].mean()) / df["PROFIT"].mean() * 100
-      st.metric("","${:.2f}".format(output_df['PREDICTED_PROFIT'].iloc[0]), "{:.2f}%".format(pcntChange));
+      st.metric("_","${:.2f}".format(output_df['PREDICTED_PROFIT'].iloc[0]), "{:.2f}%".format(pcntChange));
 
   st.divider()
   st.header("Are customers likely to purchase? 🤷‍♀️") 
