@@ -423,17 +423,15 @@ with tab1:
   def get_CITY():
       CITY = st.selectbox('Select a city 🏕️', ct_mapping)
       return CITY
-  def get_LOCATION(df, CITY):
-      locations_for_city = df[df['CITY'] == ct_mapping[CITY]]['LOCATION'].unique()
-      locations_mapped = [tl_reverse_mapping[loc] for loc in locations_for_city]
-      LOCATION = st.selectbox('Select a truck location 📍', locations_mapped)
+  def get_LOCATION():
+      LOCATION = st.selectbox('Select a truck location 📍', tl_mapping)
       return LOCATION  
 
   # Define the user input fields
   wd_input = get_DAYOFWEEK()
   bn_input = get_TRUCK_BRAND_NAME()
   ct_input = get_CITY()
-  tl_input = get_LOCATION(df, ct_input)
+  tl_input = get_LOCATION()
   
   # Map user inputs to integer encoding
   wd_int = wd_mapping[wd_input]
