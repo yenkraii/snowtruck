@@ -637,7 +637,7 @@ with tab2:
       else:
           likelihood_text = f"The likelihood of customers purchasing is **{predicted_quantity}**. That's good!"
       st.markdown(likelihood_text)
-      st.write('Here are some recommendations 💡')
+  st.header('Here are some recommendations 💡')
 
 
   if st.button('View Recommendations'):
@@ -689,13 +689,24 @@ with tab2:
       menu_type_recommendation = row_with_highest_profit['MENU_TYPE'] 
           
       # Print the recommendation
-      title_style = "font-size: 36px; background-color: #f9c74f; padding: 10px; border-radius: 10px;"
+      recommendation_style = "background-color: #	#b8d8be; padding: 20px; border-radius: 10px; text-align: center; margin: 20px 0px;"
+      title_style = "font-size: 24px; margin-bottom: 10px;"
       content_style = "font-size: 18px;"
-      
-      # Display the recommendation with the defined styles
-      st.markdown(f"Based on the predictions, it is recommended to sell the **{menu_type_recommendation}** menu type in **{city_recommendation}** on\
-      **{day_of_week_recommendation}** during the **{shift_recommendation}** shift with the **{truck_brand_name_recommendation}** truck brand. \
-      This combination is expected to yield the highest profit and a higher chance of customers making purchases.")
+      st.markdown(
+          f"<div style='{recommendation_style}'>"
+          f"<h2 style='{title_style}'>Optimal Selling Strategy</h2>"
+          f"<p style='{content_style}'><strong>Maximize Profit, Boost Sales!</strong></p>"
+          f"<p style='{content_style}'>Sell the <strong>{menu_type_recommendation}</strong> menu in <strong>{city_recommendation}</strong> on "
+          f"<strong>{day_of_week_recommendation}</strong> during the <strong>{shift_recommendation}</strong> shift "
+          f"with the <strong>{truck_brand_name_recommendation}</strong> truck brand.</p>"
+          "</div>",
+          unsafe_allow_html=True)
+
+
+
+      # st.markdown(f"Based on the predictions, it is recommended to sell the **{menu_type_recommendation}** menu type in **{city_recommendation}** on\
+      # **{day_of_week_recommendation}** during the **{shift_recommendation}** shift with the **{truck_brand_name_recommendation}** truck brand. \
+      # This combination is expected to yield the highest profit and a higher chance of customers making purchases.")
 
 
 with tab3:
