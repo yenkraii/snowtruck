@@ -545,6 +545,7 @@ with tab2:
   
   # Load the cleaned and transformed dataset
   df = pd.read_csv('profit_xinle.csv')
+  profit = profit_xinle['PROFIT']
   
   dowMapping={'Monday':0,'Tuesday':1,'Wednesday':2,'Thursday':3,'Friday':4,'Saturday':5,'Sunday':6}
   dowReverseMapping = {v: k for k, v in dowMapping.items()}
@@ -615,7 +616,9 @@ with tab2:
       output_df = pd.DataFrame([output_data], columns=['DAY_OF_WEEK', 'MENU_TYPE', 'TRUCK_BRAND_NAME', 'CITY', 'LOCATION','SHIFT','PREDICTED_PROFIT'])
     
       predicted_profit = output_df['PREDICTED_PROFIT'].iloc[0]
-      st.write('The predicted profit is {:.2f}.'.format(predicted_profit))
+      pcntChange = ( output_df['PREDICTED_PROFIT'].iloc[0] - df["PROFIT"].mean()) / df["PROFIT"].mean() * 100
+      st.metric("Profit", "${:.2f}".format(output_df['PREDICTED_PROFIT'].iloc[0]), "{:.2f}%".format(pcntChange));
+      # st.write('The predicted profit is {:.2f}.'.format(predicted_profit))
 
   st.divider()
   st.header("Are customers likely to purchase? 🤷‍♀️") 
