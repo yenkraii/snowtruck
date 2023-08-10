@@ -764,7 +764,7 @@ with tab3:
     confidence = 0
     # top suggestion 
     top_c = filtered_df.head(1)
-    st.write(top_c.drop(columns = ["first2", "consequents",0]))
+    st.write(top_c.drop(columns = ["first2", "consequents"]))
     if len(top_c) > 0:
       consequent = top_c.head(1)["consequents"].item()
       name = menu_names[consequent]
