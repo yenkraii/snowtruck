@@ -635,6 +635,7 @@ with tab2:
           likelihood_text = f"The likelihood of customers purchasing is **{predicted_quantity}**. That's good!"
       st.markdown(likelihood_text)
   st.header('Here are some recommendations 💡')
+  st.write('might take a few mintues to run...!)
 
 
   if st.button('View Recommendations'):
