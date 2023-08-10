@@ -796,17 +796,21 @@ with tab3:
 
     if 'conf' not in st.session_state:
       st.session_state.conf = 0
-      
-    data_input = [[st.session_state.cons, st.session_state.conf, menu_dict[first_item], menu_dict[second_item], c_gender, c_marital, c_child, c_age, c_member]]
-    input_df = pd.DataFrame(data = data_input, columns = ["consequents", "confidence", 0, 1, "GENDER", "MARITAL_STATUS", "CHILDREN_COUNT", "AGE", "MEMBERSHIP"])
-    uplift_score = slearner.predict(input_df)
-    if uplift_score < -0.25:
-      st.write("Best not to disturb! Better not push them.")
-    elif uplift_score > 0.25:
-      st.write("They won't be affected by the promotions!")
+
+    if 'cons' not in st.session_state:
+      st.write("What item are you tryng to promote?")
     else:
-      st.write("They are persuadables! You can persuade them.")
-    explainLOCAL(input_df,slearner)
+      # successful
+      data_input = [[st.session_state.cons, st.session_state.conf, menu_dict[first_item], menu_dict[second_item], c_gender, c_marital, c_child, c_age, c_member]]
+      input_df = pd.DataFrame(data = data_input, columns = ["consequents", "confidence", 0, 1, "GENDER", "MARITAL_STATUS", "CHILDREN_COUNT", "AGE", "MEMBERSHIP"])
+      uplift_score = slearner.predict(input_df)
+      if uplift_score < -0.25:
+        st.write("Best not to disturb! Better not push them.")
+      elif uplift_score > 0.25:
+        st.write("They won't be affected by the promotions!")
+      else:
+        st.write("They are persuadables! You can persuade them.")
+      explainLOCAL(input_df,slearner) # shap explainer
 
 with tab4:
   import streamlit as st
