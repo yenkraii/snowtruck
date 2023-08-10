@@ -689,13 +689,9 @@ with tab2:
       menu_type_recommendation = row_with_highest_profit['MENU_TYPE'] 
           
       # Print the recommendation
-      st.markdown(
-          f"<h1>✨ <span style='font-size: 36px;'>Optimal Selling Strategy</span> ✨</h1>\n\n"
-          "**Maximize Profit, Amp Up Sales!** Sell the "
-          "**{menu_type_recommendation}** menu in **{city_recommendation}** on "
-          "**{day_of_week_recommendation}** during the **{shift_recommendation}** shift "
-          "with the **{truck_brand_name_recommendation}** truck."
-      )
+      st.markdown(f"<h1>✨ <span style='font-size: 36px;'>Optimal Selling Strategy</span> ✨</h1>\n\n")
+      st.markdown( "**Maximize Profit, Amp Up Sales!** Sell the **{menu_type_recommendation}** menu in **{city_recommendation}** on \
+      **{day_of_week_recommendation}** during the **{shift_recommendation}** shift with the **{truck_brand_name_recommendation}** truck.")
       # st.markdown(f"Based on the predictions, it is recommended to sell the **{menu_type_recommendation}** menu type in **{city_recommendation}** on\
       # **{day_of_week_recommendation}** during the **{shift_recommendation}** shift with the **{truck_brand_name_recommendation}** truck brand. \
       # This combination is expected to yield the highest profit and a higher chance of customers making purchases.")
