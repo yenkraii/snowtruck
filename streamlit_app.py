@@ -781,6 +781,18 @@ with tab3:
       st.write("Based on market basket analysis, nothing is suitable as recommendation.")
     
   st.write("Should we promote to this customer?")
+
+  def explainLOCAL(test,model):
+    # test is the testing dataset where each row will be explained
+    # in relation to the prediction given by 'model'
+    import shap
+    test.columns = test.columns.astype(str)
+    explainer = shap.Explainer(model.estimator.predict, test)
+    shap_values = explainer(test)
+    print(shap_values[0])
+    shap.plots.bar(shap_values[0])
+
+
   
   # predicting
   if st.button("Predict", key = 404):
@@ -791,12 +803,13 @@ with tab3:
     data_input = [[st.session_state.cons, st.session_state.conf, menu_dict[first_item], menu_dict[second_item], c_gender, c_marital, c_child, c_age, c_member]]
     input_df = pd.DataFrame(data = data_input, columns = ["consequents", "confidence", 0, 1, "GENDER", "MARITAL_STATUS", "CHILDREN_COUNT", "AGE", "MEMBERSHIP"])
     uplift_score = slearner.predict(input_df)
-    if uplift_score < -0.75:
+    if uplift_score < -0.25:
       st.write("Best not to disturb! Better not push them.")
     elif uplift_score > 0.25:
       st.write("They won't be affected by the promotions!")
     else:
       st.write("They are persuadables! You can persuade them.")
+    explainLOCAL(input_df,slearner)
 
 with tab4:
   import streamlit as st
