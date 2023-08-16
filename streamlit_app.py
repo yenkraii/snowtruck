@@ -29,6 +29,8 @@ with tab1:
   import xgboost as xgb
   
   # Define the app title and favicon
+  st.markdown("This tab serves to :blue[predict the average daily sales] that a truck of a specific brand can generate at a chosen location, as well as showcase the :blue[projected sale increase] (can be :green[positive]/:red[negative]) for each truck brand in the city over a span of 5 years :red[(just a gauge, not accurate)]. By doing so, Tasty Bytes would be able to determine the cities at which the food truck brands are doing better, or the cities that generally bring better revenue to the business. With this information, they would be able to make :blue[better, data-driven decisions, and marketing strategies could be improved].")
+
   st.title('How much can you make from the TastyBytes locations? 💡')
   st.markdown("**Tell us more on what you want to predict!**")
   
