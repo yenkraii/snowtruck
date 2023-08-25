@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import PIL.Image
-import snowflake.connector
 import pydeck as pdk
 import pickle
 import xgboost as xgb
@@ -20,7 +19,7 @@ st.title("SnowTruck:minibus:")
 
 # connects to the snowflake account 
 # if need to use the data there
-conn = snowflake.connector.connect(**st.secrets["snowflake"])
+#conn = snowflake.connector.connect(**st.secrets["snowflake"])
 
 # tabs
 tab1,tab2,tab3,tab4,tab5 = st.tabs(["Predicting Daily Sales","Profit Prediction","MBA + Uplift Modelling","tab4","tab5"])
